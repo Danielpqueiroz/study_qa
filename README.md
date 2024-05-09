@@ -12,6 +12,7 @@ E uma ferramenta de gestão de tempo composta por quatro quadrantes onde:
 - tarefas urgentes, mas não importantes pedemser delegadas e 
 - tarefas nem urgentes nem importantes devem ser eliminadas.
 
+
 ## Comandos Git e Gitlab
 
 - git init inicia um novo repositorio
@@ -20,6 +21,9 @@ E uma ferramenta de gestão de tempo composta por quatro quadrantes onde:
 - git push envia as alterações para o repositorio remoto
 - git clone clona um repositorio 
 
+# Dia 02
+
+# Pontos importantes
 
 
 
