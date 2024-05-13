@@ -1,5 +1,5 @@
 # Material e Bate-papo
-# Seção 1
+
 ## Pontos importantes 
 
 -- Testes só aumentam a qualidade do software quando: 
