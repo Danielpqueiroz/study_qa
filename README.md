@@ -1,5 +1,5 @@
 # Sprint 01 
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/devsuperior/sds1-wmazoni/blob/master/LICENSE) 
+
 
 # Sobre o Repositorio
 
@@ -13,6 +13,8 @@ fixação dos conhecimentos adquiridos durante a sprint.
 - [Dia 4](Dia_04.md)
 - [Dia 5](Dia_05.md)
 - [Dia 6](Dia_06.md)
+- [Dia 7](Dia_07.md)
+- [Dia 8](Dia_08.md)
 
 
 
