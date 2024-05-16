@@ -15,7 +15,7 @@ fixação dos conhecimentos adquiridos durante a sprint.
 - [Dia 6](Dia_06.md)
 - [Dia 7](Dia_07.md)
 - [Dia 8](Dia_08.md)
-- [Dia 8](Dia_09.md)
+- [Dia 9](Dia_09.md)
 
 
 
