@@ -8,6 +8,9 @@ E uma ferramenta de gestão de tempo composta por quatro quadrantes onde:
 - tarefas urgentes, mas não importantes pedemser delegadas e 
 - tarefas nem urgentes nem importantes devem ser eliminadas.
 
+<div align="center">
+    <img src="imagens/Matriz_Eisenhower.png" width="700px" />
+</div>
 
 ## Comandos Git e Gitlab
 

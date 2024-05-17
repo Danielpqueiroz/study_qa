@@ -1,6 +1,6 @@
 
 
-## Pilares da Segurança da Informação:
+## Pilares da Segurança da Informação
 
 - Confidencialidade ( Proteger contra acessos não autorizados)
 - Integridade (Manter características originais dos dados)
@@ -26,10 +26,11 @@
 - Tendo várias senhas fortes.
 - Devemos trocar as senhas com frequência.
 - Usar multifator de autenticação.
-- E usar letras maiúsculas e minúsculas, números e caracteres especiais.
+- Usar letras maiúsculas e minúsculas, números e caracteres especiais.
+- se possível é bom utilizar um autenticador de senha.
 
 # IA Generativa
-- Deve s e proteger as informações de clientes ou da empresa. Como senhas, tokens, nome de clientes, empresas, codigos, e casos reais.
+- Deve se proteger as informações de clientes ou da empresa. Como senhas, tokens, nome de clientes, empresas, codigos, e casos reais.
 
 
 # Pontos importantes
@@ -37,3 +38,12 @@
 - Não devemos compartilhar nossas credenciais de acesso.
 - Devemos reportar situações suspeitas para o time [InfoSec](https://compasso.atlassian.net/servicedesk/customer/portal/100)
 - Não devemos entrar em redes Wi-fi abertas.
+- Manter sempre o antivírus ativo e atualizado.
+- Plugins para melhorar segurança em navegadores: uBlock Origin, NoScript Security Suite
+
+# Redes Wifi Domésticas medidas de segurança
+
+- Alterar informações padrão do roteador.
+- Utilizar o WPA2 e AES256.
+- Alterar periodicamente nome e senha.
+
