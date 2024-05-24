@@ -29,5 +29,5 @@ https://api.dicebear.com/8.x/lorelei/svg?seed=Danielpontes&glassesProbability=10
 Neste exemplo foi requisitado o estilo lorelei, com nome Danielpontes, a probabilidade de usar óculos de 100%, um fundo gradiente, barba na variante 01, óculos na variante 02 e a probabilidade de acessórios no cabelo de 0%.
 
 <div align="center">
-    <img src="Imagens/Avatar_Dicebear.png" width="700px" />
+    <img src="Assets/Avatar_Dicebear.png" width="700px" />
 </div>
