@@ -12,7 +12,7 @@ Funcionais - visa garantir que funções do software estão em conformidade com 
 Não Funcionais - Performance(Escalabilidade, velocidade, estabilidade e eficiência)
 Estruturais - Arquitetura da API( Visa garantir que a estrutura é robusta, segura e bem projetada)
 
-A documentação do Swegger não contempla todas as informações, que podem estar contidas em documentos a parte como um caso de uso, diagramas, de forma informal, etc.
+A documentação do Swagger não contempla todas as informações, que podem estar contidas em documentos a parte como um caso de uso, diagramas, de forma informal, etc.
 Exemplo Tentar cadastrar um usuário
 Regra de negócio: Apenas administradores podem registrar novas viagens.
 entradas: Credencial (Administrador - Registrar, Usuário - Não Registrar, Invalido - Não Registrar, Expirada - Não Registrar)
