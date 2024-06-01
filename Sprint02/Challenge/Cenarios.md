@@ -1,74 +1,82 @@
-# Cenários de Teste para a API de Usuários
+# Casos de Teste
 
-1. Testes de Criação de Usuários (POST)
+- CT 01:
 
-- Cenário 1: Criar um usuário com todos os campos (NOME, E-MAIL, PASSWORD, ADMINISTRADOR) preenchidos corretamente.
-- Cenário 2: Tentar criar um usuário sem preencher algum dos campos obrigatórios.
-- Cenário 3: Tentar criar um usuário com um e-mail que já está registrado.
-- Cenário 4: Tentar criar um usuário com um e-mail de provedor proibido (gmail, hotmail).
-- Cenário 5: Criar um usuário com a senha no limite mínimo (5 caracteres) e máximo (10 caracteres).
-- Cenário 6: Tentar criar um usuário com senha fora dos limites de tamanho especificados.
-- Cenário 7: Tentar criar um usuário com um formato de e-mail inválido.
+    - Resultado: Com todos os campos preenchidos corretamente foi possível cadastrar o usuário. 
+    - Response: “message”: “Cadastro realizado com sucesso”. status 201 Created.
 
-2. Testes de Leitura de Usuários (GET)
+- CT 02: 
 
-- Cenário 8: Listar todos os usuários.
-- Cenário 9: Tentar acessar um usuário específico pelo ID.
-- Cenário 10: Tentar acessar um usuário com um ID inexistente.
+    - Resultado: Com algum dos campos sem preencher não foi possível cadastrar o usuário. 
+    - Response: “nome”: “nome não pode ficar em branco”. status 400 Bad Request.
+    - Response: “email”: “email não pode ficar em branco”. status 400 Bad Request.
+    - Response: “password”: “password não pode ficar em branco”. status 400 Bad Request.
+    - Response: “administardor”: “administrador deve ser ‘true’ ou ‘false’ ”. status 400 Bad Request.
 
-3. Testes de Atualização de Usuários (PUT)
+- CT 03: 
 
-- Cenário 11: Atualizar um usuário existente com dados válidos.
-- Cenário 12: Tentar atualizar um usuário com um e-mail já utilizado por outro usuário.
-- Cenário 13: Tentar atualizar um usuário com um ID inexistente (deve criar um novo usuário).
-- Cenário 14: Atualizar um usuário com um e-mail de um provedor proibido.
-- Cenário 15: Atualizar um usuário usando formato de e-mail inválido.
+    - Resultado: Não foi possível cadastrar um usuário já registrado.
+    - Response: “message”: “Este email já está sendo usado”. status 400 Bad Request.
 
-4. Testes de Exclusão de Usuários (DELETE)
+- CT 04: 
+    - Resultado: Foi permitido o cadastro dos provedores proibidos.
+    - Response: “message”: “Cadastro realizado com sucesso”. status 201 Created.
 
-- Cenário 16: Excluir um usuário existente.
-- Cenário 17: Tentar excluir um usuário com um ID inexistente.
+- CT 05: 
+    - Resultado: Foi permitido o cadastro de um usuário com a senha contendo 5 caracteres e 10 caracteres.
+    - Response: “message”: “Cadastro realizado com sucesso”. status 201 Created.
 
-# Cenários de Teste Importantes
+- CT 06: Cadastrar um usuário com senha fora dos limites de tamanho especificados.
+    - Resultado: Foi permitido o cadastro de um usuário com menos de 5 caracteres e acima de 10 caracteres.
+    - Response: “message”: “Cadastro realizado com sucesso”. status 201 Created.
 
-1. Criação de um Novo Usuário (POST)
+- CT 07: Cadastrar um usuário com um formato de e-mail inválido.
+    - Resultado: Não foi permitido cadastrar um email em formato invalido.
+    - Response: “email”: “email deve ser um email válido”. status 400 Bad Request.
 
-- Cenário 1: Tentar cadastrar um usuário com todos os campos (NOME, E-MAIL, PASSWORD, ADMINISTRADOR) preenchidos corretamente.
+- CT 08: Listar todos os usuários.
+    - Resultado: Foi retornada a quantidade de usuários e os cadastros dos usuários.
+    - Response: “quantidade”: 784, “usuarios”: [lista dos usuários]. status 200 OK.
 
-- Valor Gerado: Verifica a funcionalidade básica da API, assegurando que os vendedores possam se cadastrar e iniciar suas atividades no marketplace do ServeRest.
+- CT 09: Acessar um usuário específico pelo ID.
+    - Resultado: Foi retornado o cadastro do usuário buscado pelo id.
+    - Response: cadastro do usuario. status 200 OK.
 
-2. Validação de E-mail Único (POST)
+- CT 10: Acessar um usuário com um ID inexistente.
+    - Resultado: Não foi possível buscar um usuário com id inexistente.
+    - Response: “message”: “Usuário não encontrado”. status 400 Bad Request.
 
-- Cenário 3: Tentar cadastrar um usuário usando um e-mail que já está registrado na base de dados.
+- CT 11: Atualizar um usuário existente com dados válidos.
+    - Resultado: Foi permitida a atualização de um usuário com os dados válidos.
+    - Response: “message”: “Cadastro realizado com sucesso”. status 200 OK.
 
-- Valor Gerado: Garante a integridade dos dados, evitando conflitos e problemas de identificação ao impedir registros duplicados de e-mail.
+- CT 12: Atualizar um usuário com um e-mail já utilizado por outro usuário.
+    - Resultado: Foi permitido atualizar o usuário com email já utilizado por outro usuário.
+    - Response: “message”: “Registro alterado com sucesso”. status 200 OK.
 
-3. Restrição de Provedores de E-mail (POST)
+- CT 13: Atualizar um usuário com um ID inexistente (deve criar um novo usuário).
+    - Resultado: Foi possível atualizar o usuário com um id inexistente. Mas criou um novo cadastro.
+    - Response: “message”: “Cadastro realizado com sucesso”. status 201 Created.
 
-- Cenário 4: Tentar cadastrar um usuário com e-mails de provedores específicos proibidos (gmail, hotmail).
+- CT 14: Atualizar um usuário com um e-mail de um provedor proibido.
+    - Resultado: Foi possível atualizar o usuário com email proibido.
+    - Response: “message”: “Registro alterado com sucesso”. status 200 OK.
 
-- Valor Gerado: Testa regras de negócio específicas que podem estar relacionadas à política de segurança ou estratégia de mercado.
+- CT 15: Atualizar um usuário usando formato de e-mail inválido.
+    - Resultado: Não foi possível atualizar o usuário informando um email em formato invalido.
+    - Response: “email”: “email deve ser um email válido ``. status 400 Bad Request.
 
-4. Validação de Formato de E-mail (POST)
+- CT 16: Excluir um usuário existente.
+    - Resultado:Usuário foi excluído.
+    - Response: “message”: “Registro excluído com sucesso”. status 200 OK.
 
-- Cenário 7: Tentar cadastrar um usuário com um e-mail que não segue um padrão válido (ex: "usuario@@exemplo..com").
+- CT 17: Excluir um usuário com um ID inexistente.
+    - Resultado: Não foi possível excluir um usuário com id inexistente.
+    - Response: “message”: “Nenhum registro excluído ``. status 200 OK.
 
-- Valor Gerado: Assegura que a entrada de dados segue padrões que evitam erros de comunicação e problemas técnicos no futuro.
+- Resultados não esperados: 
+    - caso 4 onde foi permitido que o usuário se cadastrar com estes provedores de email proibidos.
+    - caso 6 onde foi permitido cadastrar um usuário com a senha menor que 5 caracteres e maior que 10 caracteres.
+    - caso 12 onde foi permitido o cadastro de um usuário já cadastrado por outro usuário.
 
-5. Criação Condicional de Usuário (PUT)
-
-- Cenário 13: Usar o método PUT para atualizar um usuário, e caso o ID não exista, verificar se um novo usuário é criado.
-
-- Valor Gerado: Verifica a robustez da API em lidar com casos onde atualizações se transformam em criações, mantendo a continuidade e a integridade dos dados.
-
-6. Validação de Senha (POST)
-
-- Cenário 5: Tentar cadastrar um usuário com senhas que não atendem aos critérios de tamanho mínimo (5 caracteres) e máximo (10 caracteres).
-
-- Valor Gerado: Protege o sistema contra senhas fracas que podem comprometer a segurança do usuário e do sistema.
-
-7. Deleção de Usuário (DELETE)
-
-- Cenário 16 e 17: Excluir um usuário existente e tentar excluir um usuário usando um ID inexistente.
-
-- Valor Gerado: Assegura que o processo de exclusão está funcionando corretamente e que a tentativa de excluir um usuário inexistente é tratada adequadamente.
+- As provas dos testes estao contidas na pasta  [Assets](Sprint02\Challenge\Assets)
