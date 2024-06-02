@@ -6,8 +6,8 @@
 - Funcionalidades como run, testar e documentar.
 - Dá a possibilidade de empacotar todos os seus requests e enviar
 inclui também níveis de automação utilizando a biblioteca iuma
-Permite a criação de collections para deixar mais organizado
-Permite tornar a seleção dinâmica usando diferentes ambientes(environments).
+- Permite a criação de collections para deixar mais organizado
+- Permite tornar a seleção dinâmica usando diferentes ambientes(environments).
 - Para realizar as requisições pode ser necessário enviar dados em seu corpo (body), onde o formato para estrutura mas usada é o raw e o tipo poder Text, JavaScript, JSON, HTML, XML mas o mais usado é o JSON.
 - Existe um campo de entrada de body e um campo de resposta
 - No campo de autenticação selecionar o Basic Authentication e informar usuario e senha.
@@ -38,3 +38,8 @@ Permite tornar a seleção dinâmica usando diferentes ambientes(environments).
 - Apache JMeter serve para fazer testes funcionais e medir o desempenho de aplicações.
 
 - K6 é otimizado para consumir o mínimo de recurso do sistema e para realizar testes com altas cargas.
+
+## Pontos Importantes
+
+- Manter tudo organizado.
+- Dar nomes claros para as rotas.

@@ -75,8 +75,8 @@
     - Response: “message”: “Nenhum registro excluído ``. status 200 OK.
 
 - Resultados não esperados: 
-    - caso 4 onde foi permitido que o usuário se cadastrar com estes provedores de email proibidos.
-    - caso 6 onde foi permitido cadastrar um usuário com a senha menor que 5 caracteres e maior que 10 caracteres.
-    - caso 12 onde foi permitido o cadastro de um usuário já cadastrado por outro usuário.
+    - caso 4: onde foi permitido que o usuário se cadastrar com estes provedores de email proibidos.
+    - caso 6: onde foi permitido cadastrar um usuário com a senha menor que 5 caracteres e maior que 10 caracteres.
+    - caso 12: onde foi permitido o cadastro de um usuário já cadastrado por outro usuário.
 
-- As provas dos testes estao contidas na pasta  [Assets](Sprint02\Challenge\Assets)
+- As provas dos testes estão contidas na pasta  [Assets](Sprint02\Challenge\Assets)
