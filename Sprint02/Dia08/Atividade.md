@@ -43,23 +43,23 @@ O cadastro com senha fraca foi permitido:
 5) Crie cenários alternativos na atualização de usuários, explore possíveis erros que podem ocorrer e mapeie as requisições através do Postman;
 Com o campo nome vazio foi retornado o status 400:
 <div align="center">
-    <img src="Assets/atualização_nome_branco.png" width="700px" />
+    <img src="Assets/atualizacao_nome_branco.png" width="700px" />
 </div>
 Com o campo email vazio foi retornado o status 400:
 <div align="center">
-    <img src="Assets/atualização_email_branco.png" width="700px" />
+    <img src="Assets/atualizacao_email_branco.png" width="700px" />
 </div>
 Com o campo senha vazio foi retornado o status 400:
 <div align="center">
-    <img src="Assets/atualização_senha_branco.png" width="700px" />
+    <img src="Assets/atualizacao_senha_branco.png" width="700px" />
 </div>
 Com o campo email invalido foi retornado o status 400:
 <div align="center">
-    <img src="Assets/atualização_email_invalido.png" width="700px" />
+    <img src="Assets/atualizacao_email_invalido.png" width="700px" />
 </div>
 Novamente foi permitido atualização da senha fraca.
 <div align="center">
-    <img src="Assets/atualização_senha_fraca.png" width="700px" />
+    <img src="Assets/atualizacao_senha_fraca.png" width="700px" />
 </div>
 
 6) Crie cenários alternativos na exclusão de usuários, explore possíveis erros que podem ocorrer e mapeie as requisições através do Postman.
@@ -69,5 +69,5 @@ O usuário foi excluido mas aparece no response "Nenhum registro excluido":
 </div>
 Confirmando se o usuario foi excluido, e foi confirmado:
 <div align="center">
-    <img src="Assets/excluir_verificação.png" width="700px" />
+    <img src="Assets/excluir_verificacao.png" width="700px" />
 </div>

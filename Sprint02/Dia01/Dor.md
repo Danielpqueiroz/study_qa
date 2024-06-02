@@ -27,4 +27,6 @@ Para o portugues pode ser definido como “Definição de preparado”, essencia
 - RESTful é baseada nos padrões REST e tem padrões e regras a mais.
 
 
+## Definition of Done (DoD)
 
+- São critérios para considerar uma história como concluída.
