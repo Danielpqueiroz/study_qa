@@ -67,7 +67,8 @@ fixação dos conhecimentos adquiridos durante a sprint.
 
   - [Planejamento.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint2/Sprint02/Challenge/Planejamento.md)
   - [Cenários.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint2/Sprint02/Challenge/Cenarios.md)
-  
+  - [Mapa mental](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint2/Sprint02/Dia07/An%C3%A1lise_HTTP_API_REST.md)
+  - [Issues](https://gitlab.com/compass8112219/Sprint01/-/issues)
 </details>
 
 
