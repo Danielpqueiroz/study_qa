@@ -53,5 +53,5 @@
 ## Introdução a TDD BDD ATDD
 
 - TDD - Desenvolvimento Direcionado por Testes
-- BDD - Desenvolvimento Direcionado po Comportamento
+- BDD - Desenvolvimento Direcionado por Comportamento
 - ATDD - Desenvolvimento Direcionado por Testes de Aceitação
