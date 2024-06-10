@@ -17,7 +17,7 @@
 3. Cenários Macro na Suíte de Testes
 
    1. US 001: [API] Usuários
-        1.Cenário de Criação de Usuários (POST)
+        1. Cenário de Criação de Usuários (POST)
 
             - CT 01: Cadastrar um usuário com todos os campos preenchidos corretamente.
             - CT 02: Cadastrar um usuário sem preencher algum dos campos obrigatórios.
