@@ -3,7 +3,7 @@
     -  Usabilidade do site ServeRest.
 
 2. Resumo
-    -  Objetivo: Garantir que a API funcione corretamente de acordo com os critérios de aceitação definidos, permitindo aos vendedores se cadastrarem, autenticarem e gerenciarem seus produtos no marketplace.
+    -  Objetivo: Garantir que a API funcione corretamente de acordo com os critérios de aceitação definidos, permitindo aos usuários se cadastrarem, autenticarem e gerenciarem seus produtos no marketplace.
     - Teste de API: Foco na validação de todas as operações CRUD (Criar, Ler, Atualizar, Deletar) sobre os usuários.
     - Testes de segurança: Validar que os campos de e-mail e senha atendem às exigências de segurança.
     - Testes de validação de dados: Verificar que os campos NOME, E-MAIL, PASSWORD e ADMINISTRADOR estão de acordo com as regras especificadas.
@@ -97,7 +97,7 @@
     
 5. Cenários de Teste Importantes
 
-    1. Cenário 1: Criação de Usuários (POST)
+    1. Cenário 1: Criação de Usuários (POST) login procura produto
 
     - Valor Gerado: Verifica a funcionalidade básica da API, assegurando que os vendedores possam se cadastrar e iniciar suas atividades no marketplace do ServeRest. Garantindo a integridade dos dados e assegurando que a entrada de dados segue padrões que evitam erros de comunicação e problemas técnicos no futuro. E Proteger o sistema contra senhas fracas que podem comprometer a segurança do usuário e do sistema.
 
@@ -116,6 +116,7 @@
 7. Local dos Testes
     -  Onde os testes serão realizados?
         -  Em um ambiente pessoal emulando o ambiente real de uso.
+        - Utilizando a API serverest localmente.
 
 8. Recursos Necessários
     -  Recursos Humanos: Testador.
