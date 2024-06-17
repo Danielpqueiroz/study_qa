@@ -52,8 +52,8 @@
 
 | Caso de Teste | Descrição | Resultado | Response | Status | Observações |
 |---------------|-----------|-----------|----------|--------|-------------|
-| **CT 25**     | Usuários não autenticados não devem conseguir realizar ações na rota de Produtos POST. | Produto cadastrado com sucesso. | “message”: “Produto cadastrado com sucesso”. status 201 Created | ✅ | - |
-| **CT 26**     | Cadastrar um produto com todos os campos preenchidos corretamente. | Produto cadastrado com sucesso. | “message”: “Produto cadastrado com sucesso”. status 201 Created | ✅ | - |
+| **CT 25**     | Usuários não autenticados não devem conseguir realizar ações na rota de Produtos POST. |  Token de acesso ausente, inválido, expirado. | “message”: “ Token de acesso ausente, inválido, expirado ou usuário do token não existe mais”. status 401 Unauthorized | ✅ | - |
+| **CT 26**     | Cadastrar um produto com todos os campos preenchidos corretamente. | Produto cadastrado com sucesso. | “message”: “ Cadastro realizado com sucesso”. status 201 Created | ✅ | - |
 | **CT 27**     | Cadastrar um produto sem preencher o campo nome obrigatório. | Falha no cadastro do produto. | “message”: “Campo nome não preenchido”. status 400 Bad Request | ✅ | - |
 | **CT 28**     | Cadastrar um produto sem preencher o campos preco obrigatório. | Falha no cadastro do produto. | “message”: “Campo preco não preenchido”. status 400 Bad Request | ✅ | - |
 | **CT 29**     | Cadastrar um produto sem preencher o campos descricao obrigatório. | Falha no cadastro do produto. | “message”: “Campo descricao não preenchido”. status 400 Bad Request | ✅ | - |
@@ -65,7 +65,7 @@
 
 | Caso de Teste | Descrição | Resultado | Response | Status | Observações |
 |---------------|-----------|-----------|----------|--------|-------------|
-| **CT 33**     | Usuários não autenticados não devem conseguir realizar ações na rota de Produtos GET. | Produto cadastrado com sucesso. | “message”: “Produto cadastrado com sucesso”. status 201 Created | ✅ | - |
+| **CT 33**     | Usuários não autenticados não devem conseguir realizar ações na rota de Produtos GET. | Token de acesso ausente, inválido, expirado. | “message”: “Token de acesso ausente, inválido, expirado ou usuário do token não existe mais”.”. status 401 Unauthorized | ❌ | - |
 | **CT 34**     | Listar todos os produtos. | Produtos listados com sucesso. | “produtos”: [lista dos produtos]. status 200 OK | ✅ | - |
 | **CT 35**     | Acessar um produto específico pelo ID. | Produto acessado com sucesso. | cadastro do produto. status 200 OK | ✅ | - |
 | **CT 36**     | Acessar um produto com um ID inexistente. | Produto não encontrado. | “message”: “Produto não encontrado”. status 400 Bad Request | ✅ | - |
@@ -74,7 +74,7 @@
 
 | Caso de Teste | Descrição | Resultado | Response | Status | Observações |
 |---------------|-----------|-----------|----------|--------|-------------|
-| **CT 37**     | Usuários não autenticados não devem conseguir realizar ações na rota de Produtos PUT. | Produto cadastrado com sucesso. | “message”: “Produto cadastrado com sucesso”. status 201 Created | ✅ | - |
+| **CT 37**     | Usuários não autenticados não devem conseguir realizar ações na rota de Produtos PUT. | Token de acesso ausente, inválido, expirado. | “message”: “Token de acesso ausente, inválido, expirado ou usuário do token não existe mais”. status 401 Unauthorized | ✅ | - |
 | **CT 38**     | Atualizar um produto existente com dados válidos. | Produto atualizado com sucesso. | “message”: “Produto atualizado com sucesso”. status 200 OK | ✅ | - |
 | **CT 39**     | Atualizar um produto com um nome já utilizado por outro produto. | Falha na atualização do produto. | “message”: “Nome do produto já utilizado”. status 400 Bad Request | ✅ | - |
 | **CT 40**     | Atualizar um produto com um ID inexistente (deve criar um novo produto). | Produto criado com sucesso. | “message”: “Produto criado com sucesso”. status 201 Created | ✅ | - |
@@ -85,7 +85,7 @@
 
 | Caso de Teste | Descrição | Resultado | Response | Status | Observações |
 |---------------|-----------|-----------|----------|--------|-------------|
-| **CT 43**     | Usuários não autenticados não devem conseguir realizar ações na rota de Produtos DELETE. | Produto cadastrado com sucesso. | “message”: “Produto cadastrado com sucesso”. status 201 Created | ✅ | - |
+| **CT 43**     | Usuários não autenticados não devem conseguir realizar ações na rota de Produtos DELETE. | Token de acesso ausente, inválido, expirado. | “message”: “Token de acesso ausente, inválido, expirado ou usuário do token não existe mais”. status 401 Unauthorized | ✅ | - |
 | **CT 44**     | Não deve ser possível excluir produtos que estão dentro de carrinhos | Produto excluído com sucesso. | “message”: “Produto excluído com sucesso”. status 200 OK | ✅ | - |
 | **CT 45**     | Excluir um produto existente. | Produto excluído com sucesso. | “message”: “Produto excluído com sucesso”. status 200 OK | ✅ | - |
 | **CT 46**     | Excluir um produto com um ID inexistente. | Falha na exclusão do produto. | “message”: “Nenhum produto encontrado”. status 400 Bad Request | ✅ | - |
