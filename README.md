@@ -1,10 +1,10 @@
-# Sprint 02 
+# Sprint 03 
 
 
 # Sobre o Repositorio
 
 Este repositorio consiste em um breve resumo sobre os temas abordados, separados por dias, para melhor 
-fixação dos conhecimentos adquiridos durante a sprint.
+fixação dos conhecimentos adquiridos durante a sprint e o material pedido para o challenger.
 
 ## Links para acessar diretamente o material do dia:
 
@@ -46,7 +46,8 @@ fixação dos conhecimentos adquiridos durante a sprint.
 
   - [Planejamento.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Planejamento.md?ref_type=heads)
   - [Cenários.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Cenarios2.md?ref_type=heads)
-  - [Mapa mental](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint2/Sprint02/Dia07/An%C3%A1lise_HTTP_API_REST.md)
+  - [Mapa mental](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Assets/API%20Serverest.png?ref_type=heads)
+  - [Jira](https://danielqueirozdpq.atlassian.net/jira/software/projects/PC/boards/2/timeline)
   - [Jira](https://danielqueirozdpq.atlassian.net/jira/software/projects/PC/boards/2/timeline)
 </details>
 
