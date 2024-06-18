@@ -47,7 +47,7 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
   - [Planejamento.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Planejamento.md?ref_type=heads)
   - [Cenários.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Cenarios.md?ref_type=heads)
   - [Mapa mental](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Assets/API%20Serverest.png?ref_type=heads)
-  - [Material Postman](https://danielqueirozdpq.atlassian.net/jira/software/projects/PC/boards/2/timeline)
+  - [Material Postman](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Assets/serverest.postman_collection.json?ref_type=heads)
   
 </details>
 
