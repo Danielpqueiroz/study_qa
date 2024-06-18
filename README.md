@@ -45,10 +45,10 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
   <summary>Challenger</summary>
 
   - [Planejamento.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Planejamento.md?ref_type=heads)
-  - [Cenários.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Cenarios2.md?ref_type=heads)
+  - [Cenários.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Cenarios.md?ref_type=heads)
   - [Mapa mental](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Assets/API%20Serverest.png?ref_type=heads)
-  - [Jira](https://danielqueirozdpq.atlassian.net/jira/software/projects/PC/boards/2/timeline)
-  - [Jira QAlity ciclos de teste](https://danielqueirozdpq.atlassian.net/plugins/servlet/ac/com.soldevelo.apps.test_management/test-cycles?board.id=2&project.key=PC&project.id=10001&board.type=simple)
+  - [Material Postman](https://danielqueirozdpq.atlassian.net/jira/software/projects/PC/boards/2/timeline)
+  
 </details>
 
 
