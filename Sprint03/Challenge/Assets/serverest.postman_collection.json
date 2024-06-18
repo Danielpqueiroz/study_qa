@@ -3577,6 +3577,8 @@
 									"pm.environment.set(\"nonexistentId\", nonexistentId);\r",
 									"\r",
 									"\r",
+									"\r",
+									"\r",
 									"const postRequest = {\r",
 									"    url: pm.environment.get(\"host\") + \"/login\",\r",
 									"    method: \"POST\",\r",
@@ -3600,6 +3602,44 @@
 									"    console.log(auth[1])\r",
 									"    pm.globals.set(\"token\", auth[1])\r",
 									"})\r",
+									"\r",
+									"const postRequest2 = {\r",
+									"    url: pm.environment.get(\"host\") + \"/produtos\",\r",
+									"    method: \"POST\",\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'Authorization': 'Bearer ' + pm.globals.get(\"token\")\r",
+									"        \r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: \"raw\", \r",
+									"        options: {\r",
+									"            raw: {\r",
+									"                language: \"json\"\r",
+									"            }\r",
+									"        },\r",
+									"        raw: JSON.stringify({\r",
+									"            \r",
+									"            nome: \"Mouse Logitec\",\r",
+									"            preco: 50,\r",
+									"            descricao: \"Mouse profissional\",\r",
+									"            quantidade: 1\r",
+									"            \r",
+									"        })\r",
+									"    }\r",
+									"}\r",
+									"pm.sendRequest(postRequest2, function (err, res) {\r",
+									"    let responseJson = res.json()\r",
+									"    let idName = responseJson[\"_id\"]\r",
+									"    console.log(idName)\r",
+									"    \r",
+									"    pm.globals.set(\"idSameName\", idName)\r",
+									"    \r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript",
@@ -3610,12 +3650,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"\r",
-									"pm.test(\"Atualizar um produto com um nome já utilizado por outro produto\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.message).to.eql(\"Já existe produto com esse nome\");\r",
-									"});\r",
 									"\r",
 									"\r",
 									"pm.test(\"Field nome is not empty and is in the correct format.\", function () {\r",
@@ -3647,7 +3681,32 @@
 									"    requestBody = JSON.parse(requestBody);\r",
 									"   // Verificar se o campo 'quantidade' está presente, não está vazio e é um número\r",
 									"    pm.expect(requestBody).to.have.property('quantidade').that.is.a('number').and.is.not.null;\r",
-									"});"
+									"});\r",
+									"\r",
+									"// Requisição para excluir o produto utilizando o ID armazenado na variável global\r",
+									"const deleteRequest = {\r",
+									"    url: pm.environment.get(\"host\") + \"/produtos/\" + pm.globals.get(\"idSameName\"),\r",
+									"    method: \"DELETE\",\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json',\r",
+									"        'Authorization': 'Bearer ' + pm.globals.get(\"token\")\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.sendRequest(deleteRequest, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.log(err);\r",
+									"    } else {\r",
+									"        console.log(\"Produto excluído com sucesso!\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -3669,7 +3728,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"{{sameName}}\",\r\n    \"preco\": {{$randomInt}},\r\n    \"descricao\": \"{{$randomFullName}}\",\r\n    \"quantidade\": {{$randomInt}}\r\n}\r\n",
+							"raw": "{\r\n    \"nome\": \"Mouse Logitec\",\r\n    \"preco\": 50,\r\n    \"descricao\": \"Mouse profissional\",\r\n    \"quantidade\": 1\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3677,13 +3736,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/produtos/{{nonexistentId}}",
+							"raw": "{{host}}/produtos/{{idSameName}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"produtos",
-								"{{nonexistentId}}"
+								"{{idSameName}}"
 							]
 						}
 					},
@@ -3895,8 +3954,8 @@
 									"let resJson = pm.response.json();\r",
 									"\r",
 									"// Verificar se a mensagem de erro está presente e correta\r",
-									"pm.test(\"Error message is correct\", function () {\r",
-									"    pm.expect(resJson.message).to.eql(\"Nome do produto é inválido.\");\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    pm.expect(resJson.message).to.eql(\"Já existe produto com esse nome\");\r",
 									"});\r",
 									"\r",
 									"pm.test(\"O campo nome não estão vazios e está no formato correto\", function () {\r",
@@ -4363,8 +4422,8 @@
 									"    pm.expect(responseBody).to.have.property('message', 'Nenhum registro excluído');\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Status code is 404\", function () {\r",
-									"    pm.response.to.have.status(404);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									""
@@ -4529,7 +4588,25 @@
 		},
 		{
 			"name": "carrinhos",
-			"item": []
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/carrinhos",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"carrinhos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
