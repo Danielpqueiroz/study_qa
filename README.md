@@ -6,15 +6,15 @@ fixação dos conhecimentos adquiridos durante a sprints.
 # Sprint 01
 
 ## Links para acessar diretamente o material do dia:
-- [Dia 1 - Matriz de Eisenhower e Git.](Dia_01.md)
-- [Dia 2 - Metodologia Scrum.](Dia_02.md)
-- [Dia 3 - Início rápido em testes e QA  Seção 1.](Dia_03.md)
-- [Dia 4 - Início rápido em testes e QA  Seção 2.](Dia_04.md)
-- [Dia 5 - Qualidade nos projetos.](Dia_05.md)
-- [Dia 6 - Fundamentos do teste de software.](Dia_06.md)
-- [Dia 7 - Sql.](Dia_07.md)
-- [Dia 8 - NoSql.](Dia_08.md)
-- [Dia 9 - CyberSecurity.](Dia_09.md)
+- [Dia 1 - Matriz de Eisenhower e Git.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_01.md)
+- [Dia 2 - Metodologia Scrum.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_02.md)
+- [Dia 3 - Início rápido em testes e QA  Seção 1.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_03.md)
+- [Dia 4 - Início rápido em testes e QA  Seção 2.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_04.md)
+- [Dia 5 - Qualidade nos projetos.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_05.md)
+- [Dia 6 - Fundamentos do teste de software.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_06.md)
+- [Dia 7 - Sql.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_07.md)
+- [Dia 8 - NoSql.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_08.md)
+- [Dia 9 - CyberSecurity.](https://gitlab.com/compass8112219/Sprints/-/blob/main/Sprint01/Dia_09.md)
 
 ## Agradecimentos:
 - Gabriel Just.
