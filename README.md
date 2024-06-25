@@ -53,8 +53,9 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
 
 
 ## Agradecimentos:
-- Enzo, Gabriel just, Leticia, Ricardo, Mathias, Jorge, Oliver.
+- Enzo.
 
+## Referencias
 
 
 
