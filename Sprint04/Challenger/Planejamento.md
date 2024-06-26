@@ -3,29 +3,8 @@
     -  Usabilidade do site ServeRest.
 
 2. Resumo
-    -  Objetivo: É desenvolver e garantir a funcionalidade e a integridade de uma API para o Marketplace ServeRest, permitindo que vendedores se cadastrem, autentiquem e gerenciem seus produtos de forma segura e eficiente.
-    - Teste de API: 
-        - Cadastro de Usuários: Testar operações CRUD para garantir que as funcionalidades básicas de cadastro de usuários estejam funcionando conforme esperado.
-        - Login: Testar autenticação com credenciais válidas e inválidas e verificar a geração e validade do token Bearer.
-        - Gerenciamento de Produtos: Testar operações CRUD para produtos e verificar as restrições de nomes duplicados e a exclusão de produtos em carrinhos.
-    - Testes de segurança: 
-        - Cadastro de Usuários: Verificar restrições de provedores de e-mail proibidos e validação de senhas.
-        - Login: Verificar segurança e validade do token Bearer.
-        - Gerenciamento de Produtos: Garantir que apenas usuários autenticados possam realizar ações na rota de produtos.
-    - Testes de validação de dados:
-        - Cadastro de Usuários: Validar preenchimento correto dos campos obrigatórios e padrão válido de e-mail.
-        - Login: Verificar autenticação com credenciais inválidas.
-        - Gerenciamento de Produtos: Validar que produtos com nomes duplicados não possam ser cadastrados.
-    - Testes de integridade: 
-        - Cadastro de Usuários: Garantir que não é possível criar ou atualizar usuários com e-mails duplicados.
-        - Login: Garantir validade do token Bearer por 10 minutos.
-        - Gerenciamento de Produtos: Verificar que atualizações com ID inexistente criam novos produtos.
+    -  Objetivo: É desenvolver e garantir a funcionalidade e a integridade de uma API para o Marketplace ServeRest, permitindo que vendedores e usuários se cadastrem, autentiquem, gerenciem seus produtos e consigam manipular os produtos no carrinho de forma segura e eficiente.
     
-    -  Resultado Esperado: Descrever o resultado esperado do teste.
-        - Cadastro de Usuários: Usuários são cadastrados com sucesso, respeitando todas as validações e restrições.
-        - Login: Vendedores autenticados com credenciais válidas recebem um token Bearer, enquanto tentativas inválidas são bloqueadas com status 401.
-        - Gerenciamento de Produtos: Vendedores autenticados conseguem gerenciar produtos conforme esperado, respeitando as regras de negócio estabelecidas.
-
 
 3. Cenários Macro na Suíte de Testes
 
@@ -51,6 +30,15 @@
 
         4. Cenário de Exclusão de Produtos (DELETE)
 
+    4. US 004: [API] Carrinho
+        1. Cenário de Criação de Carrinho (POST)
+
+        2. Cenário de Leitura de Carrinho (GET)
+
+        3. Cenário de Atualização de Carrinho (PUT)
+
+        4. Cenário de Exclusão de Carrinho (DELETE)
+
 4. Testes Candidatos à Automação
     - Testes de CRUD:
 
@@ -58,45 +46,57 @@
 
     - Testes de Validação de Dados:
 
-        - Automação de testes que verificam a validação de campos obrigatórios, restrições de e-mail e senha.
+        - Automação de testes que verificam a validação de campos obrigatórios e se estão em formato correto.
 
     - Testes de Integridade e Segurança:
 
-        - Testes que verificam as restrições de e-mail e a impossibilidade de duplicação de usuários são críticos e devem ser automatizados para garantir a segurança e a integridade dos dados.
+        - Testes que verificam as restrições quanto a acesso sem autorização,  impossibilidade de duplicação de usuários, produtos ou carrinhos são críticos e devem ser automatizados para garantir a segurança e a integridade dos dados.
     
 5. Cenários de Teste Importantes
 
-    1. Cenário 1: Criação de Usuários (POST) login procura produto
+    1. Cenário 1: Criação de Usuários (POST) 
 
-    - Valor Gerado: Verifica a funcionalidade básica da API, assegurando que os vendedores possam se cadastrar e iniciar suas atividades no marketplace do ServeRest. Garantindo a integridade dos dados e assegurando que a entrada de dados segue padrões que evitam erros de comunicação e problemas técnicos no futuro. E Proteger o sistema contra senhas fracas que podem comprometer a segurança do usuário e do sistema.
+    - Valor Gerado: Constatar que o usuário consiga se cadastrar no Serverest de forma correta e completa.
 
     2. Cenário 2: Login (POST)
 
-    - Valor Gerado: A implementação de um cenário de login na API ServeRest oferece valor substancial ao garantir segurança, melhorar a experiência do usuário, manter a integridade dos dados.
+    - Valor Gerado: Garantir que o login do vendedor ou usuário esteja funcionando perfeitamente e gerando o token de autenticação.
 
-    3. Cenário 4: Busca por produtos (GET)
+    3. Cenário 3: Busca por produtos (GET)
 
-    - Valor Gerado: A implementação de um cenário de busca por produtos na API ServeRest oferece valor substancial ao facilitar o acesso à informação, aumentar a eficiência nas operações comerciais, melhorar a tomada de decisões, permitir uma experiência de navegação personalizada.
+    - Valor Gerado: Garantir que a busca por produtos esteja funcionando perfeitamente e que seja necessario o uso da autenticação.
 
+    4. Cenário 4: Criação de carrinho (POST)
 
+    - Valor Gerado: Garantir que os produtos possam ser adicionados ao carrinho esteja funcionando perfeitamente e que seja necessario o uso da autenticação, para posteriormente finalizar a compra.
 
-6. Pessoas Envolvidas
+6. Critérios usados
+    - Testes Exploratórios utilizados:
+        - Freestyle.
+        - Baseado em Cenários.
+        - Valor Limite.
+        - Vazio.
+        - Testes de segurança. 
+        - Testes de validação de dados.
+        - Testes de integridade.
+
+7. Pessoas Envolvidas
     -  Quem são os testadores?
         -  Daniel .
        
-7. Local dos Testes
+8. Local dos Testes
     -  Onde os testes serão realizados?
         -  Em um ambiente pessoal emulando o ambiente real de uso.
         - Utilizando a API serverest localmente.
 
-8. Recursos Necessários
+9. Recursos Necessários
     -  Recursos Humanos: Testador.
     -  Equipamento: Computador.
     -  Software: Postman, Xmind, Jira, GitLab.
 
-9. Cronograma
+10. Cronograma
     -  Datas e Prazos: Definir quando cada atividade será realizada.
         -  Data de Início: 27/05/2024
-        -  Data de Conclusão: 03/06/2024
+        -  Data de Conclusão: 03/07/2024
     
 

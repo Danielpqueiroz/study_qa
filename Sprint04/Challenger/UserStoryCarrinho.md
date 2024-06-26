@@ -1,7 +1,7 @@
 ### User Story: [API] Carrinho
 
 
-**Como** um cliente do Marketplace da ServeRest  
+**Como** um usuário do Marketplace da ServeRest  
 **Gostaria** de poder adicionar, visualizar, atualizar e remover produtos no meu carrinho de compras  
 **Para** que eu possa gerenciar os itens que desejo comprar antes de finalizar a compra.
 

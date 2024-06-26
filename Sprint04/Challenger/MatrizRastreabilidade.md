@@ -93,33 +93,31 @@
 ## Cenário de Criação de Carrinho (POST)
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|---------------------|
-| **CT 01**     | Autenticar um usuário para criar um carrinho. | “token”: “<token_value>”. status 200 OK | ✅ | - | ✅ |
-| **CT 02**     | Adicionar um produto existente no carrinho. | “message”: “Produto adicionado com sucesso”. status 201 Created | ✅ | - | ✅ |
-| **CT 04**     | Adicionar um produto fora de estoque no carrinho. | “message”: “Produto fora de estoque”. status 400 Bad Request | ✅ | - | ✅ |
+| **CT 47**     | Autenticar um usuário para criar um carrinho. | “token”: “<token_value>”. status 200 OK | ✅ | - | ✅ |
+| **CT 48**     | Adicionar um produto existente no carrinho. | “message”: “Produto adicionado com sucesso”. status 201 Created | ✅ | - | ✅ |
+| **CT 49**     | Adicionar um produto fora de estoque no carrinho. | “message”: “Produto fora de estoque”. status 400 Bad Request | ✅ | - | ✅ |
 
 ## Cenário de Leitura de Carrinho (GET)
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|---------------------|
-| **CT 05**     | Listar todos os itens do carrinho. | “itens”: [lista dos itens]. status 200 OK | ✅ | - | ✅ |
-| **CT 06**     | Visualizar um item específico do carrinho pelo ID. | Detalhes do item. status 200 OK | ✅ | - | ✅ |
-| **CT 07**     | Tentar visualizar um item inexistente do carrinho pelo ID. | “message”: “Item não encontrado”. status 400 Bad Request | ✅ | - | ✅ |
+| **CT 50**     | Autenticar um usuário com credenciais válidas para buscar o(s) carrinho(s). | “token”: “<token_value>”. status 200 OK | ✅ | - | ✅ |
+| **CT 51**     | Listar todos os itens do carrinho. | “itens”: [lista dos itens]. status 200 OK | ✅ | - | ✅ |
+| **CT 52**     | Visualizar um carrinho pelo ID. | Detalhes do item. status 200 OK | ✅ | - | ✅ |
+| **CT 53**     | Visualizar um carrinho com ID inexistente. | “message”: “Item não encontrado”. status 400 Bad Request | ✅ | - | ✅ |
 
 ## Cenário de Atualização de Carrinho (PUT)
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|---------------------|
-| **CT 08**     | Atualizar a quantidade de um produto no carrinho. | “message”: “Quantidade atualizada com sucesso”. status 200 OK | ✅ | - | ✅ |
-| **CT 09**     | Atualizar a quantidade de um produto inexistente no carrinho. | “message”: “Produto não encontrado no carrinho”. status 400 Bad Request | ✅ | - | ✅ |
+| **CT 54**     | Autenticar um usuário com credenciais válidas para atualizar o carrinho. | “token”: “<token_value>”. status 200 OK | ✅ | - | ✅ |
+| **CT 55**     | Atualizar a quantidade de um produto no carrinho. | “message”: “Quantidade atualizada com sucesso”. status 200 OK | ✅ | - | ✅ |
+| **CT 56**     | Atualizar adicionar um produto no carrinho. | “message”: “Produto não encontrado no carrinho”. status 400 Bad Request | ✅ | - | ✅ |
+| **CT 57**     | Atualizar retirar um produto do carrinho. | “message”: “Produto não encontrado no carrinho”. status 400 Bad Request | ✅ | - | ✅ |
 
 ## Cenário de Exclusão de Carrinho (DELETE)
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|---------------------|
-| **CT 10**     | Remover um item do carrinho. | “message”: “Produto removido com sucesso”. status 200 OK | ✅ | - | ✅ |
-| **CT 11**     | Remover um item inexistente do carrinho. | “message”: “Produto não encontrado no carrinho”. status 400 Bad Request | ✅ | - | ✅ |
-| **CT 12**     | Esvaziar o carrinho após finalizar a compra. | “message”: “Carrinho esvaziado com sucesso”. status 200 OK | ✅ | - | ✅ |
+| **CT 58**     | Autenticar um usuário com credenciais válidas para deletar o carrinho. | “token”: “<token_value>”. status 200 OK | ✅ | - | ✅ |
+| **CT 59**     | Remover carrinho após concluir a compra. | “message”: “Produto removido com sucesso”. status 200 OK | ✅ | - | ✅ |
+| **CT 60**     | Remover carrinho após cancelar a compra. | “message”: “Produto não encontrado no carrinho”. status 400 Bad Request | ✅ | - | ✅ |
 
-## Cenário de Autenticação (POST)
-| Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
-|---------------|-----------|----------|--------|-------------|---------------------|
-| **CT 13**     | Autenticar um usuário com credenciais válidas para gerenciar o carrinho. | “token”: “<token_value>”. status 200 OK | ✅ | - | ✅ |
-| **CT 14**     | Autenticar um usuário não cadastrado para gerenciar o carrinho. | “message”: “Usuário não encontrado”. status 401 Unauthorized | ✅ | - | ✅ |
-| **CT 15**     | Autenticar um usuário com senha inválida para gerenciar o carrinho. | “message”: “Senha inválida”. status 401 Unauthorized | ✅ | - | ✅ |
+
