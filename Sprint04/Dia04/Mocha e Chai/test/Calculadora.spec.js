@@ -103,3 +103,15 @@ describe('Testes de rverificação de cpf', () => {
         expect(resultado).to.be.false;
     })
 })
+
+describe('Testes da Cifra de César', () => {
+    it('Deve passar a mensagem COMPASSUOL e a chave 3 e deve ser retornado a mensagem criptografada FRPSDVVXRO', () => {
+        let resultado = Calculadora.codficacao('COMPASSUOL', 3)
+        expect(resultado).to.be.eq('FRPSDVVXRO')
+    })
+    it.only('Deve passar a mensagem FRPSDVVXRO e a chave 3 e deve ser retornado a mensagem decriptografada COMPASSUOL ', () => {
+        let resultado = Calculadora.decodficacao('FRPSDVVXRO', 3)
+        expect(resultado).to.be.eq('COMPASSUOL')
+    })
+    
+})

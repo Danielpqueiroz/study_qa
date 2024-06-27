@@ -1,4 +1,4 @@
-# Sprint 03 
+# Sprint 04
 
 
 # Sobre o Repositorio
@@ -11,34 +11,28 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
 <details>
   <summary>Dia 01</summary>
 
-  - [Atitudes de um Profissional da Qualidade.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia01/Atitudes_QA.md?ref_type=heads)
+  - [Testes Exploratórios.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Dia01/TestesExplorat%C3%B3rios.md?ref_type=heads)
  
 </details>
+
 <details>
   <summary>Dia 02</summary>
 
-  - [Análise, Modelagem e Implementação.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia02/Analise_modelagem_implementacao.md?ref_type=heads)
-  - [Planejamento e Matriz de Risco.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia02/Planejamento_testes.md?ref_type=heads)
-
+  - [Testes Exploratórios parte 2.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Dia02/EstrategiasTestes.md?ref_type=heads)
+  
 </details>
+
 <details>
   <summary>Dia 03</summary>
 
-  - [Atividade.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia03/Atividade.md?ref_type=heads)
-  - [DoR, DoD & Acceptance Criteria.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia03/Dor_DoD_Acceptance_Criteria.md?ref_type=heads)
+  - [Curso Javascript.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia03/Projetos%20javascript?ref_type=heads)
+ 
 </details>
 <details>
   <summary>Dia 04</summary>
 
-  - [Gestão de Issues.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia04/Gest%C3%A3o_de_Issues.md?ref_type=heads)
-  
-  
-</details>
-<details>
-  <summary>Dia 05</summary>
+  - [Mocha e Chai.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia04/Mocha%20e%20Chai?ref_type=heads)
 
-  - [Risco e Impacto.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia05/Risco_e_Impacto.md?ref_type=heads)
-  
 </details>
 
 <details>
@@ -51,11 +45,32 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
   
 </details>
 
+## Recursos Necessários
+    -  Recursos Humanos: Testador.
+    -  Equipamento: Computador.
+    -  Software: Postman, Xmind, Jira, GitLab, VS Code com bibliotecas Mocha e Chai.
+
+## Critérios usados
+    - Testes Exploratórios utilizados:
+        - Freestyle.
+        - Baseado em Cenários.
+        - Valor Limite.
+        - Vazio.
+        - Testes de segurança. 
+        - Testes de validação de dados.
+        - Testes de integridade.
+
+## Pessoas Envolvidas
+    -  Quem são os testadores?
+        -  Daniel .
 
 ## Agradecimentos:
 - Enzo, Oliver, Leticia, Ricardo, Jorge.
 
-## Referencias
-
+## Referências
+- Material do curso da Udemy de "Testes Exploratórios" para os conteúdos dos dias 1 e 2 da sprint
+- Chatgpt para ajudar na organização da matriz de rastreabilidade, também na correção de erros de código principalmente no verificador de cpf,
+- Material do curso de hacker contido na pasta Challenger/Assets para a implementação do código de criptografia de mensagens na calculadora.
+- Neste site https://www.campuscode.com.br/conteudos/o-calculo-do-digito-verificador-do-cpf-e-do-cnpj para fazer o verificador de cpf.
 
 

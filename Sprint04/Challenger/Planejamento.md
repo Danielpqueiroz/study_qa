@@ -92,7 +92,7 @@
 9. Recursos Necessários
     -  Recursos Humanos: Testador.
     -  Equipamento: Computador.
-    -  Software: Postman, Xmind, Jira, GitLab.
+    -  Software: Postman, Xmind, Jira, GitLab, VS Code com bibliotecas Mocha e Chai.
 
 10. Cronograma
     -  Datas e Prazos: Definir quando cada atividade será realizada.

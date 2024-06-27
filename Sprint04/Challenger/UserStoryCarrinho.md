@@ -22,6 +22,7 @@
 - Os clientes deverão ser autenticados para realizar ações na rota de Carrinho;
 - Não deverá ser possível adicionar produtos inexistentes no carrinho;
 - Deve ser possível visualizar todos os itens no carrinho;
+- Não deve ser possível visualizar todos os carrinhos se não for administrador;
 - Deve ser possível atualizar a quantidade de produtos no carrinho;
 - Não deverá ser possível adicionar produtos que não estão disponíveis no estoque;
 - Deve ser possível remover produtos do carrinho;

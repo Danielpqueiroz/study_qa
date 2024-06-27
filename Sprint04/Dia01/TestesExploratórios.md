@@ -1,4 +1,4 @@
-Testes Exploratórios Curso Udemy
+# Testes Exploratórios Curso Udemy
 
 ## Principais Diferenças entre os Baseados em Roteiros e os Exploratorios
 
@@ -11,6 +11,7 @@ Testes Exploratórios Curso Udemy
 | Previne erros                           | Encontra erros                              |
 | Pode ser automatizado                   | Não pode ser automatizado (ainda)           |
 | Como resultado final, temos “Sucesso” ou “Falha” | Como resultado final, temos: - “Sucesso” ou “Falha” - Dúvidas e observações realizadas - Mais entendimento e ideias para outras execuções |
+fonte: Curso Testes Exploratórios.
 
 ## Pontos Importantes
 
