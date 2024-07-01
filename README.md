@@ -4,7 +4,7 @@
 # Sobre o Repositorio
 
 Este repositorio consiste em um breve resumo sobre os temas abordados, separados por dias, para melhor 
-fixação dos conhecimentos adquiridos durante a sprint e o material pedido para o challenger.
+fixação dos conhecimentos adquiridos durante a sprint e o material pedido para o challenger. Nesta sprint o foco foi na rota carrinho da API Serverest, conceitos de testes exploratórios, além de das bibliotecas mocha e chai, conhecimentos em javascript e TDD.
 
 ## Links para acessar diretamente o material do dia:
 
@@ -38,34 +38,34 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
 <details>
   <summary>Challenger</summary>
 
-  - [Planejamento.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Planejamento.md?ref_type=heads)
-  - [Cenários.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Cenarios.md?ref_type=heads)
-  - [Mapa mental](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Assets/API%20Serverest.png?ref_type=heads)
-  - [Material Postman](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Assets/serverest.postman_collection.json?ref_type=heads)
+  - [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Planejamento.md?ref_type=heads)
+  - [Matriz de Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/MatrizRastreabilidade.md?ref_type=heads)
+  - [Mapa mental](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest.xmind?ref_type=heads)
+  - [User Story ](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/UserStoryCarrinho.md?ref_type=heads)
   
 </details>
 
 ## Recursos Necessários
-    -  Recursos Humanos: Testador.
-    -  Equipamento: Computador.
-    -  Software: Postman, Xmind, Jira, GitLab, VS Code com bibliotecas Mocha e Chai.
+  -  Recursos Humanos: Testador.
+  -  Equipamento: Computador.
+  -  Software: Postman, Xmind, Jira, GitLab, VS Code com bibliotecas Mocha e Chai.
 
 ## Critérios usados
-    - Testes Exploratórios utilizados:
-        - Freestyle.
-        - Baseado em Cenários.
-        - Valor Limite.
-        - Vazio.
-        - Testes de segurança. 
-        - Testes de validação de dados.
-        - Testes de integridade.
+  - Testes Exploratórios utilizados:
+      - Freestyle.
+      - Baseado em Cenários.
+      - Valor Limite.
+      - Vazio.
+      - Testes de segurança. 
+      - Testes de validação de dados.
+      - Testes de integridade.
 
 ## Pessoas Envolvidas
-    -  Quem são os testadores?
-        -  Daniel .
+  -  Quem são os testadores?
+      -  Daniel .
 
 ## Agradecimentos:
-- Enzo, Oliver, Leticia, Ricardo, Jorge.
+- Enzo, Oliver, Leticia, Ricardo, Jorge, Gabriel Knust.
 
 ## Referências
 - Material do curso da Udemy de "Testes Exploratórios" para os conteúdos dos dias 1 e 2 da sprint
