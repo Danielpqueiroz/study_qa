@@ -20,13 +20,14 @@ export default class Calculadora {
     }
 
     static pot(a, b) {
-        return Math.pow(a, b);
+        
+        return a ** b;
     }
     static raiz(a) {
         if (a < 0) {
             return 'erro';
         }
-        return Math.sqrt(a);
+        return a ** 0.5;
     }
 
     static codficacao(a, b) {

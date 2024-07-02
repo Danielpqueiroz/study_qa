@@ -79,6 +79,7 @@
         - Testes de segurança. 
         - Testes de validação de dados.
         - Testes de integridade.
+        - [Test Heuristics Cheat Sheet | Ministry of Testing](https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet)
 
 7. Pessoas Envolvidas
     -  Quem são os testadores?
@@ -92,7 +93,7 @@
 9. Recursos Necessários
     -  Recursos Humanos: Testador.
     -  Equipamento: Computador.
-    -  Software: Postman, Xmind, Jira, GitLab, VS Code com bibliotecas Mocha e Chai.
+    -  Software: Postman, Xmind, Jira, GitLab, NodeJs, VS Code com bibliotecas Mocha e Chai.
 
 10. Cronograma
     -  Datas e Prazos: Definir quando cada atividade será realizada.

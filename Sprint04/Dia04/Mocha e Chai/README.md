@@ -3,10 +3,10 @@
 O método implementado sobre a criptografia consiste na Cifra de César que foi criada por  Júlio César durante o Império Romano, que serve para deslocar as posições das letras da palavra ou frase para a direita no alfabeto (Ex: OI cifrado com deslocamento de 3 ficaria RL).
 
 ### Abrir terminal na pasta desejada e digitar os dois comandos:
-
+````bash
 - npm init -y
 - code .
-
+````
 ### Adicionar no package.json depois do main:
 
 - "type": "module",
@@ -17,9 +17,10 @@ O método implementado sobre a criptografia consiste na Cifra de César que foi 
     "test": "mocha"
   },
 
-### No terminal do vscode
+### No terminal do vscode`
+````bash
  - npm i -D mocha chai
-
+````
 #### Importante importar as bibliotecas no sample.spec.js:
 - import { strict as assert } from 'assert';
 - import { expect } from 'chai';

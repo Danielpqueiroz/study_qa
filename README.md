@@ -24,15 +24,15 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
 
 <details>
   <summary>Dia 03</summary>
-
-  - [Curso Javascript.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia03/Projetos%20javascript?ref_type=heads)
+  
+  - [Curso Javascript contendo os projetos.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia03/Projetos%20javascript?ref_type=heads)
  
 </details>
 <details>
   <summary>Dia 04</summary>
-
-  - [Mocha e Chai.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia04/Mocha%20e%20Chai?ref_type=heads)
-
+  
+  - [Mocha, Chai e projeto da Calculadora.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia04/Mocha%20e%20Chai?ref_type=heads)
+  - Obs. Existe uma pasta README dentro da pasta Mocha e Chai, para detalhar a calculadora e comandos.
 </details>
 
 <details>
@@ -40,7 +40,7 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
 
   - [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Planejamento.md?ref_type=heads)
   - [Matriz de Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/MatrizRastreabilidade.md?ref_type=heads)
-  - [Mapa mental](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest.xmind?ref_type=heads)
+  - [Mapa mental](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest.xmind?ref_type=heads) - [Mapa mental da rota carrinho](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest%20carrinho.png?ref_type=heads)
   - [User Story ](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/UserStoryCarrinho.md?ref_type=heads)
   
 </details>
@@ -59,6 +59,7 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
       - Testes de segurança. 
       - Testes de validação de dados.
       - Testes de integridade.
+      - [Test Heuristics Cheat Sheet | Ministry of Testing](https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet)
 
 ## Pessoas Envolvidas
   -  Quem são os testadores?
@@ -69,7 +70,7 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
 
 ## Referências
 - Material do curso da Udemy de "Testes Exploratórios" para os conteúdos dos dias 1 e 2 da sprint
-- Chatgpt para ajudar na organização da matriz de rastreabilidade, também na correção de erros de código principalmente no verificador de cpf,
+- Chatgpt 4o para ajudar na organização da matriz de rastreabilidade, também na correção de erros de código, para gerar combinações no estilo do pairwise.
 - Material do curso de hacker contido na pasta Challenger/Assets para a implementação do código de criptografia de mensagens na calculadora.
 - Neste site https://www.campuscode.com.br/conteudos/o-calculo-do-digito-verificador-do-cpf-e-do-cnpj para fazer o verificador de cpf.
 

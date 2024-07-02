@@ -114,4 +114,33 @@ numeros5.forEach(function(numero) {
 
 numeros5.forEach((numero, indice) => console.log(numero, indice));
 
-// 
+// Combinando ARRAYS
+
+const numerosy = [1,2,3,4,5,6];
+
+const combinadoy = numerosy.join('.');
+console.log(combinadoy);
+
+const frase = "Olá bem vindo ao curso";
+const resultado = frase.split(' ');
+console.log(resultado);
+
+console.log(resultado.join('-'));
+
+// Recebendo dados
+// No console do navegador
+//let corFavorita = prompt('ola, qual é a sua cor prefereida?');
+//if (corFavorita= 'Vermelho') {
+//    alert('Essa é minha cor também!');
+//}
+
+//DOM
+
+document.getElementById('coment').innerText = 'Olá meu nome é fulano';
+
+document.getElementsByClassName('python').innerText = 'Javascript'
+document.getElementsByClassName('python').value = 'Javascript'
+document.getElementsByClassName('python').innerHTML = 'Javascript'
+document.getElementsByClassName('python')[0].value = 'Javascript'
+document.getElementsByClassName('python')[0].innerText = 'Javascript'
+document.getElementById('submit').click()
