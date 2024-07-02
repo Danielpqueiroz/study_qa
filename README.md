@@ -42,13 +42,16 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
   - [Matriz de Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/MatrizRastreabilidade.md?ref_type=heads)
   - [Mapa mental](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest.xmind?ref_type=heads) - [Mapa mental da rota carrinho](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest%20carrinho.png?ref_type=heads)
   - [User Story ](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/UserStoryCarrinho.md?ref_type=heads)
+  - [Issues no GitLab](https://gitlab.com/compass8112219/Sprints/-/issues)
+  - [Prints do Jira e do Postman e arquivo do postman.]()
+  
   
 </details>
 
 ## Recursos Necessários
   -  Recursos Humanos: Testador.
   -  Equipamento: Computador.
-  -  Software: Postman, Xmind, Jira, GitLab, VS Code com bibliotecas Mocha e Chai.
+  -  Software: Postman, Xmind, Jira, GitLab, NodeJs, VS Code com bibliotecas Mocha e Chai.
 
 ## Critérios usados
   - Testes Exploratórios utilizados:
@@ -70,7 +73,7 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
 
 ## Referências
 - Material do curso da Udemy de "Testes Exploratórios" para os conteúdos dos dias 1 e 2 da sprint
-- Chatgpt 4o para ajudar na organização da matriz de rastreabilidade, também na correção de erros de código, para gerar combinações no estilo do pairwise.
+- Chatgpt 4o para ajudar na organização da matriz de rastreabilidade, também na correção de erros de código e em ideias para testes.
 - Material do curso de hacker contido na pasta Challenger/Assets para a implementação do código de criptografia de mensagens na calculadora.
 - Neste site https://www.campuscode.com.br/conteudos/o-calculo-do-digito-verificador-do-cpf-e-do-cnpj para fazer o verificador de cpf.
 

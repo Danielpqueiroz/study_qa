@@ -1,6 +1,6 @@
 # Matriz de Rastreabilidade
 
-# Cenário de Criação de Usuários (POST)
+## Cenário de Criação de Usuários (POST)
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
@@ -14,8 +14,11 @@
 | **CT 08**     | Criar um usuário com a senha no limite mínimo (5 caracteres) e máximo (10 caracteres). | “message”: “Cadastro realizado com sucesso”. status 201 Created | ✅ | - | ✅ |
 | **CT 09**     | Cadastrar um usuário com senha fora dos limites de tamanho especificados. | “message”: “Cadastro realizado com sucesso”. status 201 Created | ❌ | Deve ser corrigido para validar o tamanho da senha | ✅ |
 | **CT 10**     | Cadastrar um usuário com um formato de e-mail inválido. | “email”: “email deve ser um email válido”. status 400 Bad Request | ✅ | - | ✅ |
+| **CT 10**     | Cadastrar nome de usuário com mais de 255 caracteres | “email”: “nome deve ter menos de 255 caracteres”. status 400 Bad Request | ✅ | Deveria ter um filtro para limitar a quantidade de caracteres | ✅ |
+| **CT 10**     | Cadastrar nome de usuário com caracteres especiais | “email”: “nome não pode conter alguns caracteres especiais”. status 400 Bad Request | ✅ | Deveria ter um filtro para não deixar alguns caracteres especiais. | ✅ |
 
-# Cenário de Leitura de Usuários (GET)
+
+## Cenário de Leitura de Usuários (GET)
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
@@ -23,7 +26,7 @@
 | **CT 12**     | Acessar um usuário específico pelo ID. | cadastro do usuario. status 200 OK | ✅ | - | ✅ |
 | **CT 13**     | Acessar um usuário com um ID inexistente. | “message”: “Usuário não encontrado”. status 400 Bad Request | ✅ | - | ✅ |
 
-# Cenário de Atualização de Usuários (PUT)
+## Cenário de Atualização de Usuários (PUT)
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
@@ -32,15 +35,17 @@
 | **CT 16**     | Atualizar um usuário com um ID inexistente (deve criar um novo usuário). | “message”: “Cadastro realizado com sucesso”. status 201 Created | ✅ | - | ✅ |
 | **CT 17**     | Atualizar um usuário com um e-mail de um provedor proibido. | “message”: “Registro alterado com sucesso”. status 200 OK | ❌ | Deve ser corrigido para bloquear e-mails proibidos | ✅ |
 | **CT 18**     | Atualizar um usuário usando formato de e-mail inválido. | “email”: “email deve ser um email válido”. status 400 Bad Request | ✅ | - | ✅ |
+| **CT 10**     | Cadastrar nome de usuário com mais de 255 caracteres | “email”: “nome deve ter menos de 255 caracteres”. status 400 Bad Request | ✅ | - | ✅ |
+| **CT 10**     | Cadastrar nome de usuário com caracteres especiais | “email”: “nome não pode conter alguns caracteres especiais”. status 400 Bad Request | ✅ | - | ✅ |
 
-# Cenário de Exclusão de Usuários (DELETE)
+## Cenário de Exclusão de Usuários (DELETE)
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
 | **CT 19**     | Excluir um usuário existente. | “message”: “Registro excluído com sucesso”. status 200 OK | ✅ | - | ✅ |
 | **CT 20**     | Excluir um usuário com um ID inexistente. | “message”: “Nenhum registro excluído”. status 200 OK | ✅ | - | ✅ |
 
-# Cenário de Autenticação (POST) - US 002: [API] Login
+## Cenário de Autenticação (POST) - US 002: [API] Login
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
@@ -50,7 +55,7 @@
 | **CT 24**     | Verificar a geração do token Bearer após autenticação. | “token”: “<token_value>”. status 200 OK | ✅ | - | ✅ |
 | **CT 25**     | Verificar a validade do token Bearer (10 minutos). | “token_validity”: “10 minutos”. status 200 OK | ✅ | - | ❌ |
 
-# Cenário de Criação de Produtos (POST) - US 003: [API] Produtos
+## Cenário de Criação de Produtos (POST) - US 003: [API] Produtos
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
@@ -62,8 +67,10 @@
 | **CT 31**     | Cadastrar um produto sem preencher o campo quantidade obrigatório. | “message”: “Campo quantidade não preenchido”. status 400 Bad Request | ✅ | - | ✅ |
 | **CT 32**     | Cadastrar um produto com um nome que já está registrado. | “message”: “Nome do produto já utilizado”. status 400 Bad Request | ✅ | - | ✅ |
 | **CT 33**     | Cadastrar um produto com um nome inválido. | “message”: “Nome do produto inválido”. status 400 Bad Request | ✅ | A API não deveria deixar cadastrar um produto com nome inválido. | ✅ |
+| **CT 10**     | Cadastrar nome do produto com mais de 255 caracteres | “email”: “nome deve ter menos de 255 caracteres”. status 400 Bad Request | ✅ | Deveria ter um filtro para limitar a quantidade de caracteres | ✅ |
+| **CT 10**     | Cadastrar nome do produto com caracteres especiais | “email”: “nome não pode conter alguns caracteres especiais”. status 400 Bad Request | ✅ | Deveria ter um filtro para não deixar alguns caracteres especiais. | ✅ |
 
-# Cenário de Leitura de Produtos (GET)
+## Cenário de Leitura de Produtos (GET)
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
@@ -72,7 +79,7 @@
 | **CT 36**     | Acessar um produto específico pelo ID. | cadastro do produto. status 200 OK | ✅ | - | ✅ |
 | **CT 37**     | Acessar um produto com um ID inexistente. | “message”: “Produto não encontrado”. status 400 Bad Request | ✅ | - | ✅ |
 
-# Cenário de Atualização de Produtos (PUT)
+## Cenário de Atualização de Produtos (PUT)
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
@@ -83,7 +90,7 @@
 | **CT 42**     | Atualizar um produto com um nome inválido. | “message”: “Nome do produto inválido”. status 400 Bad Request | ✅ | Não deveria deixar atualizar com nome inválido. | ✅ |
 | **CT 43**     | Produtos criados através do PUT não poderão ter nomes previamente cadastrados. | “message”: “Nome do produto inválido”. status 400 Bad Request | ✅ | - | ✅ |
 
-# Cenário de Exclusão de Produtos (DELETE)
+## Cenário de Exclusão de Produtos (DELETE)
 
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
 |---------------|-----------|----------|--------|-------------|----------------------|
@@ -102,6 +109,7 @@
 | **CT 51**     | Adicionar um produto com id inexistente no carrinho. | Status: 400, Produto não encontrado. | ✅ | - | ✅ |
 | **CT 52**     | Adicionar um produto fora de estoque no carrinho. | Status 400, Produto não possui quantidade suficiente | ✅ | - | ✅ |
 | **CT 53**     | Adicionar um produto com quantidade menor igual a zero no carrinho. | Status: 400, quantidade deve ser um número positivo | ✅ | - | ✅ |
+| **CT 53**     | Verificar se após colocar um produto no carrinho o estoque foi alterado. | Status: 201, Cadastro realizado com sucesso. | ✅ | - | ✅ |
 
 ## Cenário de Leitura de Carrinho (GET)
 | Caso de Teste | Descrição | Response | Status | Observações | Sujeito a Automação |
@@ -127,5 +135,8 @@
 | **CT 64**     | Remover carrinho após concluir a compra. | Status: 200, Registro excluído com sucesso. | ✅ | - | ✅ |
 | **CT 65**     | Remover carrinho de um usuário sem carrinho. | Status: 400, Não foi encontrado carrinho para esse usuário. | ✅ | - | ✅ |
 | **CT 66**     | Remover carrinho após cancelar a compra. | Status: 200, Registro excluído com sucesso. Estoque dos produtos reabastecido | ✅ | - | ✅ |
+| **CT 66**     | Verificar estoque após remover carrinho e cancelar a compra. | Status: 200, Registro excluído com sucesso. Estoque dos produtos reabastecido | ✅ | - | ✅ |
+| **CT 64**     | Verificar estoque após remover carrinho e concluir a compra. | Status: 200, Registro excluído com sucesso. | ✅ | - | ✅ |
+
 
 
