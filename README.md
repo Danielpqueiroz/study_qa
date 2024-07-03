@@ -43,7 +43,7 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
   - [Mapa mental](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest.xmind?ref_type=heads) - [Mapa mental da rota carrinho](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest%20carrinho.png?ref_type=heads)
   - [User Story ](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/UserStoryCarrinho.md?ref_type=heads)
   - [Issues no GitLab](https://gitlab.com/compass8112219/Sprints/-/issues)
-  - [Prints do Jira e do Postman e arquivo do postman.]()
+  - [Prints do Jira e do Postman e arquivo do postman.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Challenger/Assets?ref_type=heads)
   
   
 </details>
