@@ -72,8 +72,8 @@ fixação dos conhecimentos adquiridos durante a sprint e o material pedido para
 - Enzo, Oliver, Leticia, Ricardo, Jorge, Gabriel Knust.
 
 ## Referências
-- Material do curso da Udemy de "Testes Exploratórios" para os conteúdos dos dias 1 e 2 da sprint
-- Chatgpt 4o para ajudar na organização da matriz de rastreabilidade, também na correção de erros de código e em ideias para testes.
+- Material do curso da Udemy de "Testes Exploratórios" para os conteúdos dos dias 1 e 2 da sprint.
+- Chatgpt 4o para ajudar na organização da matriz de rastreabilidade, também na correção de erros de código, auxílio no código do verificador de cpf e em ideias para testes.
 - Material do curso de hacker contido na pasta Challenger/Assets para a implementação do código de criptografia de mensagens na calculadora.
 - Neste site https://www.campuscode.com.br/conteudos/o-calculo-do-digito-verificador-do-cpf-e-do-cnpj para fazer o verificador de cpf.
 
