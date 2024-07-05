@@ -1,6 +1,6 @@
-# Sobre o Repositorio
+# Sobre o Repositório
 
-Este repositorio consiste em um breve resumo sobre os temas abordados, separados por dias, para melhor 
+Este repositório consiste em um breve resumo sobre os temas abordados, separados por dias, para melhor 
 fixação dos conhecimentos adquiridos durante a sprints.
 
 # Sprint 01
