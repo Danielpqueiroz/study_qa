@@ -107,16 +107,17 @@ fixação dos conhecimentos adquiridos durante a sprints.
 <details>
   <summary>Dia 01 - Atitudes de um Profissional da Qualidade.</summary>
 
-  - [Atitudes de um Profissional da Qualidade.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia01/Atitudes_QA.md?ref_type=heads)
+  - [Testes Exploratórios.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Dia01/TestesExplorat%C3%B3rios.md?ref_type=heads)
  
 </details>
+
 <details>
   <summary>Dia 02 - Análise, Modelagem e Implementação.</summary>
 
-  - [Análise, Modelagem e Implementação.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia02/Analise_modelagem_implementacao.md?ref_type=heads)
-  - [Planejamento e Matriz de Risco.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia02/Planejamento_testes.md?ref_type=heads)
-
+  - [Testes Exploratórios parte 2.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Dia02/EstrategiasTestes.md?ref_type=heads)
+  
 </details>
+
 <details>
   <summary>Dia 03 - DoR, DoD & Acceptance Criteria.</summary>
 
@@ -136,22 +137,50 @@ fixação dos conhecimentos adquiridos durante a sprints.
 
   - [Risco e Impacto.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Dia05/Risco_e_Impacto.md?ref_type=heads)
   
+  - [Mocha, Chai e projeto da Calculadora.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia04/Mocha%20e%20Chai?ref_type=heads)
+  - Obs. Existe uma pasta README dentro da pasta Mocha e Chai, para detalhar a calculadora e comandos.
 </details>
 
 <details>
   <summary>Challenger - Planejamento, Cenários, Mapa mental e Material Postman</summary>
 
-  - [Planejamento.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Planejamento.md?ref_type=heads)
-  - [Cenários.](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Cenarios.md?ref_type=heads)
-  - [Mapa mental](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Assets/API%20Serverest.png?ref_type=heads)
-  - [Material Postman](https://gitlab.com/compass8112219/Sprint01/-/blob/pb_sprint3/Sprint03/Challenge/Assets/serverest.postman_collection.json?ref_type=heads)
+  - [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Planejamento.md?ref_type=heads)
+  - [Matriz de Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/MatrizRastreabilidade.md?ref_type=heads)
+  - [Mapa mental](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest.xmind?ref_type=heads) - [Mapa mental da rota carrinho](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest%20carrinho.png?ref_type=heads)
+  - [User Story ](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/UserStoryCarrinho.md?ref_type=heads)
+  - [Issues no GitLab](https://gitlab.com/compass8112219/Sprints/-/issues)
+  - [Prints do Jira e do Postman e arquivo do postman.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Challenger/Assets?ref_type=heads)
+  
   
 </details>
 
+## Recursos Necessários
+  -  Recursos Humanos: Testador.
+  -  Equipamento: Computador.
+  -  Software: Postman, Xmind, Jira, GitLab, NodeJs, VS Code com bibliotecas Mocha e Chai.
+
+## Critérios usados
+  - Testes Exploratórios utilizados:
+      - Freestyle.
+      - Baseado em Cenários.
+      - Valor Limite.
+      - Vazio.
+      - Testes de segurança. 
+      - Testes de validação de dados.
+      - Testes de integridade.
+      - [Test Heuristics Cheat Sheet | Ministry of Testing](https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet)
+
+## Pessoas Envolvidas
+  -  Quem são os testadores?
+      -  Daniel .
 
 ## Agradecimentos:
-- Enzo, Gabriel just, Leticia, Ricardo, Mathias, Jorge, Oliver.
+- Enzo, Oliver, Leticia, Ricardo, Jorge, Gabriel Knust.
 
-
+## Referências
+- Material do curso da Udemy de "Testes Exploratórios" para os conteúdos dos dias 1 e 2 da sprint.
+- Chatgpt 4o para ajudar na organização da matriz de rastreabilidade, também na correção de erros de código, auxílio no código do verificador de cpf e em ideias para testes.
+- Material do curso de hacker contido na pasta Challenger/Assets para a implementação do código de criptografia de mensagens na calculadora.
+- Neste site https://www.campuscode.com.br/conteudos/o-calculo-do-digito-verificador-do-cpf-e-do-cnpj para fazer o verificador de cpf.
 
 
