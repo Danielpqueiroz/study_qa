@@ -160,44 +160,33 @@ fixação dos conhecimentos adquiridos durante a sprints.
 ## Links para acessar diretamente o material do dia:
 
 <details>
-  <summary>Dia 01</summary>
+  <summary>Dia 01 - TestesExploratórios</summary>
 
   - [Testes Exploratórios.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Dia01/TestesExplorat%C3%B3rios.md?ref_type=heads)
  
 </details>
 
 <details>
-  <summary>Dia 02</summary>
+  <summary>Dia 02 - EstrategiasTestes</summary>
 
   - [Testes Exploratórios parte 2.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Dia02/EstrategiasTestes.md?ref_type=heads)
   
 </details>
 
 <details>
-  <summary>Dia 03</summary>
+  <summary>Dia 03 - Javascript</summary>
   
   - [Curso Javascript contendo os projetos.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia03/Projetos%20javascript?ref_type=heads)
  
 </details>
 <details>
-  <summary>Dia 04</summary>
+  <summary>Dia 04 - Mocha e Chai</summary>
   
   - [Mocha, Chai e projeto da Calculadora.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia04/Mocha%20e%20Chai?ref_type=heads)
   - Obs. Existe uma pasta README dentro da pasta Mocha e Chai, para detalhar a calculadora e comandos.
 </details>
 
-<details>
-  <summary>Challenger</summary>
 
-  - [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Planejamento.md?ref_type=heads)
-  - [Matriz de Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/MatrizRastreabilidade.md?ref_type=heads)
-  - [Mapa mental](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest.xmind?ref_type=heads) - [Mapa mental da rota carrinho](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/Assets/API%20Serverest%20carrinho.png?ref_type=heads)
-  - [User Story ](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Challenger/UserStoryCarrinho.md?ref_type=heads)
-  - [Issues no GitLab](https://gitlab.com/compass8112219/Sprints/-/issues)
-  - [Prints do Jira e do Postman e arquivo do postman.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Challenger/Assets?ref_type=heads)
-  
-  
-</details>
 
 ## Recursos Necessários
   -  Recursos Humanos: Testador.
