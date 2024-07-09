@@ -1,0 +1,161 @@
+# Conceitos de Performance
+
+## Requisitos não Funcionais
+
+- O que é requisito? Critério para atender um: propósito, condição, definição, regra ou critério.
+- O que é requisito não funcional? 
+    - Não interfere diretamente na funcionalidade do sistema
+    - Estão relacionados a: desempenho, disponibilidade, usabilidade, confiabilidade, segurança e interoperabilidade.
+
+## Qual a importância desses requisitos de performance? 
+- Prevenção de problemas.
+- Direcionamento para desenvolvimento.
+- Visibilidade do impacto no negócio, 
+- Evitar: 
+    - Retrabalho.
+    - Reestruturação na arquitetura da aplicação.
+    - Stress com cliente.
+    - Perda Financeira com cliente.
+    - Reputação da aplicação.
+    - Problemas de responsabilidade legal.
+
+## Teste de performance
+- O que é testes de performance?
+- Teste não Funcional.
+- Base
+    - Quantidade de usuários: concorrência ou quantidade de registros.
+    - Tempo: de resposta ou de processamento.
+- Objetivo é medir: Desempenho, Capacidade, Confiabilidade, Disponibilidade, Escalabilidade, Resiliência.
+- Sub Características:
+    - Comportamento de tempo
+    - Capacidade
+    - Utilização de recursos: Consumo de Memória, Consumo de CPU,  Espaço em disco.
+- Experimentações
+    - Eliminar obstáculos de desempenho.
+    - Entender melhores configurações.
+    - Entender necessidades de hardware para atender os requisitos de performance.
+- Princípios
+    - Alinhando as expectativas  de todos envolvidos. 
+        - Importante equalizar a conversa entre técnica ou informal
+        - Objetivo
+        - Riscos
+        - Escopo
+        - Não escopo
+        - Contexto
+        - Critérios de aceite
+    - Reprodutíveis - Massa de Dados 
+        - Geração De carga
+        - Duplicidade
+        - Configurações
+        - Inconsistências com negócio
+        - Valores válidos
+        - Pré cadastrada
+    - Resultados Compreensíveis
+        - Status de acordo com as expectativas dos stakeholders.
+        - Linguagem entendida por todos stakeholders.
+    - Ambientes similares de produção
+- Quais são os tipos?
+    - Teste de performance
+    - Carga ou Volume - Níveis crescentes de cargas, Usuários Simultâneos(Threads), Quantidade de Registros.
+    - Capacidade - Qual o limite da aplicação - Aumento de carga, determinado tempo ( período).
+    - Escalabilidade
+    - Stress - Testa além do limite
+    - Pico - Avaliar o sistema após rajadas repentinas
+    - Resistência - Avaliar o comportamento da aplicação com maior volume em períodos mais longos
+    - Concorrência - Avalia impactos na aplicação em execução simultâneas.
+    - Ramp-up
+        - Steps
+        - Subida gradativa de carga
+        - Facilita encontrar momento de ruptura
+- Quais métricas usar?
+    - Tempo de Resposta - Média de tempo de resposta, Porcentagem, Mínimo e Máximo.
+    - Throughput
+        - Quantidade de registros por tempo
+        - Transações por segundo - TPS
+        - Diferença - Threads x Throughput
+    - Latência - Atraso que uma solicitação leva para ser transferida de um ponto para outro.
+    - Bytes - Enviados e Recebidos
+    - Utilização De Recursos - CPU e memória
+    - Falhas comuns?
+    - Resposta lenta sob todos os níveis de carga - Implementação, Modelagem, Latência
+    - Resposta lenta sob níveis de carga moderada a pesada
+    - Resposta degradada ao longo do tempo
+        - Vazamento de memória
+        - Fragmentação de disco
+        - Aumento da carga de rede ao longo do tempo
+        - Gravação em disco
+    - Tratamento inadequado de erros sob carga pesada ou acima do limite.
+        - Divergências de configurações
+        - Timeout
+        - Funcional
+
+- Skills
+- Hard Skills
+    - Conceitos de Banco de Dados
+    - Conceitos de Performance e Teste de Performance
+    - Aprofundar na arquitetura da aplicação
+    - Analisar métricas para construção de relatório
+    - Conhecer alguma linguagem para aplicar no script
+    - Monitoramento
+- Soft Skills
+    - Comunicação
+    - Flexibilidade
+    - Resiliência
+    - Cooperação
+
+- Processos Teste de Performance
+- Maior Desafio/Dúvidas
+    - Como encontrar as métricas - Mapear padrões de acordo com perfil da aplicação
+    - Entender com análise de Dados - Métricas coletadas em PRD
+- Sugestões de Implementação
+    - Pré requisitos
+        - Priorizar - Funcionalidades Principais
+        - Definir Métricas - Definir escala: Ruim, Aceitável, Bom, Excelente
+        - Ambientes - Definir
+        - Hardware - infra estrutura 
+            - Server APP
+            - Server BD
+            - Server que vai disparar carga
+        - Distribuição de Massa de Dados 
+        - Ferramentas
+        - Execução 
+            - JMeter
+            - Load Runner
+            - Gatling
+            - Locust
+            - K6
+        - Monitoramento
+            - New Relic
+            - Dynatrace
+            - Elastic APM
+            - Prometheus Grafana
+            - Java Flight Recorder Mission Control
+            - ASH Viewer - Oracle e Postgre
+            - AWR Oracle
+    - Estrutura
+        - Shift Left Testing de Performance
+        - Pensar em performance desde o início do ciclo de desenvolvimento
+        - Revisões - Requisitos, Arquitetura, Infraestrutura, Banco de Dados
+    - Entendimento da Demanda 
+        - Ponto de vista de negócio
+        - Ponto de vista técnico
+        - Análise de dados
+    - Criação de Scripts
+        - Criar Scripts
+        - Refinar Scripts
+        - Smoke Testing
+    - Execução do Teste
+        - Definir pré requisitos
+        - Subir Ambiente
+        - Executar Scripts
+        - Acompanhamento/Monitoramento
+    - Análise dos Insumos Coletados no Teste
+        - Compilação da Execução
+        - Geração de Relatório
+            - Escopo
+            - Conclusão
+            - Evidências
+            - Recomendações
+                - Apontar Gargalos/Gaps
+                - Pontos de melhoria
+https://www.youtube.com/watch?v=4wqENNTPFiM&t=16s
