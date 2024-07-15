@@ -70,16 +70,29 @@
 
     - Valor Gerado: Garantir que os produtos possam ser adicionados ao carrinho esteja funcionando perfeitamente e que seja necessario o uso da autenticação, para posteriormente finalizar a compra.
 
-6. Critérios usados
-    - Testes Exploratórios utilizados:
-        - Freestyle.
-        - Baseado em Cenários.
-        - Valor Limite.
-        - Vazio.
-        - Testes de segurança. 
-        - Testes de validação de dados.
-        - Testes de integridade.
-        - [Test Heuristics Cheat Sheet | Ministry of Testing](https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet)
+6. Testes Exploratórios utilizados:
+    - Freestyle.
+    - Baseado em Cenários.
+    - Valor Limite.
+    - Vazio.
+    - Testes de segurança. 
+    - Testes de validação de dados.
+    - Testes de integridade.
+    - [Test Heuristics Cheat Sheet | Ministry of Testing](https://www.ministryoftesting.com/articles/test-heuristics-cheat-sheet)
+
+7. Teste de Performance:
+
+    Objetivos do Teste de Performance
+    - Tempo de Resposta: O tempo de resposta para cada operação CRUD não deve exceder 500 ms sob carga normal e 800 ms sob carga alta.
+    - Capacidade de Carga: Identificar o ponto de saturação onde o tempo de resposta excede 800 ms, esperando suportar pelo menos 100 usuários simultâneos.
+    - Confiabilidade e Estabilidade: A API deve manter uma taxa de erro abaixo de 5% durante o teste de estresse.
+    - Fazer os Teste de Carga, Estresse, Escalabilidade, Pico, Resistência, Concorrência e capacidade.
+    - Testar a rota de usuarios: 
+        - Criação de Usuários (POST):
+        - Leitura de Usuários (GET):
+        - Atualização de Usuários (PUT):
+        - Deleção de Usuários (DELETE):
+Obs: Resutados dos testes estarão contidos em um arquivo Performance.md
 
 7. Pessoas Envolvidas
     -  Quem são os testadores?
@@ -92,8 +105,8 @@
 
 9. Recursos Necessários
     -  Recursos Humanos: Testador.
-    -  Equipamento: Computador.
-    -  Software: Postman, Xmind, Jira, GitLab, NodeJs, VS Code com bibliotecas Mocha e Chai.
+    -  Equipamento: Computador: i7 10° geração, 16 GB de RAM e SSD de 200 GB. Internet de 15 Mb.
+    -  Software: Postman, Xmind, Jira, GitLab, NodeJs, VS Code com bibliotecas Mocha e Chai, JMeter.
 
 10. Cronograma
     -  Datas e Prazos: Definir quando cada atividade será realizada.
