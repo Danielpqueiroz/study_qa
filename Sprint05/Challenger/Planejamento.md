@@ -105,7 +105,7 @@ Obs: Resutados dos testes estarão contidos em um arquivo Performance.md
 
 9. Recursos Necessários
     -  Recursos Humanos: Testador.
-    -  Equipamento: Computador: i7 10° geração, 16 GB de RAM e SSD de 200 GB. Internet de 15 Mb.
+    -  Equipamento: Computador: i7 10° geração, 16 GB de RAM e SSD de 200 GB.
     -  Software: Postman, Xmind, Jira, GitLab, NodeJs, VS Code com bibliotecas Mocha e Chai, JMeter.
 
 10. Cronograma
