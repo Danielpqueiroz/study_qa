@@ -1,36 +1,32 @@
 # Sprint 05
 
-# Sobre o Repositório
+## Sobre o Repositório
 
 Este repositório consiste em um breve resumo sobre os temas abordados, separados por dias, para melhor 
-fixação dos conhecimentos adquiridos durante a sprint.
+fixação dos conhecimentos adquiridos durante a sprint. Documentação e resultados dos testes de performance para a API ServeRest. O foco está em validar a estabilidade, performance e capacidade da API sob várias condições de carga.
 
 ## Links para acessar diretamente o material do dia:
 
 <details>
-  <summary>Dia 01 - TestesExploratórios</summary>
+  <summary>Dia 01 - Testes de Performance.</summary>
 
-  - [Testes de Performance.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Dia01/TestesExplorat%C3%B3rios.md?ref_type=heads)
+  - [Testes de Performance.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Dia01/TestesPerformance.md?ref_type=heads)
  
 </details>
 
 <details>
-  <summary>Dia 02 - EstrategiasTestes</summary>
+  <summary>Dia 02 - Testes de Performance parte 2.</summary>
 
-  - [Testes de Performance parte 2.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint4/Sprint04/Dia02/EstrategiasTestes.md?ref_type=heads)
+  - [Testes de Performance parte 2.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Dia02/TestesPerformance2.md?ref_type=heads)
   
 </details>
 
 <details>
-  <summary>Dia 03 - Javascript</summary>
+  <summary>Dia 03 - JMeter</summary>
   
-  - [Curso JMeter - Testes de performance.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint4/Sprint04/Dia03/Projetos%20javascript?ref_type=heads)
+  - [Curso JMeter - Testes de performance.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint5/Sprint05/Dia03?ref_type=heads)
  
 </details>
-
-# Plano de Testes de Performance para API ServeRest
-
-Este repositório contém os scripts de teste, documentação e resultados dos testes de performance para a API ServeRest. O foco está em validar a estabilidade, performance e capacidade da API sob várias condições de carga.
 
 ## Objetivos dos Testes
 
@@ -40,13 +36,6 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
 - Garantir que o tempo de resposta está dentro dos limites aceitáveis.
 - Validar o número de usuários simultâneos suportados.
 - Avaliar a estabilidade da API sob diferentes cargas.
-
-## Rotas Testadas
-
-1. **Usuários**: Registro, atualização, listagem e deleção de usuários.
-2. **Login**: Autenticação de usuários.
-3. **Produtos**: Listagem, adição, atualização e remoção de produtos.
-4. **Carrinho**: Operações no carrinho, incluindo adição, remoção e atualização de itens.
 
 ## Métricas Monitoradas
 
@@ -65,23 +54,10 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
 - **Teste de Concorrência**: Checar a performance da aplicação sob alta concorrência.
 - **Teste de Capacidade**: Estabelecer o máximo de usuários e transações suportados.
 
-## Preparação de Dados
-
-Os testes requerem uma massa de dados representativa, incluindo usuários fictícios, produtos e dados de carrinho, para simular as condições reais de uso.
-
-## Execução dos Testes
-
-Os testes são executados utilizando o JMeter, configurado para apontar para o ambiente local onde a API está rodando. As configurações específicas e scripts estão disponíveis no diretório `scripts` deste repositório.
-
-## Análise de Resultados
-
-Os resultados dos testes são analisados para identificar quaisquer problemas de performance ou estabilidade. Os relatórios de teste estão disponíveis no diretório `results` e devem ser revisados para garantir que a API atende ou excede todas as expectativas de performance.
-
-
 ## Recursos Necessários
   -  Recursos Humanos: Testador.
   -  Equipamento: Computador.
-  -  Software: Postman, Xmind, Jira, GitLab, NodeJs, VS Code com bibliotecas Mocha e Chai.
+  -  Software: Jira, GitLab, NodeJs, VS Code, JMeter.
 
 ## Pessoas Envolvidas
   -  Quem são os testadores?
