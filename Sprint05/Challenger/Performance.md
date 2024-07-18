@@ -34,7 +34,7 @@
 
 ### Configurações do JMeter
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Configuracoes.png" width="700px" />
 </div>
 
 ### TP01
@@ -45,71 +45,71 @@
 
 - Grafico
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Carga%20CRUD%20grafico.png" width="700px" />
 </div>
 
 ### TP02
 - Relatório
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Estresse%20CRUD.png" width="700px" />
 </div>
 
 - Grafico
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Estresse%20CRUD%20grafico.png" width="700px" />
 </div>
 
 ### TP03
 - Relatório
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Escalabilidade%20CRUD.png" width="700px" />
 </div>
 
 - Grafico
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Escalabilidade%20CRUD%20grafico.png" width="700px" />
 </div>
 
 ### TP04
 - Relatório
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Pico%20CRUD.png" width="700px" />
 </div>
 
 - Grafico
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Pico%20CRUD%20grafico.png" width="700px" />
 </div>
 
 ### TP05
 - Relatório
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Resistencia%20CRUD.png" width="700px" />
 </div>
 
 - Grafico
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Resistencia%20CRUD%20grafico.png" width="700px" />
 </div>
 
 ### TP06
 - Relatório
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Concorrencia%20CRUD.png" width="700px" />
 </div>
 
 - Grafico
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Concorrencia%20CRUD%20grafico.png" width="700px" />
 </div>
 
 ### TP07
 - Relatório
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Capacidade%20CRUD.png" width="700px" />
 </div>
 
 - Grafico
 <div align="center">
-    <img src="https://github.com/Danielpqueiroz/compass_uol/assets/112348645/b9ccb5c1-1e38-438c-a848-c6791e45f152" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Challenger/Assets/Capacidade%20CRUD%20grafico.png" width="700px" />
 </div>
