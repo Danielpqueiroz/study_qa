@@ -54,6 +54,11 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
 - **Teste de Concorrência**: Checar a performance da aplicação sob alta concorrência.
 - **Teste de Capacidade**: Estabelecer o máximo de usuários e transações suportados.
 
+## Resumo dos resultados
+  -  Os resultados indicam que a operação de cadastro e atualização de usuários são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
+  - Foi constatado também que os valores de latência oscilam bastante.
+  
+
 ## Recursos Necessários
   -  Recursos Humanos: Testador.
   -  Equipamento: Computador.

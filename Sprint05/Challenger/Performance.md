@@ -154,7 +154,6 @@
     <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Estresse%20cadastro%20grafico.png" width="700px" />
 </div>
 - Resultados Obtidos:
-    
     - Erro Máx: 0.00%
     - Throughput: 20.0/sec
 
@@ -174,7 +173,7 @@
     - Throughput: 51.9/sec
     - Evidencia
 <div align="center">
-    <img src="hhttps://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Evidencia%20de%20erro%20do%20pico%20de%20cadastro.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Evidencia%20de%20erro%20do%20pico%20de%20cadastro.png" width="700px" />
 </div>
 
 ### TP11
@@ -187,8 +186,8 @@
 <div align="center">
     <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Carga%20leitura%20grafico.png" width="700px" />
 </div>
+
 - Resultados Obtidos:
-    
     - Erro Máx: 0.00%
     - Throughput: 17.0/sec
 
@@ -203,7 +202,6 @@
     <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Estresse%20leitura%20grafico.png" width="700px" />
 </div>
 - Resultados Obtidos:
-    
     - Erro Máx: 0.00%
     - Throughput: 20.0/sec
 
