@@ -92,7 +92,7 @@
     - Volumetria: Simulação de até 600 usuários simultâneos.
     - Métricas:
         - Tempo de resposta para criação e deleção deve ser menos de 3 segundos.
-        - Throughput de 100 operações por minuto.
+        - Throughput de 100 operações por segundo.
         - Taxa de erro inferior a 2%.
         - Tempo de latência.
     - Tipos de Testes:
@@ -108,7 +108,7 @@
     - Volumetria: Simulação de até 600 logins simultâneos.
     - Métricas:
         - Tempo de resposta para login deve ser menos de 2 segundos.
-        - Throughput de 150 logins por minuto.
+        - Throughput de 150 logins por segundo.
         - Taxa de erro inferior a 1%.
         - Tempo de latência.
     - Tipos de Testes:
@@ -124,7 +124,7 @@
     - Volumetria: Suportar até 600 usuários acessando a lista de produtos simultaneamente.
     - Métricas:
         - Tempo de resposta para listagem de produtos deve ser inferior a 3 segundos.
-        - Throughput de 120 operações por minuto.
+        - Throughput de 120 operações por segundo.
         - Taxa de erro inferior a 2%.
         - Tempo de latência.
     - Tipos de Testes:
@@ -140,7 +140,7 @@
     - Volumetria: Até 600 operações simultâneas durante picos.
     - Métricas:
         - Tempo de resposta para operações no carrinho deve ser menos de 2 segundos.
-        - Throughput de 130 operações por minuto.
+        - Throughput de 130 operações por segundo.
         - Taxa de erro inferior a 1.5%.
         - Tempo de latência.
     - Tipos de Testes:

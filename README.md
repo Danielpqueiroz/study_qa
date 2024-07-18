@@ -57,6 +57,8 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
 ## Resumo dos resultados
   -  Os resultados indicam que a operação de cadastro e atualização de usuários são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
   - Foi constatado também que os valores de latência oscilam bastante.
+  - A taxa de throughput foi menor que a esperada no planejamento.
+  - Foi constatado que no testes de pico de cadastro e leitura individuais a taxa de erro ficou muito alta.
   
 
 ## Recursos Necessários
