@@ -1,18 +1,5 @@
 ## Performance dos testes do CRUD da API Serverest
 
-### Tabela para orientação dos criterios usados para cada tipo de testes
-
-| Teste           | Usuários | Duração       | Ramp Up   |
-|-----------------|----------|:---------------:|:-----------:|
-| Carga           | 500      |  4 min        | 30 seg     |
-| Estresse        | 600      |  4 min        | 30 seg     |
-| Escalabilidade  | 600      |  4 min        | 30 seg     |
-| Pico            | 500      | 30 sec        | 5 seg      |
-| Resistência     | 400      | 10 min        | 30 seg     |
-| Concorrência    | 450      |  4 min        | 30 seg     |
-| Capacidade      | 400      |  4 min        | 30 seg     |
-
-
 ## Resumo dos Testes
 | Sigla | Tipo de Teste                           | Configuração de Teste                            |
 |-------|-----------------------------------------|--------------------------------------------------|
@@ -34,7 +21,7 @@
 
 ### Configurações do JMeter
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Configuracoes.png" width="300px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Config.png" width="300px" />
 </div>
 
 ### TP01
@@ -140,3 +127,101 @@
     - Tempo Máximo de Resposta: 2777 ms
     - Erro Máx: 1.48%
     - Throughput: 38.8/sec
+
+### TP08
+- Relatório
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Carga%20cadastro.png" width="700px" />
+</div>
+
+- Grafico
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Carga%20cadastro%20grafico.png" width="700px" />
+</div>
+- Resultados Obtidos:
+    
+    - Erro Máx: 0.00%
+    - Throughput: 16.7/sec
+
+### TP09
+- Relatório
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Estresse%20cadastro.png" width="700px" />
+</div>
+
+- Grafico
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Estresse%20cadastro%20grafico.png" width="700px" />
+</div>
+- Resultados Obtidos:
+    
+    - Erro Máx: 0.00%
+    - Throughput: 20.0/sec
+
+### TP10
+- Relatório
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Pico%20cadastro.png" width="700px" />
+</div>
+
+- Grafico
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Pico%20cadastro%20grafico.png" width="700px" />
+</div>
+- Resultados Obtidos:
+    O teste não passou!
+    - Erro Máx: 45.8%
+    - Throughput: 51.9/sec
+    - Evidencia
+<div align="center">
+    <img src="hhttps://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Evidencia%20de%20erro%20do%20pico%20de%20cadastro.png" width="700px" />
+</div>
+
+### TP11
+- Relatório
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Carga%20leitura.png" width="700px" />
+</div>
+
+- Grafico
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Carga%20leitura%20grafico.png" width="700px" />
+</div>
+- Resultados Obtidos:
+    
+    - Erro Máx: 0.00%
+    - Throughput: 17.0/sec
+
+### TP12
+- Relatório
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Estresse%20leitura.png" width="700px" />
+</div>
+
+- Grafico
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Estresse%20leitura%20grafico.png" width="700px" />
+</div>
+- Resultados Obtidos:
+    
+    - Erro Máx: 0.00%
+    - Throughput: 20.0/sec
+
+### TP13
+- Relatório
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Pico%20leitura.png" width="700px" />
+</div>
+
+- Grafico
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Pico%20leitura%20%20grafico.png" width="700px" />
+</div>
+- Resultados Obtidos:
+    O teste não passou!
+    - Erro Máx: 62.2%
+    - Throughput: 51.1/sec
+    - Evidencia
+<div align="center">
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint5/Sprint05/Challenger/Assets/Evidencia%20pico%20leitura.png" width="700px" />
+</div>
