@@ -64,7 +64,9 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
 ## Recursos Necessários
   -  Recursos Humanos: Testador.
   -  Equipamento: Computador.
-  -  Software: Jira, GitLab, NodeJs, VS Code, JMeter.
+  -  Software: Jira, GitLab, NodeJs, VS Code, K6, chocolatey.
+  - Para instalar o chocolatey é necessario instalar via linha de comando em um terminal usando este comando: "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
+  - E posteriormente instalar o K6 tambem no terminal usando este comando "choco install k6"
 
 ## Pessoas Envolvidas
   -  Quem são os testadores?
