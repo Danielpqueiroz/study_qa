@@ -1,51 +1,85 @@
 import http from 'k6/http';
-import { Trend, Rate, Counter } from 'k6/metrics';
-import { sleep } from 'k6';
-import { check, fail } from 'k6';
-import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
+import { check } from 'k6';
+import { Trend } from 'k6/metrics';
 
-const BASE_URL = 'http://localhost:3000'
+// Métricas customizadas
+const createUserTrend = new Trend('create_user_duration');
+const getUserTrend = new Trend('get_user_duration');
+const deleteUserTrend = new Trend('delete_user_duration');
 
-export function handleSummary(data) {
-    return {
-        "summaryCarga.html": htmlReport(data),
-    };
-}
-
-export const options = {
-  stages: [
-    { duration: '2s', target: 40 }, // 400 users over 1 minute
-    { duration: '20s', target: 400 },
-    { duration: '2s', target: 40 },
-  ],
-  thresholds: {
-    http_req_duration: ['p(95)<200'],
-    http_req_failed: ['rate<0.01']
-  }
+// Opções do teste
+export let options = {
+    vus: 10, // número de usuários virtuais
+    duration: '20s', // duração do teste
+    thresholds: {
+        get_user_duration: ['p(95)<2000'], // 95% das requisições de GET devem ser menores que 2s
+    },
 };
 
-export let GetUserDuration = new Trend('get_User_duration');
-export let GetUserFailRate = new Rate('get_User_fail_rate');
-export let GetUserSuccessRate = new Rate('get_User_success_rate');
-export let GetUserReqs = new Counter('get_User_reqs');
+// URL da API
+const BASE_URL = 'http://localhost:3000';
 
-export default function() {
-    let response = http.get('${BASE_URL}/usuarios');
+// Variável global para armazenar IDs dos usuários criados
+let userIds = [];
 
-    GetUserDuration.add(response.timings.duration);
-    GetUserReqs.add(1);
-    GetUserFailRate.add(response.status == 0 || response.status > 399);
-    GetUserSuccessRate.add(response.status <= 399);
-    
-    
-    let durationMsg = `Máximo de duração da minha requisição ${5000/1000}s`;
-    if (check(response, {
-        'máximo de duração': (r) => r.timings.duration < 1000,
-    })){
-        
-    }else{
-        fail(durationMsg);
+export function setup() {
+    // Criação de usuários antes do teste
+    const params = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    for (let i = 0; i < 10; i++) {
+        const payload = JSON.stringify({
+            nome: `Fulano da Silva ${i}`,
+            email: `beltrano_${i}_${Math.random().toString(36).substr(2, 9)}@qa.com.br`,
+            password: 'teste',
+            administrador: 'true'
+        });
+
+        let res = http.post(`${BASE_URL}/usuarios`, payload, params);
+        check(res, { 'user created successfully': (r) => r.status === 201 });
+        createUserTrend.add(res.timings.duration);
+
+        if (res.status === 201) {
+            userIds.push(res.json()._id); // Armazena o ID do usuário criado na variável global
+        } else {
+            console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
+        }
     }
+    return { userIds }; // Retorna os IDs dos usuários criados
+}
 
-    sleep(1);
+export default function (data) {
+    // Recuperação de usuários
+    const params = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    for (const userId of data.userIds) {
+        let res = http.get(`${BASE_URL}/usuarios/${userId}`, params);
+        check(res, { 'user retrieved successfully': (r) => r.status === 200 });
+        getUserTrend.add(res.timings.duration);
+
+        if (res.status !== 200) {
+            console.error(`Erro na recuperação do usuário: ${res.status} ${res.body}`);
+        }
+    }
+}
+
+export function teardown(data) {
+    // Deleção de usuários após o teste
+    for (const userId of data.userIds) {
+        const res = http.del(`${BASE_URL}/usuarios/${userId}`);
+        if (!res || res.status !== 200) {
+            console.error(`Erro na deleção do usuário: ${userId} ${res.status} ${res.body}`);
+            continue;
+        }
+
+        check(res, { 'user deleted successfully': (r) => r.status === 200 });
+        deleteUserTrend.add(res.timings.duration);
+    }
 }

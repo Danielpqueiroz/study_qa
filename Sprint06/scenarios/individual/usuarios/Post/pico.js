@@ -17,10 +17,11 @@ export let options = {
 
 // URL da API
 const BASE_URL = 'http://localhost:3000';
-let userId = [0,2];
+
 
 export function setup() {
-    
+    let userId = [];
+    return {userId};
 }
 
 
@@ -49,28 +50,30 @@ export default function (data) {
 
     check(res, { 'user created successfully': (r) => r.status === 201 });
     createUserTrend.add(res.timings.duration);
-    let userId = [0,2];
-    userId.push(res.json()._id); // Retorna o ID do usuário criado
+    
+    data.userId.push(res.json()._id); // Retorna o ID do usuário criado
     //console.log(userId[3]);
     
 }
-for(const i of userId){
-    console.log(userId[i]);
-}
+
 
 export function teardown(data) {
+    console.log(data.userId);
+    for(const i of data.userId){
+        console.log(data.userId[i]);
+    }
     // 4. teardown code
-    for (const userIds of userId) {
+    for (const userIds of data.userId) {
         console.log(userIds);
         const res = http.del(`${BASE_URL}/usuarios/${userIds}`);
         if (!res || res.status !== 200) {
-            console.error(`Erro na deleção do usuário: ${userId} ${res.status} ${res.body}`);
+            console.error(`Erro na deleção do usuário: ${data.userId} ${res.status} ${res.body}`);
             continue;
         }
 
         check(res, { 'user deleted successfully': (r) => r.status === 200 });
         deleteUserTrend.add(res.timings.duration);
-        console.log(`Usuário deletado com ID: ${userId}`);
+        console.log(`Usuário deletado com ID: ${data.userId}`);
     }
 
  }

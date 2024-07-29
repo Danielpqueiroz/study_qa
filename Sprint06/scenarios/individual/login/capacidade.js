@@ -4,6 +4,7 @@ import { Trend } from 'k6/metrics';
 
 // Métricas customizadas
 const createUserTrend = new Trend('create_user_duration');
+const loginUserTrend = new Trend('login_user_duration');
 const deleteUserTrend = new Trend('delete_user_duration');
 
 // Opções do teste
@@ -11,15 +12,15 @@ export let options = {
     vus: 10, // número de usuários virtuais
     duration: '20s', // duração do teste
     thresholds: {
-        delete_user_duration: ['p(95)<2000'], // 95% das requisições de deleção devem ser menores que 2s
+        login_user_duration: ['p(95)<2000'], // 95% das requisições de login devem ser menores que 2s
     },
 };
 
 // URL da API
 const BASE_URL = 'http://localhost:3000';
 
-// Variável global para armazenar IDs dos usuários criados
-let userIds = [];
+// Variável global para armazenar usuários criados
+let users = [];
 
 export function setup() {
     // Criação de usuários antes do teste
@@ -30,9 +31,10 @@ export function setup() {
     };
 
     for (let i = 0; i < 10; i++) {
+        const email = `beltrano_${i}_${Math.random().toString(36).substr(2, 9)}@qa.com.br`;
         const payload = JSON.stringify({
             nome: `Fulano da Silva ${i}`,
-            email: `beltrano_${i}_${Math.random().toString(36)}@qa.com.br`,
+            email: email,
             password: 'teste',
             administrador: 'true'
         });
@@ -42,40 +44,48 @@ export function setup() {
         createUserTrend.add(res.timings.duration);
 
         if (res.status === 201) {
-            userIds.push(res.json()._id); // Armazena o ID do usuário criado na variável global
+            users.push({ id: res.json()._id, email: email, password: 'teste' }); // Armazena o usuário criado
         } else {
             console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
         }
     }
-    return { userIds }; // Retorna os IDs dos usuários criados
+    return { users }; // Retorna os usuários criados
 }
 
 export default function (data) {
-    // Deleção de usuários
+    // Login de usuários
     const params = {
         headers: {
             'Content-Type': 'application/json',
         },
     };
 
-    for (const userId of data.userIds) {
-        let res = http.del(`${BASE_URL}/usuarios/${userId}`, null, params);
-        check(res, { 'user deleted successfully': (r) => r.status === 200 });
-        deleteUserTrend.add(res.timings.duration);
+    for (const user of data.users) {
+        const payload = JSON.stringify({
+            email: user.email,
+            password: user.password
+        });
+
+        let res = http.post(`${BASE_URL}/login`, payload, params);
+        check(res, { 'user logged in successfully': (r) => r.status === 200 });
+        loginUserTrend.add(res.timings.duration);
 
         if (res.status !== 200) {
-            console.error(`Erro na deleção do usuário: ${res.status} ${res.body}`);
+            console.error(`Erro no login do usuário: ${res.status} ${res.body}`);
         }
     }
 }
 
 export function teardown(data) {
-    // Verificação para garantir que todos os usuários foram deletados
-    for (const userId of data.userIds) {
-        const res = http.get(`${BASE_URL}/usuarios/${userId}`);
-        check(res, { 'user should not exist': (r) => r.status === 404 });
-        if (res.status !== 404) {
-            console.error(`Usuário com ID ${userId} ainda existe: ${res.status} ${res.body}`);
+    // Deleção de usuários após o teste
+    for (const user of data.users) {
+        const res = http.del(`${BASE_URL}/usuarios/${user.id}`);
+        if (!res || res.status !== 200) {
+            console.error(`Erro na deleção do usuário: ${user.id} ${res.status} ${res.body}`);
+            continue;
         }
+
+        check(res, { 'user deleted successfully': (r) => r.status === 200 });
+        deleteUserTrend.add(res.timings.duration);
     }
 }
