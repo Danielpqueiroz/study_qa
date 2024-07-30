@@ -80,6 +80,7 @@ Já para rodar os testes utiliza o seguite comando:
 
 ![alt text](image-3.png)
 
+
 ## Referências
 - Material do curso da Udemy de "Curso Performance Test - Primeiros passos com o K6". 
 - Documentação do K6.
