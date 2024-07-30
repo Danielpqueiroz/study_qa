@@ -52,9 +52,8 @@ export function setup() {
         loginUserTrend.add(loginRes.timings.duration);
 
         if (loginRes.status === 200) {
-            userToken = JSON.parse(loginRes.body).authorization; // Armazena o token do usuário
+            userToken = loginRes.json().authorization; // Armazena o token do usuário
             console.log(`Usuário logado com token: ${userToken}`);
-            console.log(userToken);
         } else {
             console.error(`Erro no login do usuário: ${loginRes.status} ${loginRes.body}`);
         }
@@ -65,19 +64,19 @@ export function setup() {
 }
 
 export default function (data) {
-    console.log(userToken);
+    // console.log(`Token de autenticação: ${data.userToken}`);
     // Criação de produtos
     const params = {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${data.userToken}`,
+            'Authorization': `${data.userToken}`,
         },
     };
 
     const productName = `Produto_${Math.random().toString(36).substr(2, 9)}`;
     const payload = JSON.stringify({
         nome: productName,
-        preco: Math.floor(Math.random() * 1000),
+        preco: Math.floor(Math.random() * 1000) + 1,
         descricao: "Descrição do produto",
         quantidade: Math.floor(Math.random() * 1000)
     });
@@ -88,7 +87,7 @@ export default function (data) {
 
     if (res.status === 201) {
         productIds.push(res.json()._id); // Armazena o ID do produto criado
-        console.log(`Produto criado com ID: ${res.json()._id}`);
+        
     } else {
         console.error(`Erro na criação do produto: ${res.status} ${res.body}`);
     }
@@ -99,7 +98,7 @@ export function teardown(data) {
     const params = {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${data.userToken}`,
+            'Authorization': `${data.userToken}`,
         },
     };
 

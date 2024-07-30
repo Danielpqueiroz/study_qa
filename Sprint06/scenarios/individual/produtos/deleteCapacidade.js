@@ -71,7 +71,7 @@ export default function (data) {
         },
     };
 
-    const productName = `Produto_${Math.random().toString(36).substr(2, 9)}`;
+    const productName = `Produto_${Math.random().toString(36)}`;
     //const preco = ; // Gera números entre 1 e 1000
     const payload = JSON.stringify({
         nome: productName,
