@@ -1,6 +1,6 @@
 # Sprint 06
 
-![alt text](image-4.png)
+![alt text](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDJlMnFtbnF0MWl0aDBxaHkxeTFva3YyOHdseXJhajdxb3B3eng1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6pPRBKAoRKJa/giphy.gif)
 
 
 ## Sobre o Repositório
@@ -78,8 +78,8 @@ Já para rodar os testes utiliza o seguite comando:
 ## Agradecimentos:
 - Enzo, Leticia, Ricardo, Jorge, Mathias.
 
-![alt text](image-3.png)
 
+![alt text](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDJlMnFtbnF0MWl0aDBxaHkxeTFva3YyOHdseXJhajdxb3B3eng1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6pPRBKAoRKJa/giphy.gif)
 
 ## Referências
 - Material do curso da Udemy de "Curso Performance Test - Primeiros passos com o K6". 
