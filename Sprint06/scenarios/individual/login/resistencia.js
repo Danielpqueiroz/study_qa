@@ -1,6 +1,14 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { Trend } from 'k6/metrics';
+import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
+
+export function handleSummary(data) {
+  return {
+      "summaryDelete.html": htmlReport(data),
+  };
+}
+
 
 // Métricas customizadas
 const createUserTrend = new Trend('create_user_duration');

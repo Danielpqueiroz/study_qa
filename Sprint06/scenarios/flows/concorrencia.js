@@ -19,9 +19,9 @@ const createProductTrend = new Trend('create_product_duration');
 // Opções do teste
 export let options = {
     stages: [
-        { duration: '1s', target: 10 }, // subindo para 10 usuários em 1 minuto
-        { duration: '30s', target: 10 }, // mantendo 10 usuários por 3 minutos
-        { duration: '1s', target: 0 }, // diminuindo para 0 usuários em 1 minuto
+        { duration: '1m', target: 10 }, // subindo para 10 usuários em 1 minuto
+        { duration: '3m', target: 10 }, // mantendo 10 usuários por 3 minutos
+        { duration: '1m', target: 0 }, // diminuindo para 0 usuários em 1 minuto
     ],
     thresholds: {
         create_user_duration: ['p(95)<2000'], // 95% das requisições de criação de usuário devem ser menores que 2s
