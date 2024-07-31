@@ -40,7 +40,7 @@ export function setup() {
         },
     };
 
-    const email = `admin_${Math.random().toString(36).substr(2, 9)}@qa.com.br`;
+    const email = `admin_${Math.random().toString(36)}@qa.com.br`;
     const payload = JSON.stringify({
         nome: `Administrador`,
         email: email,

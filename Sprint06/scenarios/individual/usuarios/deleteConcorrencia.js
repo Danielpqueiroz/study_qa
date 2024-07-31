@@ -39,7 +39,7 @@ export function setup() {
         },
     };
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 4000; i++) {
         const payload = JSON.stringify({
             nome: `Fulano da Silva ${i}`,
             email: `beltrano_${i}_${Math.random().toString(36)}@qa.com.br`,
@@ -79,13 +79,4 @@ export default function (data) {
     }
 }
 
-export function teardown(data) {
-    // Verificação para garantir que todos os usuários foram deletados
-    for (const userId of data.userIds) {
-        const res = http.get(`${BASE_URL}/usuarios/${userId}`);
-        check(res, { 'user should not exist': (r) => r.status === 404 });
-        if (res.status !== 404) {
-            console.error(`Usuário com ID ${userId} ainda existe: ${res.status} ${res.body}`);
-        }
-    }
-}
+

@@ -5,7 +5,7 @@ import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporte
 
 export function handleSummary(data) {
   return {
-      "summaryDelete.html": htmlReport(data),
+      "summaryEscalabilidade.html": htmlReport(data),
   };
 }
 
@@ -43,7 +43,7 @@ export default function () {
     };
 
     // Criação de usuário
-    const email = `user_${Math.random().toString(36).substr(2, 9)}@qa.com.br`;
+    const email = `user_${Math.random().toString(36)}@qa.com.br`;
     const userPayload = JSON.stringify({
         nome: 'Test User',
         email: email,
@@ -87,7 +87,7 @@ export default function () {
         },
     };
     const productPayload = JSON.stringify({
-        nome: `Produto_${Math.random().toString(36).substr(2, 9)}`,
+        nome: `Produto_${Math.random().toString(36)}`,
         preco: Math.floor(Math.random() * 1000) + 1, // Gera números entre 1 e 1000
         descricao: 'Descrição do produto',
         quantidade: Math.floor(Math.random() * 1000)

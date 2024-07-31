@@ -5,7 +5,7 @@ import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporte
 
 export function handleSummary(data) {
   return {
-      "summaryDelete.html": htmlReport(data),
+      "summaryPost.html": htmlReport(data),
   };
 }
 
@@ -42,7 +42,7 @@ export function setup() {
         },
     };
 
-    const email = `admin_${Math.random().toString(36).substr(2, 9)}@qa.com.br`;
+    const email = `admin_${Math.random().toString(36)}@qa.com.br`;
     const payload = JSON.stringify({
         nome: `Administrador`,
         email: email,
@@ -81,7 +81,7 @@ export default function (data) {
         },
     };
 
-    const productName = `Produto_${Math.random().toString(36).substr(2, 9)}`;
+    const productName = `Produto_${Math.random().toString(36)}`;
     const payload = JSON.stringify({
         nome: productName,
         preco: Math.floor(Math.random() * 1000) + 1,
@@ -104,19 +104,26 @@ export default function (data) {
 export function teardown(data) {
     // Deleção de produtos após o teste
     const params = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${data.userToken}`,
-        },
+        headers: {'Content-Type': 'application/json',
+                 'Authorization': `${data.userToken}`,},
     };
 
-    for (const productId of productIds) {
-        let res = http.del(`${BASE_URL}/produtos/${productId}`, null, params);
-        check(res, { 'product deleted successfully': (r) => r.status === 200 });
-        deleteProductTrend.add(res.timings.duration);
+    const res = http.get(`${BASE_URL}/produtos`, params);
+    
+    for (let i = 0; i < res.json().produtos.length; i++) {
+        const produtos = res.json().produtos[i];
 
-        if (res.status !== 200) {
-            console.error(`Erro na deleção do produto: ${res.status} ${res.body}`);
-        }
+        const resDelete = http.del(`${BASE_URL}/produtos/${produtos._id}`, {}, params);
+        console.log(`Produto ${produtos._id} excluído: ${resDelete.json().message}`);
     }
+
+    // for (const productId of productIds) {
+    //     let res = http.del(`${BASE_URL}/produtos/${productId}`, null, params);
+    //     check(res, { 'product deleted successfully': (r) => r.status === 200 });
+    //     deleteProductTrend.add(res.timings.duration);
+
+    //     if (res.status !== 200) {
+    //         console.error(`Erro na deleção do produto: ${res.status} ${res.body}`);
+    //     }
+    // }
 }

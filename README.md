@@ -1,8 +1,5 @@
 # Sprint 06
 
-![alt text](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDJlMnFtbnF0MWl0aDBxaHkxeTFva3YyOHdseXJhajdxb3B3eng1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6pPRBKAoRKJa/giphy.gif)
-
-
 ## Sobre o Repositório
 
  Documentação e resultados dos testes de performance para a API ServeRest. O foco está em validar a estabilidade, performance e capacidade da API sob várias condições de carga.
@@ -79,14 +76,14 @@ Já para rodar os testes utiliza o seguite comando:
 - Enzo, Leticia, Ricardo, Jorge, Mathias.
 
 
-![alt text](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDJlMnFtbnF0MWl0aDBxaHkxeTFva3YyOHdseXJhajdxb3B3eng1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6pPRBKAoRKJa/giphy.gif)
-
 ## Referências
 - Material do curso da Udemy de "Curso Performance Test - Primeiros passos com o K6". 
 - Documentação do K6.
 - Videos do Daniel Jesus e o canal QAninja.
 - Chatgpt 4o para ajudar na organização do planejamento.
 
-
+<div align="center">
+    <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDJlMnFtbnF0MWl0aDBxaHkxeTFva3YyOHdseXJhajdxb3B3eng1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6pPRBKAoRKJa/giphy.gif" width="500px" />
+</div>
 
 

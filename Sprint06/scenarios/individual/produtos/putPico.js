@@ -5,7 +5,7 @@ import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporte
 
 export function handleSummary(data) {
   return {
-      "summaryDelete.html": htmlReport(data),
+      "summaryPut.html": htmlReport(data),
   };
 }
 
@@ -44,7 +44,7 @@ export function setup() {
         },
     };
 
-    const email = `admin_${Math.random().toString(36).substr(2, 9)}@qa.com.br`;
+    const email = `admin_${Math.random().toString(36)}@qa.com.br`;
     const payload = JSON.stringify({
         nome: `Administrador`,
         email: email,
@@ -67,7 +67,7 @@ export function setup() {
 
             // Criação de 10 produtos
             for (let i = 0; i < 10; i++) {
-                const productName = `Produto_${Math.random().toString(36).substr(2, 9)}`;
+                const productName = `Produto_${Math.random().toString(36)}`;
                 const preco = Math.floor(Math.random() * 1000) + 1; // Gera números entre 1 e 1000
                 const payload = JSON.stringify({
                     nome: productName,
@@ -113,7 +113,7 @@ export default function (data) {
 
     for (const productId of data.productIds) {
         const updatedPayload = JSON.stringify({
-            nome: `Produto_Atualizado_${Math.random().toString(36).substr(2, 9)}`,
+            nome: `Produto_Atualizado_${Math.random().toString(36)}`,
             preco: Math.floor(Math.random() * 1000) + 1, // Gera números entre 1 e 1000
             descricao: "Descrição do produto atualizada",
             quantidade: Math.floor(Math.random() * 1000) + 1 // Atualiza a quantidade

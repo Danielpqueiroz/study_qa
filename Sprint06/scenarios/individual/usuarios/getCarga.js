@@ -28,36 +28,7 @@ export let options = {
 const BASE_URL = 'http://localhost:3000';
 
 // Variável global para armazenar IDs dos usuários criados
-let userIds = [];
 
-export function setup() {
-    // Criação de usuários antes do teste
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    for (let i = 0; i < 10; i++) {
-        const payload = JSON.stringify({
-            nome: `Fulano da Silva ${i}`,
-            email: `beltrano_${i}_${Math.random().toString(36)}@qa.com.br`,
-            password: 'teste',
-            administrador: 'true'
-        });
-
-        let res = http.post(`${BASE_URL}/usuarios`, payload, params);
-        check(res, { 'user created successfully': (r) => r.status === 201 });
-        createUserTrend.add(res.timings.duration);
-
-        if (res.status === 201) {
-            userIds.push(res.json()._id); // Armazena o ID do usuário criado na variável global
-        } else {
-            console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
-        }
-    }
-    return { userIds }; // Retorna os IDs dos usuários criados
-}
 
 export default function (data) {
     // Recuperação de usuários
@@ -67,7 +38,7 @@ export default function (data) {
         },
     };
 
-    for (const userId of data.userIds) {
+    
         let res = http.get(`${BASE_URL}/usuarios`, params);
         check(res, { 'user retrieved successfully': (r) => r.status === 200 });
         getUserTrend.add(res.timings.duration);
@@ -75,19 +46,6 @@ export default function (data) {
         if (res.status !== 200) {
             console.error(`Erro na recuperação do usuário: ${res.status} ${res.body}`);
         }
-    }
+    
 }
 
-export function teardown(data) {
-    // Deleção de usuários após o teste
-    for (const userId of data.userIds) {
-        const res = http.del(`${BASE_URL}/usuarios/${userId}`);
-        if (!res || res.status !== 200) {
-            console.error(`Erro na deleção do usuário: ${userId} ${res.status} ${res.body}`);
-            continue;
-        }
-
-        check(res, { 'user deleted successfully': (r) => r.status === 200 });
-        deleteUserTrend.add(res.timings.duration);
-    }
-}

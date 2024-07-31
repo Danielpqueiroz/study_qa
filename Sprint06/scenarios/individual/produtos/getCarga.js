@@ -5,7 +5,7 @@ import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporte
 
 export function handleSummary(data) {
   return {
-      "summaryDelete.html": htmlReport(data),
+      "summaryGet.html": htmlReport(data),
   };
 }
 
@@ -40,7 +40,7 @@ export function setup() {
     };
 
     for (let i = 0; i < 10; i++) {
-        const email = `beltrano_${i}_${Math.random().toString(36).substr(2, 9)}@qa.com.br`;
+        const email = `beltrano_${i}_${Math.random().toString(36)}@qa.com.br`;
         const payload = JSON.stringify({
             nome: `Fulano da Silva ${i}`,
             email: email,

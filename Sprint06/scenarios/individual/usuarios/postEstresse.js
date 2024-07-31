@@ -5,10 +5,12 @@ import { check, fail } from 'k6';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 const BASE_URL = 'http://localhost:3000'
+// Variável global para armazenar IDs dos usuários criados
+let userIds = [];
 
 export function handleSummary(data) {
     return {
-        "summaryCarga.html": htmlReport(data),
+        "summaryPost.html": htmlReport(data),
     };
 }
 
@@ -29,7 +31,7 @@ export let CreateUserReqs = new Counter('create_user_reqs');
 export default function() {
     const payload = JSON.stringify({
         nome: `Fulano da Silva`,
-        email: `beltrano_${Math.random().toString(36).substr(2, 9)}@qa.com.br`,
+        email: `beltrano_${Math.random().toString(36)}@qa.com.br`,
         password: 'teste',
         administrador: 'true'
     });
@@ -57,3 +59,17 @@ export default function() {
 
 }
 
+export function teardown() {
+
+    const params = {
+        headers: {"Content-Type": "application/json"}}
+
+    const res = http.get(`${BASE_URL}/usuarios`, params);
+
+    for (let i = 0; i < res.json().usuarios.length; i++) {
+        const usuario = res.json().usuarios[i];
+
+        const resDelete = http.del(`http://localhost:3000/usuarios/${usuario._id}`, {}, params);
+        console.log(`Usuário ${usuario._id} excluído: ${resDelete.json().message}`);
+    }
+}

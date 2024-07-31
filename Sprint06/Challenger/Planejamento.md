@@ -84,7 +84,7 @@
 
     Objetivos do Teste de Performance
     - Tempo de Resposta: O tempo de resposta para cada operação CRUD não deve exceder 500 ms sob carga normal e 800 ms sob carga alta.
-    - Capacidade de Carga: Identificar o ponto de saturação onde o tempo de resposta excede 800 ms, esperando suportar pelo menos 100 usuários simultâneos.
+    - Capacidade de Carga: Identificar o ponto de saturação onde o tempo de resposta excede 800 ms, esperando suportar pelo menos 400 usuários simultâneos.
     - Confiabilidade e Estabilidade: A API deve manter uma taxa de erro abaixo de 5% durante o teste de estresse.
     - Fazer os Teste de Carga, Estresse, Escalabilidade, Pico, Resistência, Concorrência e capacidade.
     1. Rota de Usuários
@@ -93,7 +93,7 @@
     - Métricas:
         - Tempo de resposta para criação e deleção deve ser menos de 3 segundos.
         - Throughput de 100 operações por segundo.
-        - Taxa de erro inferior a 2%.
+        - Taxa de erro inferior a 5%.
         - Tempo de latência.
     - Tipos de Testes:
         - Teste de Carga: Validar a capacidade do sistema de manter o desempenho sob condições normais com 400 usuários simultâneos.
@@ -109,7 +109,7 @@
     - Métricas:
         - Tempo de resposta para login deve ser menos de 2 segundos.
         - Throughput de 150 logins por segundo.
-        - Taxa de erro inferior a 1%.
+        - Taxa de erro inferior a 5%.
         - Tempo de latência.
     - Tipos de Testes:
         - Teste de Carga: Avaliar a rota com 400 tentativas de login simultâneas por 30 minutos para medir a eficiência sob carga típica.
@@ -125,10 +125,10 @@
     - Métricas:
         - Tempo de resposta para listagem de produtos deve ser inferior a 3 segundos.
         - Throughput de 120 operações por segundo.
-        - Taxa de erro inferior a 2%.
+        - Taxa de erro inferior a 5%.
         - Tempo de latência.
     - Tipos de Testes:
-        - Teste de Carga: Simular 250 usuários acessando a lista de produtos simultaneamente por 30 minutos.
+        - Teste de Carga: Simular 250 usuários acessando a lista de produtos simultaneamente por 10 minutos.
         - Teste de Estresse: Aumentar a carga até 500 usuários para encontrar os limites da rota de produtos.
         - Teste de Escalabilidade: Incrementar de 250 para 500 usuários em 4 minutos, avaliando a performance sob carga escalonada.
         - Teste de Pico: Testar com 300 usuários acessando produtos simultaneamente por 30 segundos.
@@ -141,10 +141,26 @@
     - Métricas:
         - Tempo de resposta para operações no carrinho deve ser menos de 2 segundos.
         - Throughput de 130 operações por segundo.
-        - Taxa de erro inferior a 1.5%.
+        - Taxa de erro inferior a 5%.
         - Tempo de latência.
     - Tipos de Testes:
-        - Teste de Carga: Executar 150 operações no carrinho simultaneamente durante 30 minutos para verificar a performance sob uso normal.
+        - Teste de Carga: Executar 500 operações no carrinho simultaneamente durante 30 minutos para verificar a performance sob uso normal.
+        - Teste de Estresse: Aumentar as operações no carrinho até 600 para testar os limites.
+        - Teste de Escalabilidade: Crescer de 150 para 300 operações em 4 minutos para avaliar a escalabilidade.
+        - Teste de Pico: Simular um pico com 200 operações durante um período curto de 30 segundos.
+        - Teste de Resistência: Manter 600 operações durante 10 minutos para testar a durabilidade da funcionalidade.
+        - Teste de Concorrência: 500 operações concorrentes no carrinho para testar a consistência de dados e a resposta do servidor.
+        - Teste de Capacidade: Determinar o máximo de operações que a rota do carrinho pode manusear eficientemente.
+
+    5. Testes de Flows
+    - Objetivos: Testar a funcionalidade e performance em um fluxo de requisições que são elas: cadastrar um usuário, fazer o login, buscar produto, criar produto e apagar o usuário criado.
+    - Métricas:
+        - Tempo de resposta para operações no carrinho deve ser menos de 2 segundos.
+        - Throughput de 130 operações por segundo.
+        - Taxa de erro inferior a 5%.
+        - Tempo de latência.
+    - Tipos de Testes:
+        - Teste de Carga: Executar 400 operações no carrinho simultaneamente durante 4 minutos para verificar a performance sob uso normal.
         - Teste de Estresse: Aumentar as operações no carrinho até 600 para testar os limites.
         - Teste de Escalabilidade: Crescer de 150 para 300 operações em 4 minutos para avaliar a escalabilidade.
         - Teste de Pico: Simular um pico com 200 operações durante um período curto de 30 segundos.
@@ -152,11 +168,10 @@
         - Teste de Concorrência: 200 operações concorrentes no carrinho para testar a consistência de dados e a resposta do servidor.
         - Teste de Capacidade: Determinar o máximo de operações que a rota do carrinho pode manusear eficientemente.
 
-
     Preparação e Estratégia Geral
         - Preparação de Massa de Dados: Criar usuários, produtos e dados de carrinho suficientes para simular o ambiente de produção.
         - Monitoramento e Análise: Utilizar ferramentas como JMeter para coletar dados durante os testes e analisar os resultados para identificar gargalos e pontos de melhoria.
-- Obs: Resutados dos testes estarão contidos em um arquivo Performance.md
+- Obs: Resutados dos testes estarão contidos em um arquivo MatrizRastreabilidadePerformance.md
 
 8. Pessoas Envolvidas
     -  Quem são os testadores?

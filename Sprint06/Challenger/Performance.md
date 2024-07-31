@@ -3,19 +3,19 @@
 ## Resumo dos Testes
 | Sigla | Tipo de Teste                           | Configuração de Teste                            |
 |-------|-----------------------------------------|--------------------------------------------------|
-| TP01  | Carga CRUD                              | Usuários: 500, Duração: 4 min, Ramp-up: 30 seg   |
-| TP02  | Estresse CRUD                           | Usuários: 600, Duração: 4 min, Ramp-up: 30 seg   |
-| TP03  | Escalabilidade CRUD                     | Usuários: 600, Duração: 4 min, Ramp-up: 30 seg   |
-| TP04  | Pico CRUD                               | Usuários: 500, Duração: 30 sec, Ramp-up: 5 seg   |
-| TP05  | Resistência CRUD                        | Usuários: 400, Duração: 10 min, Ramp-up: 30 seg  |
-| TP06  | Concorrência CRUD                       | Usuários: 450, Duração: 4 min, Ramp-up: 30 seg   |
-| TP07  | Capacidade CRUD                         | Usuários: 400, Duração: 4 min, Ramp-up: 30 seg   |
-| TP08  | Carga - Cadastro de Usuários            | Usuários: 500, Duração: 4 min, Ramp-up: 30 seg   |
-| TP09  | Estresse - Cadastro de Usuários         | Usuários: 600, Duração: 4 min, Ramp-up: 30 seg   |
-| TP10  | Pico - Cadastro de Usuários             | Usuários: 500, Duração: 3 sec, Ramp-up: 5 seg    |
-| TP11  | Carga - Leitura de Usuários             | Usuários: 500, Duração: 4 min, Ramp-up: 30 seg   |
-| TP12  | Estresse - Leitura de Usuários          | Usuários: 600, Duração: 4 min, Ramp-up: 30 seg   |
-| TP13  | Pico - Leitura de Usuários              | Usuários: 500, Duração: 3 sec, Ramp-up: 5 seg    |
+| TP01  | Carga CRUD                              | Usuários: 500, Duração: 4 min  |
+| TP02  | Estresse CRUD                           | Usuários: 600, Duração: 4 min  |
+| TP03  | Escalabilidade CRUD                     | Usuários: 600, Duração: 4 min  |
+| TP04  | Pico CRUD                               | Usuários: 500, Duração: 30 sec |
+| TP05  | Resistência CRUD                        | Usuários: 400, Duração: 10 min |
+| TP06  | Concorrência CRUD                       | Usuários: 450, Duração: 4 min  |
+| TP07  | Capacidade CRUD                         | Usuários: 400, Duração: 4 min  |
+| TP08  | Carga - Cadastro de Usuários            | Usuários: 500, Duração: 4 min  |
+| TP09  | Estresse - Cadastro de Usuários         | Usuários: 600, Duração: 4 min  |
+| TP10  | Pico - Cadastro de Usuários             | Usuários: 500, Duração: 3 sec  |
+| TP11  | Carga - Leitura de Usuários             | Usuários: 500, Duração: 4 min  |
+| TP12  | Estresse - Leitura de Usuários          | Usuários: 600, Duração: 4 min  |
+| TP13  | Pico - Leitura de Usuários              | Usuários: 500, Duração: 3 sec  |
 
 
 

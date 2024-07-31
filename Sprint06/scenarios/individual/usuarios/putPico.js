@@ -45,7 +45,7 @@ export function setup() {
     for (let i = 0; i < 10; i++) {
         const payload = JSON.stringify({
             nome: `Fulano da Silva ${i}`,
-            email: `beltrano_${i}_${Math.random().toString(36).substr(2, 9)}@qa.com.br`,
+            email: `beltrano_${i}_${Math.random().toString(36)}@qa.com.br`,
             password: 'teste',
             administrador: 'true'
         });
@@ -74,7 +74,7 @@ export default function (data) {
     for (const userId of data.userIds) {
         const payload = JSON.stringify({
             nome: `Fulano da Silva Atualizado`,
-            email: `atualizado_${Math.random().toString(36).substr(2, 9)}@qa.com.br`,
+            email: `atualizado_${Math.random().toString(36)}@qa.com.br`,
             password: 'teste',
             administrador: 'true'
         });

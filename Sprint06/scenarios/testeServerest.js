@@ -1,61 +1,89 @@
 import http from 'k6/http';
-import { check, sleep } from 'k6';
+import { Trend, Rate, Counter } from 'k6/metrics';
+import { sleep } from 'k6';
+import { check, fail } from 'k6';
+import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
-export let options = {
+const BASE_URL = 'http://localhost:3000';
+let userIds = [];
+
+export function handleSummary(data) {
+    return {
+        "summaryPost.html": htmlReport(data),
+    };
+}
+
+export const options = {
     stages: [
-        { duration: '30s', target: 20 }, // 20 usuários em 30s
-        { duration: '1m', target: 20 },  // mantém 20 usuários por 1m
-        { duration: '30s', target: 0 },  // reduz para 0 usuários em 30s
+        { duration: '2s', target: 40 }, // 40 users over 2 seconds
+        { duration: '20s', target: 400 },
+        { duration: '2s', target: 40 },
     ],
 };
 
-const BASE_URL = 'http://localhost:3000';
+export let CreateUserDuration = new Trend('create_user_duration');
+export let CreateUserFailRate = new Rate('create_user_fail_rate');
+export let CreateUserSuccessRate = new Rate('create_user_success_rate');
+export let CreateUserReqs = new Counter('create_user_reqs');
 
-export default function () {
-    // Listar usuários
-    let res = http.get(`${BASE_URL}/usuarios`);
-    check(res, {
-        'GET /usuarios status was 200': (r) => r.status === 200,
-        'GET /usuarios response time < 200ms': (r) => r.timings.duration < 200,
-    });
+export function setup() {
+    console.log('Setup: Preparing test environment...');
+    return { userIds: [] };
+}
 
-    // Cadastrar um novo usuário
-    let payload = JSON.stringify({
-        nome: `Usuário ${Math.floor(Math.random() * 1000)}`,
-        email: `email${Math.floor(Math.random() * 1000)}@test.com`,
-        password: 'senha123',
+export default function (data) {
+    const payload = JSON.stringify({
+        nome: `Fulano da Silva`,
+        email: `beltrano_${Math.random().toString(36).substr(2, 9)}@qa.com.br`,
+        password: 'teste',
         administrador: 'true'
     });
+    const headers = { 'Content-Type': 'application/json' };
+    let response = http.post(`${BASE_URL}/usuarios`, payload, { headers });
 
-    let headers = { 'Content-Type': 'application/json' };
-    res = http.post(`${BASE_URL}/usuarios`, payload, { headers: headers });
-    check(res, {
-        'POST /usuarios status was 201': (r) => r.status === 201,
-        'POST /usuarios response time < 200ms': (r) => r.timings.duration < 200,
-    });
+    CreateUserDuration.add(response.timings.duration);
+    CreateUserReqs.add(1);
+    CreateUserFailRate.add(response.status !== 201);
+    CreateUserSuccessRate.add(response.status === 201);
 
-    let userId = JSON.parse(res.body)._id;
+    let durationMsg = `Máximo de duração da minha requisição ${5000 / 1000}s`;
+    if (!check(response, {
+        'máximo de duração': (r) => r.timings.duration < 5000,
+    })) {
+        fail(durationMsg);
+    }
 
-    // Atualizar o usuário
-    payload = JSON.stringify({
-        nome: `Usuário Atualizado ${Math.floor(Math.random() * 1000)}`,
-        email: `email${Math.floor(Math.random() * 1000)}@test.com`,
-        password: 'senha123',
-        administrador: 'true'
-    });
+    sleep(1);
 
-    res = http.put(`${BASE_URL}/usuarios/${userId}`, payload, { headers: headers });
-    check(res, {
-        'PUT /usuarios/:id status was 200': (r) => r.status === 200,
-        'PUT /usuarios/:id response time < 200ms': (r) => r.timings.duration < 200,
-    });
+    check(response, { 'User created successfully': (r) => r.status === 201 });
 
-    // Deletar o usuário
-    res = http.del(`${BASE_URL}/usuarios/${userId}`, null, { headers: headers });
-    check(res, {
-        'DELETE /usuarios/:id status was 200': (r) => r.status === 200,
-        'DELETE /usuarios/:id response time < 200ms': (r) => r.timings.duration < 200,
-    });
+    if (response.status === 201) {
+        data.userIds.push(response.json('_id'));
+        console.log(`User created with ID: ${response.json('_id')}`);
+    }
+}
 
-    sleep(1); // pausa de 1 segundo entre as requisições
+export function teardown() {
+
+    const params = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    const res = http.get("http://localhost:3000/usuarios", params);
+
+    for (let i = 0; i < res.json().usuarios.length; i++) {
+        const usuario = res.json().usuarios[i];
+
+        // Filtra usuários de teste (exemplo: email começa com "usuario")
+        if (usuario.email.startsWith != "usuario") {
+            try {
+                const resDelete = http.del(`http://localhost:3000/usuarios/${usuario._id}`, {}, params);
+                console.log(`Usuário ${usuario._id} excluído: ${resDelete.json().message}`);
+            } catch (error) {
+                console.error(`Erro ao excluir usuário ${usuario._id}: ${error}`);
+            }
+        }
+    }
 }
