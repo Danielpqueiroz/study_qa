@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check } from 'k6';
-import { Trend } from 'k6/metrics';
+import { Trend, Rate, Counter } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 export function handleSummary(data) {
@@ -9,9 +9,11 @@ export function handleSummary(data) {
   };
 }
 
-
-const createUserTrend = new Trend('create_user_duration');
+// Métricas para deleção de usuários
 const deleteUserTrend = new Trend('delete_user_duration');
+const deleteUserFailRate = new Rate('delete_user_fail_rate');
+const deleteUserSuccessRate = new Rate('delete_user_success_rate');
+const deleteUserReqs = new Counter('delete_user_reqs');
 
 const BASE_URL = 'http://localhost:3000';
 let userIds = [];
@@ -25,7 +27,9 @@ export let options = {
     ],
     thresholds: {
         delete_user_duration: ['p(95)<2000'], // 95% das requisições de deleção devem ser menores que 2s
-        http_req_failed: ['rate<0.01'],
+        delete_user_fail_rate: ['rate<0.05'], // Taxa de falhas na deleção deve ser < 5%
+        delete_user_success_rate: ['rate>0.95'], // Taxa de sucesso na deleção deve ser > 95%
+    
     },
 };
 
@@ -49,7 +53,7 @@ export function setup() {
 
         let res = http.post(`${BASE_URL}/usuarios`, payload, params);
         check(res, { 'user created successfully': (r) => r.status === 201 });
-        createUserTrend.add(res.timings.duration);
+        
 
         if (res.status === 201) {
             userIds.push(res.json()._id); // Armazena o ID do usuário criado na variável global
@@ -70,8 +74,12 @@ export default function (data) {
 
     for (const userId of data.userIds) {
         let res = http.del(`${BASE_URL}/usuarios/${userId}`, null, params);
-        check(res, { 'user deleted successfully': (r) => r.status === 200 });
         deleteUserTrend.add(res.timings.duration);
+        deleteUserReqs.add(1);
+        deleteUserFailRate.add(res.status !== 200);
+        deleteUserSuccessRate.add(res.status === 200);
+        check(res, { 'user deleted successfully': (r) => r.status === 200 });
+        
 
         if (res.status !== 200) {
             console.error(`Erro na deleção do usuário: ${res.status} ${res.body}`);

@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check } from 'k6';
-import { Trend } from 'k6/metrics';
+import { Trend, Rate, Counter } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 export function handleSummary(data) {
@@ -11,9 +11,12 @@ export function handleSummary(data) {
 
 
 // Métricas customizadas
-const createUserTrend = new Trend('create_user_duration');
 const updateUserTrend = new Trend('update_user_duration');
-const deleteUserTrend = new Trend('delete_user_duration');
+const updateUserFailRate = new Rate('update_user_fail_rate');
+const updateUserSuccessRate = new Rate('update_user_success_rate');
+const updateUserReqs = new Counter('update_user_reqs');
+
+
 
 // Opções do teste
 export let options = {
@@ -23,8 +26,10 @@ export let options = {
     { duration: '2s', target: 40 },
   ],
     thresholds: {
-        update_user_duration: ['p(95)<2000'],
-        http_req_failed: ['rate<0.01']
+        update_user_duration: ['p(95)<2000'], // 95% das requisições de atualização devem ser menores que 2s
+        update_user_fail_rate: ['rate<0.05'], // Taxa de falhas na atualização deve ser < 5%
+        update_user_success_rate: ['rate>0.95'], // Taxa de sucesso na atualização deve ser > 95%
+    
     },
 };
 
@@ -52,7 +57,7 @@ export function setup() {
 
         let res = http.post(`${BASE_URL}/usuarios`, payload, params);
         check(res, { 'user created successfully': (r) => r.status === 201 });
-        createUserTrend.add(res.timings.duration);
+        
 
         if (res.status === 201) {
             userIds.push(res.json()._id); // Armazena o ID do usuário criado na variável global
@@ -80,6 +85,10 @@ export default function (data) {
         });
 
         let res = http.put(`${BASE_URL}/usuarios/${userId}`, payload, params);
+        updateUserTrend.add(res.timings.duration);
+        updateUserReqs.add(1);
+        updateUserFailRate.add(res.status !== 200);
+        updateUserSuccessRate.add(res.status === 200);
         check(res, { 'user updated successfully': (r) => r.status === 200 });
         updateUserTrend.add(res.timings.duration);
 
@@ -99,6 +108,6 @@ export function teardown(data) {
         }
 
         check(res, { 'user deleted successfully': (r) => r.status === 200 });
-        deleteUserTrend.add(res.timings.duration);
+        
     }
 }

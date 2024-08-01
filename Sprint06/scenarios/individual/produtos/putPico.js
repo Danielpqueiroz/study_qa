@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
-import { Trend } from 'k6/metrics';
+import { Trend, Rate, Counter } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 export function handleSummary(data) {
@@ -11,19 +11,19 @@ export function handleSummary(data) {
 
 
 // Métricas customizadas
-const createUserTrend = new Trend('create_user_duration');
-const loginUserTrend = new Trend('login_user_duration');
-const createProductTrend = new Trend('create_product_duration');
 const updateProductTrend = new Trend('update_product_duration');
-const deleteProductTrend = new Trend('delete_product_duration');
+const updateProductFailRate = new Rate('update_product_fail_rate');
+const updateProductSuccessRate = new Rate('update_product_success_rate');
+const updateProductReqs = new Counter('update_product_reqs');
 
 // Opções do teste
 export let options = {
     vus: 10, // número de usuários virtuais
     duration: '20s', // duração do teste
     thresholds: {
-        create_product_duration: ['p(95)<2000'], // 95% das requisições de POST devem ser menores que 2s
-        update_product_duration: ['p(95)<2000'], // 95% das requisições de PUT devem ser menores que 2s
+        update_product_duration: ['p(95)<2000'], // 95% das requisições de atualização de produtos devem ser menores que 2s
+        update_product_fail_rate: ['rate<0.05'], // Taxa de falhas na atualização de produtos deve ser < 5%
+        update_product_success_rate: ['rate>0.95'], // Taxa de sucesso na atualização de produtos deve ser > 95%
     },
 };
 
@@ -54,12 +54,12 @@ export function setup() {
 
     let res = http.post(`${BASE_URL}/usuarios`, payload, params);
     check(res, { 'user created successfully': (r) => r.status === 201 });
-    createUserTrend.add(res.timings.duration);
+    
 
     if (res.status === 201) {
         let loginRes = http.post(`${BASE_URL}/login`, JSON.stringify({ email: email, password: 'teste' }), params);
         check(loginRes, { 'user logged in successfully': (r) => r.status === 200 });
-        loginUserTrend.add(loginRes.timings.duration);
+        
 
         if (loginRes.status === 200) {
             userToken = loginRes.json().authorization; // Armazena o token do usuário
@@ -84,7 +84,7 @@ export function setup() {
                 });
 
                 check(productRes, { 'product created successfully': (r) => r.status === 201 });
-                createProductTrend.add(productRes.timings.duration);
+                
 
                 if (productRes.status === 201) {
                     productIds.push(productRes.json()._id); // Armazena o ID do produto criado
@@ -120,8 +120,12 @@ export default function (data) {
         });
 
         let updateRes = http.put(`${BASE_URL}/produtos/${productId}`, updatedPayload, params);
-        check(updateRes, { 'product updated successfully': (r) => r.status === 200 });
         updateProductTrend.add(updateRes.timings.duration);
+        updateProductReqs.add(1);
+        updateProductFailRate.add(updateRes.status !== 200);
+        updateProductSuccessRate.add(updateRes.status === 200);
+        check(updateRes, { 'product updated successfully': (r) => r.status === 200 });
+        
 
         if (updateRes.status !== 200) {
             console.error(`Erro na atualização do produto: ${updateRes.status} ${updateRes.body}`);
@@ -143,7 +147,7 @@ export function teardown(data) {
     for (const productId of data.productIds) {
         let res = http.del(`${BASE_URL}/produtos/${productId}`, null, params);
         check(res, { 'product deleted successfully': (r) => r.status === 200 });
-        deleteProductTrend.add(res.timings.duration);
+        
 
         if (res.status !== 200) {
             console.error(`Erro na deleção do produto: ${res.status} ${res.body}`);

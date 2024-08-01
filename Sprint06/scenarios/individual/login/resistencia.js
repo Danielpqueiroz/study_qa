@@ -1,19 +1,21 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
-import { Trend } from 'k6/metrics';
+import { Trend, Rate, Counter } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 export function handleSummary(data) {
   return {
-      "summaryDelete.html": htmlReport(data),
+      "summaryResistencia.html": htmlReport(data),
   };
 }
 
 
 // Métricas customizadas
-const createUserTrend = new Trend('create_user_duration');
-const loginTrend = new Trend('login_duration');
-const deleteUserTrend = new Trend('delete_user_duration');
+
+export const loginTrend = new Trend('login_duration');
+export const loginFailRate = new Rate('login_fail_rate');
+export const loginSuccessRate = new Rate('login_success_rate');
+export const loginReqs = new Counter('login_reqs');
 
 // Opções do teste
 export let options = {
@@ -24,6 +26,8 @@ export let options = {
     ],
     thresholds: {
         login_duration: ['p(95)<2000'], // 95% das requisições de login devem ser menores que 2s
+        login_fail_rate: ['rate<0.05'], // Taxa de falhas de login deve ser < 5%
+        login_success_rate: ['rate>0.95'], // Taxa de sucesso de login deve ser > 95%
     },
 };
 
@@ -39,7 +43,7 @@ export function setup() {
     };
 
     let users = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
         const email = `user_${Math.random().toString(36)}@qa.com.br`;
         const payload = JSON.stringify({
             nome: `User_${i}`,
@@ -50,7 +54,7 @@ export function setup() {
 
         let res = http.post(`${BASE_URL}/usuarios`, payload, params);
         check(res, { 'user created successfully': (r) => r.status === 201 });
-        createUserTrend.add(res.timings.duration);
+        
 
         if (res.status === 201) {
             users.push({
@@ -66,7 +70,7 @@ export function setup() {
     return { users };
 }
 
-// Função principal do teste
+
 export default function (data) {
     const params = {
         headers: {
@@ -81,6 +85,11 @@ export default function (data) {
         });
 
         const res = http.post(`${BASE_URL}/login`, payload, params);
+        loginTrend.add(res.timings.duration);
+        loginReqs.add(1);
+        loginFailRate.add(res.status !== 200);
+        loginSuccessRate.add(res.status === 200);
+
         check(res, {
             'is status 200': (r) => r.status === 200,
             'is token present': (r) => r.json('authorization') !== '',
@@ -107,7 +116,7 @@ export function teardown(data) {
     data.users.forEach(user => {
         let res = http.del(`${BASE_URL}/usuarios/${user.id}`, null, params);
         check(res, { 'user deleted successfully': (r) => r.status === 200 });
-        deleteUserTrend.add(res.timings.duration);
+        
 
         if (res.status !== 200) {
             console.error(`Erro na deleção do usuário: ${res.status} ${res.body}`);

@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check } from 'k6';
-import { Trend } from 'k6/metrics';
+import { Trend, Rate, Counter } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 export function handleSummary(data) {
@@ -11,17 +11,20 @@ export function handleSummary(data) {
 
 
 // Métricas customizadas
-const createUserTrend = new Trend('create_user_duration');
-const loginUserTrend = new Trend('login_user_duration');
 const getProductTrend = new Trend('get_product_duration');
-const deleteUserTrend = new Trend('delete_user_duration');
+const getProductFailRate = new Rate('get_product_fail_rate');
+const getProductSuccessRate = new Rate('get_product_success_rate');
+const getProductReqs = new Counter('get_product_reqs');
 
 // Opções do teste
 export let options = {
     vus: 10, // número de usuários virtuais
     duration: '20s', // duração do teste
     thresholds: {
-        get_product_duration: ['p(95)<2000'], // 95% das requisições de GET devem ser menores que 2s
+        get_product_duration: ['p(95)<2000'], // 95% das requisições de busca devem ser menores que 2s
+        get_product_fail_rate: ['rate<0.05'], // Taxa de falhas na busca deve ser < 5%
+        get_product_success_rate: ['rate>0.95'], // Taxa de sucesso na busca deve ser > 95%
+        
     },
 };
 
@@ -50,12 +53,12 @@ export function setup() {
 
         let res = http.post(`${BASE_URL}/usuarios`, payload, params);
         check(res, { 'user created successfully': (r) => r.status === 201 });
-        createUserTrend.add(res.timings.duration);
+        
 
         if (res.status === 201) {
             let loginRes = http.post(`${BASE_URL}/login`, JSON.stringify({ email: email, password: 'teste' }), params);
             check(loginRes, { 'user logged in successfully': (r) => r.status === 200 });
-            loginUserTrend.add(loginRes.timings.duration);
+           
 
             if (loginRes.status === 200) {
                 users.push({ id: res.json()._id, token: loginRes.json().authorization }); // Armazena o usuário e token
@@ -80,6 +83,10 @@ export default function (data) {
         };
 
         let res = http.get(`${BASE_URL}/produtos`, params);
+        getProductTrend.add(res.timings.duration);
+        getProductReqs.add(1);
+        getProductFailRate.add(res.status !== 200);
+        getProductSuccessRate.add(res.status === 200);
         check(res, { 'products retrieved successfully': (r) => r.status === 200 });
         getProductTrend.add(res.timings.duration);
 
@@ -99,6 +106,6 @@ export function teardown(data) {
         }
 
         check(res, { 'user deleted successfully': (r) => r.status === 200 });
-        deleteUserTrend.add(res.timings.duration);
+        
     }
 }

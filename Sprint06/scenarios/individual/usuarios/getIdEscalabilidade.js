@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check } from 'k6';
-import { Trend } from 'k6/metrics';
+import { Trend, Rate, Counter } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 export function handleSummary(data) {
@@ -11,16 +11,22 @@ export function handleSummary(data) {
 
 
 // Métricas customizadas
-const createUserTrend = new Trend('create_user_duration');
 const getUserTrend = new Trend('get_user_duration');
-const deleteUserTrend = new Trend('delete_user_duration');
+const getUserFailRate = new Rate('get_user_fail_rate');
+const getUserSuccessRate = new Rate('get_user_success_rate');
+const getUserReqs = new Counter('get_user_reqs');
+
+
 
 // Opções do teste
 export let options = {
     vus: 10, // número de usuários virtuais
     duration: '20s', // duração do teste
     thresholds: {
-        get_user_duration: ['p(95)<2000'], // 95% das requisições de GET devem ser menores que 2s
+        get_user_duration: ['p(95)<2000'], // 95% das requisições de busca devem ser menores que 2s
+        get_user_fail_rate: ['rate<0.05'], // Taxa de falhas na busca deve ser < 5%
+        get_user_success_rate: ['rate>0.95'], // Taxa de sucesso na busca deve ser > 95%
+    
     },
 };
 
@@ -48,7 +54,7 @@ export function setup() {
 
         let res = http.post(`${BASE_URL}/usuarios`, payload, params);
         check(res, { 'user created successfully': (r) => r.status === 201 });
-        createUserTrend.add(res.timings.duration);
+        
 
         if (res.status === 201) {
             userIds.push(res.json()._id); // Armazena o ID do usuário criado na variável global
@@ -69,8 +75,12 @@ export default function (data) {
 
     for (const userId of data.userIds) {
         let res = http.get(`${BASE_URL}/usuarios/${userId}`, params);
-        check(res, { 'user retrieved successfully': (r) => r.status === 200 });
         getUserTrend.add(res.timings.duration);
+        getUserReqs.add(1);
+        getUserFailRate.add(res.status !== 200);
+        getUserSuccessRate.add(res.status === 200);
+        check(res, { 'user retrieved successfully': (r) => r.status === 200 });
+        
 
         if (res.status !== 200) {
             console.error(`Erro na recuperação do usuário: ${res.status} ${res.body}`);
@@ -88,6 +98,6 @@ export function teardown(data) {
         }
 
         check(res, { 'user deleted successfully': (r) => r.status === 200 });
-        deleteUserTrend.add(res.timings.duration);
+        
     }
 }

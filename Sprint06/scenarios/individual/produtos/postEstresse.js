@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check } from 'k6';
-import { Trend } from 'k6/metrics';
+import { Trend, Rate, Counter } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 export function handleSummary(data) {
@@ -11,17 +11,20 @@ export function handleSummary(data) {
 
 
 // Métricas customizadas
-const createUserTrend = new Trend('create_user_duration');
-const loginUserTrend = new Trend('login_user_duration');
 const createProductTrend = new Trend('create_product_duration');
-const deleteProductTrend = new Trend('delete_product_duration');
+const createProductFailRate = new Rate('create_product_fail_rate');
+const createProductSuccessRate = new Rate('create_product_success_rate');
+const createProductReqs = new Counter('create_product_reqs');
 
 // Opções do teste
 export let options = {
     vus: 10, // número de usuários virtuais
     duration: '20s', // duração do teste
     thresholds: {
-        create_product_duration: ['p(95)<2000'], // 95% das requisições de POST devem ser menores que 2s
+        create_product_duration: ['p(95)<2000'], // 95% das requisições de criação devem ser menores que 2s
+        create_product_fail_rate: ['rate<0.05'], // Taxa de falhas na criação deve ser < 5%
+        create_product_success_rate: ['rate>0.95'], // Taxa de sucesso na criação deve ser > 95%
+        
     },
 };
 
@@ -52,12 +55,12 @@ export function setup() {
 
     let res = http.post(`${BASE_URL}/usuarios`, payload, params);
     check(res, { 'user created successfully': (r) => r.status === 201 });
-    createUserTrend.add(res.timings.duration);
+    
 
     if (res.status === 201) {
         let loginRes = http.post(`${BASE_URL}/login`, JSON.stringify({ email: email, password: 'teste' }), params);
         check(loginRes, { 'user logged in successfully': (r) => r.status === 200 });
-        loginUserTrend.add(loginRes.timings.duration);
+        
 
         if (loginRes.status === 200) {
             userToken = loginRes.json().authorization; // Armazena o token do usuário
@@ -86,10 +89,14 @@ export default function (data) {
         nome: productName,
         preco: Math.floor(Math.random() * 1000) + 1,
         descricao: "Descrição do produto",
-        quantidade: Math.floor(Math.random() * 1000)
+        quantidade: Math.floor(Math.random() * 1000) + 1
     });
 
     let res = http.post(`${BASE_URL}/produtos`, payload, params);
+    createProductTrend.add(res.timings.duration);
+    createProductReqs.add(1);
+    createProductFailRate.add(res.status !== 201);
+    createProductSuccessRate.add(res.status === 201);
     check(res, { 'product created successfully': (r) => r.status === 201 });
     createProductTrend.add(res.timings.duration);
 

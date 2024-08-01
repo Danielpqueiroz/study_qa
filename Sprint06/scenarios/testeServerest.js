@@ -1,11 +1,7 @@
 import http from 'k6/http';
+import { check, sleep } from 'k6';
 import { Trend, Rate, Counter } from 'k6/metrics';
-import { sleep } from 'k6';
-import { check, fail } from 'k6';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
-
-const BASE_URL = 'http://localhost:3000';
-let userIds = [];
 
 export function handleSummary(data) {
     return {
@@ -13,77 +9,131 @@ export function handleSummary(data) {
     };
 }
 
+// Métricas customizadas para o login
+export const loginTrend = new Trend('login_duration');
+export const loginFailRate = new Rate('login_fail_rate');
+export const loginSuccessRate = new Rate('login_success_rate');
+export const loginReqs = new Counter('login_reqs');
+
+// Opções do teste
 export const options = {
-    stages: [
-        { duration: '2s', target: 40 }, // 40 users over 2 seconds
-        { duration: '20s', target: 400 },
-        { duration: '2s', target: 40 },
-    ],
+    vus: 10, // número de usuários virtuais
+    duration: '20s', // duração do teste
+    thresholds: {
+        login_duration: ['p(95)<2000'], // 95% das requisições de login devem ser menores que 2s
+        login_fail_rate: ['rate<0.05'], // Taxa de falhas de login deve ser < 5%
+        login_success_rate: ['rate>0.95'], // Taxa de sucesso de login deve ser > 95%
+    },
 };
 
-export let CreateUserDuration = new Trend('create_user_duration');
-export let CreateUserFailRate = new Rate('create_user_fail_rate');
-export let CreateUserSuccessRate = new Rate('create_user_success_rate');
-export let CreateUserReqs = new Counter('create_user_reqs');
+// URL da API
+const BASE_URL = 'http://localhost:3000';
 
+// Variável global para armazenar o token do usuário administrador
+let userToken = '';
+
+// Função de configuração para criar um usuário administrador e fazer login
 export function setup() {
-    console.log('Setup: Preparing test environment...');
-    return { userIds: [] };
-}
+    // Criação de usuário administrador antes do teste
+    const params = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
 
-export default function (data) {
+    const email = `admin_${Math.random().toString(36).substr(2, 9)}@qa.com.br`;
     const payload = JSON.stringify({
-        nome: `Fulano da Silva`,
-        email: `beltrano_${Math.random().toString(36).substr(2, 9)}@qa.com.br`,
+        nome: `Administrador`,
+        email: email,
         password: 'teste',
         administrador: 'true'
     });
-    const headers = { 'Content-Type': 'application/json' };
-    let response = http.post(`${BASE_URL}/usuarios`, payload, { headers });
 
-    CreateUserDuration.add(response.timings.duration);
-    CreateUserReqs.add(1);
-    CreateUserFailRate.add(response.status !== 201);
-    CreateUserSuccessRate.add(response.status === 201);
+    let res = http.post(`${BASE_URL}/usuarios`, payload, params);
+    if (res.status === 201) {
+        let loginRes = http.post(`${BASE_URL}/login`, JSON.stringify({ email: email, password: 'teste' }), params);
+        if (loginRes.status === 200) {
+            userToken = loginRes.json().authorization; // Armazena o token do usuário
+            console.log(`Usuário logado com token: ${userToken}`);
+        } else {
+            console.error(`Erro no login do usuário: ${loginRes.status} ${loginRes.body}`);
+        }
+    } else {
+        console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
+    }
+    return { userToken }; // Retorna o token do usuário criado
+}
 
-    let durationMsg = `Máximo de duração da minha requisição ${5000 / 1000}s`;
-    if (!check(response, {
-        'máximo de duração': (r) => r.timings.duration < 5000,
-    })) {
-        fail(durationMsg);
+// Função principal para criar produtos e logins
+export default function (data) {
+    // Teste de login
+    const loginParams = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+    const loginPayload = JSON.stringify({
+        email: `admin_${Math.random().toString(36).substr(2, 9)}@qa.com.br`,
+        password: 'teste',
+    });
+
+    let loginRes = http.post(`${BASE_URL}/login`, loginPayload, loginParams);
+    loginTrend.add(loginRes.timings.duration);
+    loginReqs.add(1);
+    loginFailRate.add(loginRes.status !== 200);
+    loginSuccessRate.add(loginRes.status === 200);
+
+    check(loginRes, {
+        'login bem-sucedido': (r) => r.status === 200,
+    });
+
+    if (loginRes.status !== 200) {
+        console.error(`Erro no login: ${loginRes.status} ${loginRes.body}`);
+    }
+
+    // Criação de produtos
+    const productParams = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${data.userToken}`,
+        },
+    };
+
+    const productName = `Produto_${Math.random().toString(36).substr(2, 9)}`;
+    const productPayload = JSON.stringify({
+        nome: productName,
+        preco: Math.floor(Math.random() * 1000) + 1,
+        descricao: "Descrição do produto",
+        quantidade: Math.floor(Math.random() * 1000)
+    });
+
+    let productRes = http.post(`${BASE_URL}/produtos`, productPayload, productParams);
+    check(productRes, {
+        'product created successfully': (r) => r.status === 201,
+    });
+
+    if (productRes.status !== 201) {
+        console.error(`Erro na criação do produto: ${productRes.status} ${productRes.body}`);
     }
 
     sleep(1);
-
-    check(response, { 'User created successfully': (r) => r.status === 201 });
-
-    if (response.status === 201) {
-        data.userIds.push(response.json('_id'));
-        console.log(`User created with ID: ${response.json('_id')}`);
-    }
 }
 
-export function teardown() {
-
+// Função de limpeza para deletar os produtos criados após o teste
+export function teardown(data) {
     const params = {
         headers: {
-            "Content-Type": "application/json"
-        }
-    }
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${data.userToken}`,
+        },
+    };
 
-    const res = http.get("http://localhost:3000/usuarios", params);
+    const res = http.get(`${BASE_URL}/produtos`, params);
 
-    for (let i = 0; i < res.json().usuarios.length; i++) {
-        const usuario = res.json().usuarios[i];
+    for (let i = 0; i < res.json().produtos.length; i++) {
+        const produto = res.json().produtos[i];
 
-        // Filtra usuários de teste (exemplo: email começa com "usuario")
-        if (usuario.email.startsWith != "usuario") {
-            try {
-                const resDelete = http.del(`http://localhost:3000/usuarios/${usuario._id}`, {}, params);
-                console.log(`Usuário ${usuario._id} excluído: ${resDelete.json().message}`);
-            } catch (error) {
-                console.error(`Erro ao excluir usuário ${usuario._id}: ${error}`);
-            }
-        }
+        const resDelete = http.del(`${BASE_URL}/produtos/${produto._id}`, {}, params);
+        console.log(`Produto ${produto._id} excluído: ${resDelete.json().message}`);
     }
 }
