@@ -20,9 +20,10 @@ let userIds = [];
 
 
 export let options = {
+    setupTimeout: '600s',
     stages: [
       { duration: '2s', target: 40 }, // 400 users over 1 minute
-      { duration: '20s', target: 400 },
+      { duration: '3m', target: 450 },
       { duration: '2s', target: 40 },
     ],
     thresholds: {

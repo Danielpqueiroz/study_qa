@@ -21,9 +21,10 @@ const updateUserReqs = new Counter('update_user_reqs');
 // Opções do teste
 export let options = {
   stages: [
-    { duration: '2s', target: 40 }, // 400 users over 1 minute
-    { duration: '20s', target: 400 },
-    { duration: '2s', target: 40 },
+    { duration: '5s', target: 40 }, // 400 users over 1 minute
+    { duration: '20s', target: 500 },
+    { duration: '5s', target: 40 },
+    { duration: '5s', target: 500 },
   ],
     thresholds: {
         update_user_duration: ['p(95)<2000'], // 95% das requisições de atualização devem ser menores que 2s

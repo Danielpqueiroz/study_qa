@@ -17,8 +17,12 @@ const deleteProductReqs = new Counter('delete_product_reqs');
 
 // Opções do teste
 export let options = {
-    vus: 10, // número de usuários virtuais
-    duration: '20s', // duração do teste
+    setupTimeout: '600s',
+    stages: [
+        { duration: '2s', target: 40 }, // 400 users over 1 minute
+        { duration: '3m', target: 450 },
+        { duration: '2s', target: 40 },
+      ],
     thresholds: {
         delete_product_duration: ['p(95)<2000'], // 95% das requisições de deleção devem ser menores que 2s
         delete_product_fail_rate: ['rate<0.05'], // Taxa de falhas na deleção deve ser < 5%
@@ -59,7 +63,7 @@ export function setup() {
 
             // Criação de múltiplos produtos
             const productIds = [];
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 10000; i++) {
                 const productName = `Produto_${Math.random().toString(36).substr(2, 9)}`;
                 const productPayload = JSON.stringify({
                     nome: productName,

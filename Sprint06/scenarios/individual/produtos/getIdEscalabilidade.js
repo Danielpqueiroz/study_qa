@@ -18,8 +18,12 @@ const getProductReqs = new Counter('get_product_reqs');
 
 // Opções do teste
 export let options = {
-    vus: 10, // número de usuários virtuais
-    duration: '20s', // duração do teste
+    setupTimeout: '600s',
+    stages: [
+        { duration: '15s', target: 40 }, // 400 users over 1 minute
+        { duration: '3m', target: 600 },
+        { duration: '15s', target: 40 },
+    ],
     thresholds: {
         get_product_duration: ['p(95)<2000'], // 95% das requisições de busca devem ser menores que 2s
         get_product_fail_rate: ['rate<0.05'], // Taxa de falhas na busca deve ser < 5%
@@ -42,7 +46,7 @@ export function setup() {
         },
     };
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 4000; i++) {
         const email = `beltrano_${i}_${Math.random().toString(36)}@qa.com.br`;
         const payload = JSON.stringify({
             nome: `Fulano da Silva ${i}`,
@@ -78,7 +82,7 @@ export default function (data) {
         const params = {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${user.token}`,
+                'Authorization': `${user.token}`,
             },
         };
 

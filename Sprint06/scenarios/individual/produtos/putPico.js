@@ -18,8 +18,13 @@ const updateProductReqs = new Counter('update_product_reqs');
 
 // Opções do teste
 export let options = {
-    vus: 10, // número de usuários virtuais
-    duration: '20s', // duração do teste
+    Timeout: '600s',
+    stages: [
+        { duration: '5s', target: 40 }, // 400 users over 1 minute
+        { duration: '20s', target: 500 },
+        { duration: '5s', target: 40 },
+        
+      ],
     thresholds: {
         update_product_duration: ['p(95)<2000'], // 95% das requisições de atualização de produtos devem ser menores que 2s
         update_product_fail_rate: ['rate<0.05'], // Taxa de falhas na atualização de produtos deve ser < 5%
@@ -66,7 +71,7 @@ export function setup() {
             console.log(`Usuário logado com token: ${userToken}`);
 
             // Criação de 10 produtos
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 30; i++) {
                 const productName = `Produto_${Math.random().toString(36)}`;
                 const preco = Math.floor(Math.random() * 1000) + 1; // Gera números entre 1 e 1000
                 const payload = JSON.stringify({

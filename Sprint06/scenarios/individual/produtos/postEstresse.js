@@ -1,5 +1,6 @@
 import http from 'k6/http';
 import { check } from 'k6';
+import { sleep } from 'k6';
 import { Trend, Rate, Counter } from 'k6/metrics';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
@@ -18,8 +19,11 @@ const createProductReqs = new Counter('create_product_reqs');
 
 // Opções do teste
 export let options = {
-    vus: 10, // número de usuários virtuais
-    duration: '20s', // duração do teste
+    stages: [
+        { duration: '15s', target: 40 }, // 400 users over 1 minute
+        { duration: '3m', target: 400 },
+        { duration: '15s', target: 40 },
+      ],
     thresholds: {
         create_product_duration: ['p(95)<2000'], // 95% das requisições de criação devem ser menores que 2s
         create_product_fail_rate: ['rate<0.05'], // Taxa de falhas na criação deve ser < 5%
@@ -106,6 +110,7 @@ export default function (data) {
     } else {
         console.error(`Erro na criação do produto: ${res.status} ${res.body}`);
     }
+    sleep(2);
 }
 
 export function teardown(data) {

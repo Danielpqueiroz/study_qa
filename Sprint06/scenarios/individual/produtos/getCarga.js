@@ -18,8 +18,11 @@ const getProductReqs = new Counter('get_product_reqs');
 
 // Opções do teste
 export let options = {
-    vus: 10, // número de usuários virtuais
-    duration: '20s', // duração do teste
+    stages: [
+        { duration: '15s', target: 40 }, // 400 users over 1 minute
+        { duration: '3m', target: 500 },
+        { duration: '15s', target: 40 },
+      ],
     thresholds: {
         get_product_duration: ['p(95)<2000'], // 95% das requisições de busca devem ser menores que 2s
         get_product_fail_rate: ['rate<0.05'], // Taxa de falhas na busca deve ser < 5%

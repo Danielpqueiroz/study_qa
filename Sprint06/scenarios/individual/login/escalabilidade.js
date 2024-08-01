@@ -19,10 +19,11 @@ export const loginReqs = new Counter('login_reqs');
 
 // Opções do teste
 export let options = {
+    setupTimeout: '600s',
     stages: [
-        { duration: '1s', target: 50 }, // subindo para 50 usuários em 1 minuto
-        { duration: '20s', target: 50 }, // mantendo 50 usuários por 3 minutos
-        { duration: '1s', target: 0 }, // diminuindo para 0 usuários em 1 minuto
+        { duration: '15s', target: 40 }, // 400 users over 1 minute
+        { duration: '3m', target: 600 },
+        { duration: '15s', target: 40 },
     ],
     thresholds: {
         login_duration: ['p(95)<2000'], // 95% das requisições de login devem ser menores que 2s
@@ -43,7 +44,7 @@ export function setup() {
     };
 
     let users = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 4000; i++) {
         const email = `user_${Math.random().toString(36)}@qa.com.br`;
         const payload = JSON.stringify({
             nome: `User_${i}`,
