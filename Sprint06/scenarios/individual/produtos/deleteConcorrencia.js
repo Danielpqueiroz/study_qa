@@ -120,7 +120,7 @@ export default function (data) {
         if (delRes.status !== 200) {
             console.error(`Erro na deleção do produto: ${delRes.status} ${delRes.body}`);
         } else {
-            check(delRes, { 'product deleted successfully': (r) => r.status === 200 });
+            check(delRes, { 'product deleted successfully': (r) => r.status === 200,});
         }
     }
 

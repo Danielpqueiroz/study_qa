@@ -5,7 +5,7 @@ import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporte
 
 export function handleSummary(data) {
   return {
-      "summaryEstresse.html": htmlReport(data),
+      "summaryConcorrencia.html": htmlReport(data),
   };
 }
 
@@ -18,11 +18,12 @@ const createProductTrend = new Trend('create_product_duration');
 
 // Opções do teste
 export let options = {
+    Timeout: '600s',
     stages: [
-        { duration: '1m', target: 10 }, // subindo para 10 usuários em 1 minuto
-        { duration: '3m', target: 10 }, // mantendo 10 usuários por 3 minutos
-        { duration: '1m', target: 0 }, // diminuindo para 0 usuários em 1 minuto
-    ],
+        { duration: '15s', target: 0 }, // 400 users over 1 minute
+        { duration: '2m', target: 240 },
+        
+      ],
     thresholds: {
         create_user_duration: ['p(95)<2000'], // 95% das requisições de criação de usuário devem ser menores que 2s
         login_duration: ['p(95)<2000'], // 95% das requisições de login devem ser menores que 2s
