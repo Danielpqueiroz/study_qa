@@ -9,33 +9,33 @@ export function handleSummary(data) {
     };
 }
 
-// Métricas customizadas
+
 const deleteProductTrend = new Trend('delete_product_duration');
 const deleteProductFailRate = new Rate('delete_product_fail_rate');
 const deleteProductSuccessRate = new Rate('delete_product_success_rate');
 const deleteProductReqs = new Counter('delete_product_reqs');
 
-// Opções do teste
+
 export let options = {
     setupTimeout: '600s',
     stages: [
-        { duration: '2s', target: 40 }, // 400 users over 1 minute
+        { duration: '2s', target: 40 }, 
         { duration: '3m', target: 450 },
         { duration: '2s', target: 40 },
       ],
     thresholds: {
-        delete_product_duration: ['p(95)<2000'], // 95% das requisições de deleção devem ser menores que 2s
-        delete_product_fail_rate: ['rate<0.05'], // Taxa de falhas na deleção deve ser < 5%
-        delete_product_success_rate: ['rate>0.95'], // Taxa de sucesso na deleção deve ser > 95%
+        delete_product_duration: ['p(95)<2000'], 
+        delete_product_fail_rate: ['rate<0.05'], 
+        delete_product_success_rate: ['rate>0.95'], 
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Função de configuração para criar um usuário administrador, fazer login e criar produtos
+
 export function setup() {
-    // Criação de usuário administrador antes do teste
+    // Criação de usuário
     const params = {
         headers: {
             'Content-Type': 'application/json',
@@ -58,10 +58,10 @@ export function setup() {
         check(loginRes, { 'user logged in successfully': (r) => r.status === 200 });
 
         if (loginRes.status === 200) {
-            const userToken = loginRes.json().authorization; // Armazena o token do usuário
+            const userToken = loginRes.json().authorization; 
             console.log(`Usuário logado com token: ${userToken}`);
 
-            // Criação de múltiplos produtos
+            // Criação de produtos
             const productIds = [];
             for (let i = 0; i < 10000; i++) {
                 const productName = `Produto_${Math.random().toString(36).substr(2, 9)}`;
@@ -90,7 +90,7 @@ export function setup() {
                 }
             }
 
-            return { userToken, productIds }; // Retorna o token do usuário e os IDs dos produtos criados
+            return { userToken, productIds }; 
         } else {
             console.error(`Erro no login do usuário: ${loginRes.status} ${loginRes.body}`);
             return null;
@@ -101,7 +101,7 @@ export function setup() {
     }
 }
 
-// Função principal para deletar os produtos criados
+// Deletar os produtos
 export default function (data) {
     const params = {
         headers: {
@@ -124,5 +124,5 @@ export default function (data) {
         }
     }
 
-    sleep(1); // Aguarde 1 segundo antes de continuar
+    sleep(1);
 }

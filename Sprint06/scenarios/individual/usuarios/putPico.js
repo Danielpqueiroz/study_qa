@@ -10,38 +10,34 @@ export function handleSummary(data) {
 }
 
 
-// Métricas customizadas
+
 const updateUserTrend = new Trend('update_user_duration');
 const updateUserFailRate = new Rate('update_user_fail_rate');
 const updateUserSuccessRate = new Rate('update_user_success_rate');
 const updateUserReqs = new Counter('update_user_reqs');
 
-
-
-// Opções do teste
 export let options = {
   stages: [
-    { duration: '5s', target: 40 }, // 400 users over 1 minute
+    { duration: '5s', target: 40 }, 
     { duration: '20s', target: 500 },
     { duration: '5s', target: 40 },
     { duration: '5s', target: 500 },
   ],
     thresholds: {
-        update_user_duration: ['p(95)<2000'], // 95% das requisições de atualização devem ser menores que 2s
-        update_user_fail_rate: ['rate<0.05'], // Taxa de falhas na atualização deve ser < 5%
-        update_user_success_rate: ['rate>0.95'], // Taxa de sucesso na atualização deve ser > 95%
+        update_user_duration: ['p(95)<2000'], 
+        update_user_fail_rate: ['rate<0.05'], 
+        update_user_success_rate: ['rate>0.95'], 
     
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Variável global para armazenar IDs dos usuários criados
 let userIds = [];
 
 export function setup() {
-    // Criação de usuários antes do teste
+    // Criação de usuários
     const params = {
         headers: {
             'Content-Type': 'application/json',
@@ -61,12 +57,12 @@ export function setup() {
         
 
         if (res.status === 201) {
-            userIds.push(res.json()._id); // Armazena o ID do usuário criado na variável global
+            userIds.push(res.json()._id);
         } else {
             console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
         }
     }
-    return { userIds }; // Retorna os IDs dos usuários criados
+    return { userIds };
 }
 
 export default function (data) {
@@ -100,7 +96,7 @@ export default function (data) {
 }
 
 export function teardown(data) {
-    // Deleção de usuários após o teste
+    // Deleção de usuários
     for (const userId of data.userIds) {
         const res = http.del(`${BASE_URL}/usuarios/${userId}`);
         if (!res || res.status !== 200) {

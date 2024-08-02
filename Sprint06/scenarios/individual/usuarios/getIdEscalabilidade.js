@@ -10,7 +10,7 @@ export function handleSummary(data) {
 }
 
 
-// Métricas customizadas
+
 const getUserTrend = new Trend('get_user_duration');
 const getUserFailRate = new Rate('get_user_fail_rate');
 const getUserSuccessRate = new Rate('get_user_success_rate');
@@ -18,30 +18,29 @@ const getUserReqs = new Counter('get_user_reqs');
 
 
 
-// Opções do teste
+
 export let options = {
     setupTimeout: '600s',
     stages: [
-        { duration: '15s', target: 40 }, // 400 users over 1 minute
+        { duration: '15s', target: 40 }, 
         { duration: '3m', target: 600 },
         { duration: '15s', target: 40 },
     ],
     thresholds: {
-        get_user_duration: ['p(95)<2000'], // 95% das requisições de busca devem ser menores que 2s
-        get_user_fail_rate: ['rate<0.05'], // Taxa de falhas na busca deve ser < 5%
-        get_user_success_rate: ['rate>0.95'], // Taxa de sucesso na busca deve ser > 95%
+        get_user_duration: ['p(95)<2000'], 
+        get_user_fail_rate: ['rate<0.05'], 
+        get_user_success_rate: ['rate>0.95'], 
     
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Variável global para armazenar IDs dos usuários criados
 let userIds = [];
 
 export function setup() {
-    // Criação de usuários antes do teste
+    // Criação de usuários
     const params = {
         headers: {
             'Content-Type': 'application/json',
@@ -61,16 +60,16 @@ export function setup() {
         
 
         if (res.status === 201) {
-            userIds.push(res.json()._id); // Armazena o ID do usuário criado na variável global
+            userIds.push(res.json()._id); 
         } else {
             console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
         }
     }
-    return { userIds }; // Retorna os IDs dos usuários criados
+    return { userIds }; 
 }
 
 export default function (data) {
-    // Recuperação de usuários
+    // Busca de usuários
     const params = {
         headers: {
             'Content-Type': 'application/json',
@@ -93,7 +92,7 @@ export default function (data) {
 }
 
 export function teardown(data) {
-    // Deleção de usuários após o teste
+    // Deleção de usuários
     for (const userId of data.userIds) {
         const res = http.del(`${BASE_URL}/usuarios/${userId}`);
         if (!res || res.status !== 200) {

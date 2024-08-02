@@ -10,36 +10,35 @@ export function handleSummary(data) {
 }
 
 
-// Métricas customizadas
+
 const getProductTrend = new Trend('get_product_duration');
 const getProductFailRate = new Rate('get_product_fail_rate');
 const getProductSuccessRate = new Rate('get_product_success_rate');
 const getProductReqs = new Counter('get_product_reqs');
 
-// Opções do teste
+
 export let options = {
     setupTimeout: '600s',
     stages: [
-        { duration: '15s', target: 40 }, // 400 users over 1 minute
+        { duration: '15s', target: 40 }, 
         { duration: '3m', target: 600 },
         { duration: '15s', target: 40 },
     ],
     thresholds: {
-        get_product_duration: ['p(95)<2000'], // 95% das requisições de busca devem ser menores que 2s
-        get_product_fail_rate: ['rate<0.05'], // Taxa de falhas na busca deve ser < 5%
-        get_product_success_rate: ['rate>0.95'], // Taxa de sucesso na busca deve ser > 95%
+        get_product_duration: ['p(95)<2000'], 
+        get_product_fail_rate: ['rate<0.05'], 
+        get_product_success_rate: ['rate>0.95'], 
         
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Variável global para armazenar usuários criados e tokens
 let users = [];
 
 export function setup() {
-    // Criação de usuários antes do teste
+    // Criação de usuários
     const params = {
         headers: {
             'Content-Type': 'application/json',
@@ -65,7 +64,7 @@ export function setup() {
            
 
             if (loginRes.status === 200) {
-                users.push({ id: res.json()._id, token: loginRes.json().authorization }); // Armazena o usuário e token
+                users.push({ id: res.json()._id, token: loginRes.json().authorization });
             } else {
                 console.error(`Erro no login do usuário: ${loginRes.status} ${loginRes.body}`);
             }
@@ -73,7 +72,7 @@ export function setup() {
             console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
         }
     }
-    return { users }; // Retorna os usuários criados e tokens
+    return { users };
 }
 
 export default function (data) {
@@ -101,7 +100,7 @@ export default function (data) {
 }
 
 export function teardown(data) {
-    // Deleção de usuários após o teste
+    // Deleção de usuários
     for (const user of data.users) {
         const res = http.del(`${BASE_URL}/usuarios/${user.id}`);
         if (!res || res.status !== 200) {

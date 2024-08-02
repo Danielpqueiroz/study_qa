@@ -20,29 +20,27 @@ const updateProductReqs = new Counter('update_product_reqs');
 export let options = {
     Timeout: '600s',
     stages: [
-        { duration: '5s', target: 40 }, // 400 users over 1 minute
+        { duration: '5s', target: 40 }, 
         { duration: '20s', target: 500 },
         { duration: '5s', target: 40 },
         
       ],
     thresholds: {
-        update_product_duration: ['p(95)<2000'], // 95% das requisições de atualização de produtos devem ser menores que 2s
-        update_product_fail_rate: ['rate<0.05'], // Taxa de falhas na atualização de produtos deve ser < 5%
-        update_product_success_rate: ['rate>0.95'], // Taxa de sucesso na atualização de produtos deve ser > 95%
+        update_product_duration: ['p(95)<2000'], 
+        update_product_fail_rate: ['rate<0.05'],  
+        update_product_success_rate: ['rate>0.95'], 
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Variável global para armazenar o token do usuário administrador
 let userToken = '';
 
-// Variável global para armazenar IDs dos produtos criados
 let productIds = [];
 
 export function setup() {
-    // Criação de usuário administrador antes do teste
+    // Criação de usuário 
     const params = {
         headers: {
             'Content-Type': 'application/json',
@@ -67,13 +65,13 @@ export function setup() {
         
 
         if (loginRes.status === 200) {
-            userToken = loginRes.json().authorization; // Armazena o token do usuário
+            userToken = loginRes.json().authorization; 
             console.log(`Usuário logado com token: ${userToken}`);
 
-            // Criação de 10 produtos
+            
             for (let i = 0; i < 30; i++) {
                 const productName = `Produto_${Math.random().toString(36)}`;
-                const preco = Math.floor(Math.random() * 1000) + 1; // Gera números entre 1 e 1000
+                const preco = Math.floor(Math.random() * 1000) + 1;
                 const payload = JSON.stringify({
                     nome: productName,
                     preco: preco,
@@ -92,7 +90,7 @@ export function setup() {
                 
 
                 if (productRes.status === 201) {
-                    productIds.push(productRes.json()._id); // Armazena o ID do produto criado
+                    productIds.push(productRes.json()._id); 
                     console.log(`Produto criado com ID: ${productRes.json()._id}`);
                 } else {
                     console.error(`Erro na criação do produto: ${productRes.status} ${productRes.body}`);
@@ -104,7 +102,7 @@ export function setup() {
     } else {
         console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
     }
-    return { userToken, productIds }; // Retorna o token do usuário criado e os IDs dos produtos
+    return { userToken, productIds }; 
 }
 
 export default function (data) {
@@ -119,9 +117,9 @@ export default function (data) {
     for (const productId of data.productIds) {
         const updatedPayload = JSON.stringify({
             nome: `Produto_Atualizado_${Math.random().toString(36)}`,
-            preco: Math.floor(Math.random() * 1000) + 1, // Gera números entre 1 e 1000
+            preco: Math.floor(Math.random() * 1000) + 1, 
             descricao: "Descrição do produto atualizada",
-            quantidade: Math.floor(Math.random() * 1000) + 1 // Atualiza a quantidade
+            quantidade: Math.floor(Math.random() * 1000) + 1 
         });
 
         let updateRes = http.put(`${BASE_URL}/produtos/${productId}`, updatedPayload, params);
@@ -137,11 +135,11 @@ export default function (data) {
         }
     }
 
-    sleep(1); // Aguarde 1 segundo antes de continuar
+    sleep(1); 
 }
 
 export function teardown(data) {
-    // Deleção de produtos após o teste
+    // Deleção de produtos a
     const params = {
         headers: {
             'Content-Type': 'application/json',

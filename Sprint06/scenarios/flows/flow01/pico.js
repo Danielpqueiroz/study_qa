@@ -10,33 +10,33 @@ export function handleSummary(data) {
 }
 
 
-// Métricas customizadas
+
 const createUserTrend = new Trend('create_user_duration');
 const loginTrend = new Trend('login_duration');
 const getProductTrend = new Trend('get_product_duration');
 const createProductTrend = new Trend('create_product_duration');
 
-// Opções do teste
+
 export let options = {
     
     Timeout: '600s',
     stages: [
-        { duration: '15s', target: 300 }, // 400 users over 1 minute
+        { duration: '15s', target: 300 }, 
         
         
       ],
     thresholds: {
-        create_user_duration: ['p(95)<5000'], // 95% das requisições de criação de usuário devem ser menores que 2s
-        login_duration: ['p(95)<5000'], // 95% das requisições de login devem ser menores que 2s
-        get_product_duration: ['p(95)<5000'], // 95% das requisições de buscar produtos devem ser menores que 2s
-        create_product_duration: ['p(95)<5000'], // 95% das requisições de criação de produto devem ser menores que 2s
+        create_user_duration: ['p(95)<5000'], 
+        login_duration: ['p(95)<5000'], 
+        get_product_duration: ['p(95)<5000'], 
+        create_product_duration: ['p(95)<5000'], 
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Função principal do teste
+
 export default function () {
     const params = {
         headers: {
@@ -81,7 +81,7 @@ export default function () {
     };
     const productPayload = JSON.stringify({
         nome: `Produto_${Math.random().toString(36)}`,
-        preco: Math.floor(Math.random() * 1000) + 1, // Gera números entre 1 e 1000
+        preco: Math.floor(Math.random() * 1000) + 1, 
         descricao: 'Descrição do produto',
         quantidade: Math.floor(Math.random() * 1000)
     });

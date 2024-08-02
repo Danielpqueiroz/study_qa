@@ -11,38 +11,36 @@ export function handleSummary(data) {
 }
 
 
-// Métricas customizadas
+
 const createProductTrend = new Trend('create_product_duration');
 const createProductFailRate = new Rate('create_product_fail_rate');
 const createProductSuccessRate = new Rate('create_product_success_rate');
 const createProductReqs = new Counter('create_product_reqs');
 
-// Opções do teste
+
 export let options = {
     stages: [
-        { duration: '15s', target: 40 }, // 400 users over 1 minute
+        { duration: '15s', target: 40 }, 
         { duration: '3m', target: 400 },
         { duration: '15s', target: 40 },
       ],
     thresholds: {
-        create_product_duration: ['p(95)<2000'], // 95% das requisições de criação devem ser menores que 2s
-        create_product_fail_rate: ['rate<0.05'], // Taxa de falhas na criação deve ser < 5%
-        create_product_success_rate: ['rate>0.95'], // Taxa de sucesso na criação deve ser > 95%
+        create_product_duration: ['p(95)<2000'], 
+        create_product_fail_rate: ['rate<0.05'], 
+        create_product_success_rate: ['rate>0.95'], 
         
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Variável global para armazenar o token do usuário administrador
 let userToken = '';
 
-// Variável global para armazenar IDs dos produtos criados
 let productIds = [];
 
 export function setup() {
-    // Criação de usuário administrador antes do teste
+    // Criação de usuário
     const params = {
         headers: {
             'Content-Type': 'application/json',
@@ -67,7 +65,7 @@ export function setup() {
         
 
         if (loginRes.status === 200) {
-            userToken = loginRes.json().authorization; // Armazena o token do usuário
+            userToken = loginRes.json().authorization; 
             console.log(`Usuário logado com token: ${userToken}`);
         } else {
             console.error(`Erro no login do usuário: ${loginRes.status} ${loginRes.body}`);
@@ -75,11 +73,11 @@ export function setup() {
     } else {
         console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
     }
-    return { userToken }; // Retorna o token do usuário criado
+    return { userToken }; 
 }
 
 export default function (data) {
-    // console.log(`Token de autenticação: ${data.userToken}`);
+    
     // Criação de produtos
     const params = {
         headers: {
@@ -105,7 +103,7 @@ export default function (data) {
     createProductTrend.add(res.timings.duration);
 
     if (res.status === 201) {
-        productIds.push(res.json()._id); // Armazena o ID do produto criado
+        productIds.push(res.json()._id);
         
     } else {
         console.error(`Erro na criação do produto: ${res.status} ${res.body}`);
@@ -114,7 +112,7 @@ export default function (data) {
 }
 
 export function teardown(data) {
-    // Deleção de produtos após o teste
+    // Deleção de produtos
     const params = {
         headers: {'Content-Type': 'application/json',
                  'Authorization': `${data.userToken}`,},
@@ -129,13 +127,5 @@ export function teardown(data) {
         console.log(`Produto ${produtos._id} excluído: ${resDelete.json().message}`);
     }
 
-    // for (const productId of productIds) {
-    //     let res = http.del(`${BASE_URL}/produtos/${productId}`, null, params);
-    //     check(res, { 'product deleted successfully': (r) => r.status === 200 });
-    //     deleteProductTrend.add(res.timings.duration);
-
-    //     if (res.status !== 200) {
-    //         console.error(`Erro na deleção do produto: ${res.status} ${res.body}`);
-    //     }
-    // }
+    
 }

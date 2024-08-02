@@ -4,9 +4,7 @@ import { sleep } from 'k6';
 import { check, fail } from 'k6';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
-const BASE_URL = 'http://localhost:3000'
-// Variável global para armazenar IDs dos usuários criados
-let userIds = [];
+
 
 export function handleSummary(data) {
     return {
@@ -14,18 +12,22 @@ export function handleSummary(data) {
     };
 }
 
+const BASE_URL = 'http://localhost:3000'
+
+let userIds = [];
+
 export const options = {
     
     setupTimeout: '600s',
   stages: [
-    { duration: '15s', target: 40 }, // 400 users over 1 minute
+    { duration: '15s', target: 40 }, 
     { duration: '3m', target: 400 },
     { duration: '15s', target: 40 },
   ],
   thresholds: {
-    create_user_duration: ['p(95)<2000'], // 95% das requisições de atualização devem ser menores que 2s
-    create_user_fail_rate: ['rate<0.05'], // Taxa de falhas na atualização deve ser < 5%
-    create_user_success_rate: ['rate>0.95'], // Taxa de sucesso na atualização deve ser > 95%
+    create_user_duration: ['p(95)<2000'],
+    create_user_fail_rate: ['rate<0.05'], 
+    create_user_success_rate: ['rate>0.95'], 
     },
 };
 

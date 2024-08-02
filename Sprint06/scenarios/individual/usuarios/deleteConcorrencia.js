@@ -22,14 +22,14 @@ let userIds = [];
 export let options = {
     setupTimeout: '600s',
     stages: [
-      { duration: '2s', target: 40 }, // 400 users over 1 minute
+      { duration: '2s', target: 40 },
       { duration: '3m', target: 450 },
       { duration: '2s', target: 40 },
     ],
     thresholds: {
-        delete_user_duration: ['p(95)<2000'], // 95% das requisições de deleção devem ser menores que 2s
-        delete_user_fail_rate: ['rate<0.05'], // Taxa de falhas na deleção deve ser < 5%
-        delete_user_success_rate: ['rate>0.95'], // Taxa de sucesso na deleção deve ser > 95%
+        delete_user_duration: ['p(95)<2000'], 
+        delete_user_fail_rate: ['rate<0.05'], 
+        delete_user_success_rate: ['rate>0.95'], 
     
     },
 };
@@ -37,7 +37,7 @@ export let options = {
 
 
 export function setup() {
-    // Criação de usuários antes do teste
+    // Criação de usuários
     const params = {
         headers: {
             'Content-Type': 'application/json',

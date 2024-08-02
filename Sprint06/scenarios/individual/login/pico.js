@@ -10,14 +10,12 @@ export function handleSummary(data) {
 }
 
 
-// Métricas customizadas
-
 export const loginTrend = new Trend('login_duration');
 export const loginFailRate = new Rate('login_fail_rate');
 export const loginSuccessRate = new Rate('login_success_rate');
 export const loginReqs = new Counter('login_reqs');
 
-// Opções do teste
+
 export let options = {
     stages: [
         { duration: '5s', target: 40 }, // 400 users over 1 minute
@@ -32,10 +30,10 @@ export let options = {
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Função de setup
+
 export function setup() {
     const params = {
         headers: {
@@ -102,11 +100,11 @@ export default function (data) {
         }
     });
 
-    // Aguarde 1 segundo antes de continuar para evitar sobrecarga
+    
     sleep(1);
 }
 
-// Função de teardown
+
 export function teardown(data) {
     const params = {
         headers: {

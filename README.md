@@ -11,6 +11,8 @@
 - [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Planejamento.md)
   
 - [Matriz Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/MatrizRastreabilidadePerformance.md)
+
+- [Códigos dos Testes.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint6/Sprint06/scenarios?ref_type=heads)
  
 
 ## Objetivos dos Testes

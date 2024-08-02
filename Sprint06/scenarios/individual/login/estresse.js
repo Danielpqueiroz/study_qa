@@ -10,31 +10,30 @@ export function handleSummary(data) {
 }
 
 
-// Métricas customizadas
+
 
 export const loginTrend = new Trend('login_duration');
 export const loginFailRate = new Rate('login_fail_rate');
 export const loginSuccessRate = new Rate('login_success_rate');
 export const loginReqs = new Counter('login_reqs');
 
-// Opções do teste
+
 export let options = {
     stages: [
-        { duration: '15s', target: 40 }, // 400 users over 1 minute
+        { duration: '15s', target: 40 }, 
         { duration: '3m', target: 400 },
         { duration: '15s', target: 40 },
       ],
     thresholds: {
-        login_duration: ['p(95)<2000'], // 95% das requisições de login devem ser menores que 2s
-        login_fail_rate: ['rate<0.05'], // Taxa de falhas de login deve ser < 5%
-        login_success_rate: ['rate>0.95'], // Taxa de sucesso de login deve ser > 95%
+        login_duration: ['p(95)<2000'], 
+        login_fail_rate: ['rate<0.05'], 
+        login_success_rate: ['rate>0.95'], 
     },
 };
 
-// URL da API
+
 const BASE_URL = 'http://localhost:3000';
 
-// Função de setup
 export function setup() {
     const params = {
         headers: {
@@ -101,11 +100,11 @@ export default function (data) {
         }
     });
 
-    // Aguarde 1 segundo antes de continuar para evitar sobrecarga
+    
     sleep(1);
 }
 
-// Função de teardown
+
 export function teardown(data) {
     const params = {
         headers: {
