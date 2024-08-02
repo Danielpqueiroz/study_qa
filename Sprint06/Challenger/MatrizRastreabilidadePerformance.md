@@ -408,10 +408,5 @@ Análise:
 
 
 
-## TP21
-Análise:
-Total Requests: O número total de requisições feitas foi 1677.
-Failed Requests: A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-Breached Thresholds: 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-Failed Checks: Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+
 

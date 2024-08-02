@@ -4,7 +4,7 @@
 
  Documentação e resultados dos testes de performance para a API ServeRest. O foco está em validar a estabilidade, performance e capacidade da API sob várias condições de carga.
 
-## Links para acessar diretamente o material do dia:
+## Links para acessar diretamente os materiais:
 
 - [Curso Udemy Performance Test - Primeiros passos com K6.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint6/Sprint06/CursoK6Udemy)
  
@@ -40,9 +40,9 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
 
 
 ## Resumo dos resultados
-  -  Os resultados indicam que a operação de cadastro e de busca todos são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
+  -  Os resultados indicam que a operação de cadastro e de buscar todos são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
   - Foi constatado também que os valores de latência oscilam bastante.
-  - Foi constatado que no testes de pico de cadastro e leitura individuais a taxa de erro ficou muito alta.
+  - Foi constatado que no testes de de fluxo a taxa de erro ficou muito alta.
   
 
 ## Recursos Necessários
@@ -71,7 +71,7 @@ Já para rodar os testes utiliza o seguite comando:
       -  Daniel .
 
 ## Agradecimentos:
-- Enzo, Leticia, Ricardo, Jorge, Mathias.
+- Enzo, Leticia, Ricardo, Jorge, Mathias, Gabriel Just.
 
 
 ## Referências
