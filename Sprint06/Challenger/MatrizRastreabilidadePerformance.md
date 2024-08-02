@@ -85,7 +85,7 @@
 ## TP01
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/CARGA_login.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/CARGA_login.png" width="700px" />
 </div>
 
 Análise
@@ -99,7 +99,7 @@ Análise
 ## TP02
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/CONCORRENCIA_login.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/CONCORRENCIA_login.png" width="700px" />
 </div>
 
 Análise
@@ -113,7 +113,7 @@ Análise
 ## TP03
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/ESCALABILIDADE_login.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/ESCALABILIDADE_login.png" width="700px" />
 </div>
 
 Análise
@@ -127,7 +127,7 @@ Análise
 ## TP04
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/ESTRESSE_login.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/ESTRESSE_login.png" width="700px" />
 </div>
 
 Análise
@@ -141,7 +141,7 @@ Análise
 ## TP05
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/PICO_login.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/PICO_login.png" width="700px" />
 </div>
 
 Análise
@@ -155,7 +155,7 @@ Análise
 ## TP06
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/GET_product.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/GET_product.png" width="700px" />
 </div>
 
 Análise
@@ -169,7 +169,7 @@ Análise
 ## TP07
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/DELETE_product.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/DELETE_product.png" width="700px" />
 </div>
 
 Análise
@@ -183,7 +183,7 @@ Análise
 ## TP08
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/GETid_product.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/GETid_product.png" width="700px" />
 </div>
 
 Análise
@@ -197,7 +197,7 @@ Análise
 ## TP09
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/POST_product.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/POST_product.png" width="700px" />
 </div>
 
 Análise
@@ -211,7 +211,7 @@ Análise
 ## TP10
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/PUT_product.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/PUT_product.png" width="700px" />
 </div>
 
 Análise
@@ -225,7 +225,7 @@ Análise
 ## TP11
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/GET_user.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/GET_user.png" width="700px" />
 </div>
 
 Análise
@@ -239,7 +239,7 @@ Análise
 ## TP12
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/DELETE_user.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/DELETE_user.png" width="700px" />
 </div>
 
 Análise
@@ -253,7 +253,7 @@ Análise
 ## TP13
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/GETid_user.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/GETid_user.png" width="700px" />
 </div>
 
 Análise
@@ -267,7 +267,7 @@ Análise
 ## TP14
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/POST_user.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/POST_user.png" width="700px" />
 </div>
 
 Análise
@@ -281,7 +281,7 @@ Análise
 ## TP15
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/PUT_user.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/PUT_user.png" width="700px" />
 </div>
 
 Análise
@@ -295,7 +295,7 @@ Análise
 ## TP16
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/CARGA_flow01.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/CARGA_flow01.png" width="700px" />
 </div>
 
 Análise
@@ -307,7 +307,7 @@ Análise
 ## TP17
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/CONCORRENCIA_flow01.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/CONCORRENCIA_flow01.png" width="700px" />
 </div>
 
 Análise
@@ -319,7 +319,7 @@ Análise
 ## TP18
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/ESCALABILIDADE_flow01.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/ESCALABILIDADE_flow01.png" width="700px" />
 </div>
 
 Análise
@@ -331,7 +331,7 @@ Análise
 ## TP19
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/ESTRESSE_flow01.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/ESTRESSE_flow01.png" width="700px" />
 </div>
 
 Análise
@@ -343,7 +343,7 @@ Análise
 ## TP20
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/PICO_flow01.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/PICO_flow01.png" width="700px" />
 </div>
 
 Análise
@@ -355,7 +355,7 @@ Análise
 ## TP21
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/CARGA_flow02.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/CARGA_flow02.png" width="700px" />
 </div>
 
 Análise
@@ -367,7 +367,7 @@ Análise
 ## TP22
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/CONCORRENCIA_flow02.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/CONCORRENCIA_flow02.png" width="700px" />
 </div>
 
 Análise
@@ -379,7 +379,7 @@ Análise
 ## TP23
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/ESCALABILIDADE_flow02.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/ESCALABILIDADE_flow02.png" width="700px" />
 </div>
 
 Análise
@@ -391,7 +391,7 @@ Análise
 ## TP24
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/ESTRESSE_flow02.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/ESTRESSE_flow02.png" width="700px" />
 </div>
 
 Análise
@@ -403,7 +403,7 @@ Análise
 ## TP25
 
 <div align="center">
-    <img src="https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Assets/PICO_flow02.png" width="700px" />
+    <img src="https://gitlab.com/compass8112219/Sprints/-/raw/pb_sprint6/Sprint06/Challenger/Assets/PICO_flow02.png" width="700px" />
 </div>
 
 Análise
