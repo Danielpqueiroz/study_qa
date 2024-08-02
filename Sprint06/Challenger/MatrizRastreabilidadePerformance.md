@@ -89,11 +89,10 @@
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
 
+- **Desempenho Geral:** O sistema se comportou de maneira estável e eficiente durante o teste de carga, com todas as requisições de login sendo bem-sucedidas e sem falhas ou thresholds violados.
+- **Duração das Requisições:** Embora a média e os percentis de duração de login estejam abaixo do threshold de 2000 ms, existe uma variação significativa nos tempos de resposta, com alguns logins demorando até 2082.59 ms.
+- **Estabilidade:** A ausência de falhas e thresholds violados indica que o sistema é capaz de lidar com a carga estipulada no teste sem comprometer a funcionalidade.
 ---
 
 ## TP02
@@ -103,11 +102,9 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
-
+- **Desempenho Geral:** O sistema apresentou um desempenho estável e eficiente durante o teste de concorrência, com todas as requisições de login sendo bem-sucedidas e sem falhas ou thresholds violados.
+- **Duração das Requisições:**  A média e os percentis de duração de login estão bem abaixo do threshold de 2000 ms, com tempos de resposta variando, mas sem ultrapassar 1864.25 ms.
+- **Estabilidade:** A ausência de falhas e thresholds violados demonstra que o sistema consegue lidar com a carga de requisições.
 ---
 
 ## TP03
@@ -117,10 +114,11 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+- **Desempenho Geral:** O sistema apresentou um desempenho estável durante o teste de escalabilidade, com todas as requisições de login sendo bem-sucedidas e sem falhas reportadas.
+
+- **Duração das Requisições:** A média e os percentis de duração de login mostraram variações significativas. A média das requisições foi de 1286.29 ms, com o máximo de 3028.03 ms e o percentil 95 chegando a 2469.14 ms, acima do threshold de 2000 ms.
+
+- **Estabilidade:** Apesar da violação de um threshold, a ausência de falhas nas requisições e checks indica que o sistema conseguiu lidar com a carga progressiva. 
 
 ---
 
@@ -131,10 +129,12 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+- **Desempenho Geral:** O sistema se comportou de maneira estável e eficiente durante o teste de estresse, com todas as requisições de login sendo bem-sucedidas e sem falhas ou thresholds violados.
+
+- **Duração das Requisições:** A média e os percentis de duração de login estão abaixo do threshold de 2000 ms, com uma variação significativa nos tempos de resposta. A média das requisições foi de 769.71 ms, com o máximo de 2610.05 ms e o percentil 95 chegando a 1400.01 ms.
+
+- **Estabilidade:** A ausência de falhas e thresholds violados indica que o sistema é capaz de lidar com a carga estipulada no teste sem comprometer a funcionalidade.
+
 
 ---
 
@@ -145,10 +145,12 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+- **Desempenho Geral:** O sistema apresentou um desempenho estável durante o teste de pico na rota de login, com todas as requisições sendo bem-sucedidas e sem falhas. No entanto, houve um threshold violado.
+
+- **Duração das Requisições:** A média de duração das requisições de login foi de 1417.15 ms, com o máximo atingindo 3731.89 ms. O percentil 90 foi de 2349.53 ms e o percentil 95 foi de 2946.23 ms, que ultrapassou o threshold estabelecido.
+
+- **Estabilidade:** Apesar da violação de um threshold, a ausência de falhas e checks falhados indica que o sistema é capaz de lidar com a carga estipulada no teste sem comprometer a funcionalidade.
+
 
 ---
 
@@ -159,10 +161,12 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+- **Desempenho Geral:** O sistema apresentou um desempenho estável durante o teste de GET na rota de produtos, com todas as requisições sendo bem-sucedidas e sem falhas. No entanto, houve um threshold violado.
+
+- **Duração das Requisições:** A média de duração das requisições de GET produtos foi de 1811.15 ms, com o máximo atingindo 3704.27 ms. O percentil 90 foi de 3103.56 ms e o percentil 95 foi de 3256.07 ms, que ultrapassou o threshold estabelecido.
+
+- **Estabilidade:** Apesar da violação de um threshold, a ausência de falhas e checks falhados indica que o sistema é capaz de lidar com a carga estipulada no teste sem comprometer a funcionalidade.
+
 
 ---
 
@@ -173,10 +177,11 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+- **Desempenho Geral:** O sistema se comportou de maneira estável e eficiente durante o teste de DELETE na rota de produtos, com todas as requisições sendo bem-sucedidas e sem falhas ou thresholds violados.
+
+- **Duração das Requisições:** A média de duração das requisições de DELETE produtos foi de 337.05 ms, com o máximo atingindo 1146.75 ms. O percentil 90 foi de 553.78 ms e o percentil 95 foi de 592.55 ms.
+
+- **Estabilidade:** A ausência de falhas e thresholds violados indica que o sistema é capaz de lidar com a carga estipulada no teste sem comprometer a funcionalidade.
 
 ---
 
@@ -187,10 +192,13 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+- **Desempenho Geral:** O sistema se comportou de maneira estável e eficiente durante o teste de GET por ID na rota de produtos, com todas as requisições sendo bem-sucedidas e sem falhas. Houve apenas uma violação de threshold.
+
+- **Duração das Requisições:** A média de duração das requisições de GET por ID foi de 2115.27 ms, com o máximo atingindo 4353.16 ms. O percentil 90 foi de 3715.10 ms e o percentil 95 foi de 3903.78 ms, o que está acima do threshold de 2000 ms.
+
+- **Estabilidade:** A ausência de falhas e verificações falhadas indica que o sistema é capaz de lidar com a carga estipulada no teste sem comprometer a funcionalidade.
+
+
 
 ---
 
@@ -201,10 +209,11 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+- **Desempenho Geral:** O sistema apresentou um comportamento estável durante o teste de carga na criação de produtos, com a maioria das requisições sendo bem-sucedidas. No entanto, houve 47 requisições falhadas e uma violação de threshold.
+
+- **Duração das Requisições:** A média de duração das requisições de criação de produtos foi de 1516.37 ms, com o máximo atingindo 5024.96 ms. O percentil 90 foi de 3799.82 ms e o percentil 95 foi de 4263.03 ms, o que está acima do threshold de 2000 ms.
+
+- **Estabilidade:** A presença de falhas e a violação do threshold de duração indicam que o sistema enfrenta dificuldades ao lidar com a carga estipulada no teste.
 
 ---
 
@@ -215,10 +224,12 @@ Análise
 </div>
 
 Análise
-- **Total Requests:** O número total de requisições feitas foi 1677.
-- **Failed Requests:** A alta taxa de falhas (1376) indica problemas significativos durante a execução do teste, como possíveis congestionamentos no servidor ou falhas na autenticação.
-- **Breached Thresholds:** 4 thresholds violados, o que sugere que o sistema não conseguiu manter o desempenho esperado sob a carga de pico.
-- **Failed Checks:** Um número alto de verificações falhadas (1439) mostra que muitas requisições não retornaram os resultados esperados.
+- **Desempenho Geral:** O sistema apresentou um comportamento estável durante o teste de atualização de produtos, com todas as requisições sendo bem-sucedidas. No entanto, houve uma violação de threshold.
+
+- **Duração das Requisições:** A média de duração das requisições de atualização de produtos foi de 3503.57 ms, com o máximo atingindo 4982.39 ms. O percentil 90 foi de 4711.60 ms e o percentil 95 foi de 4763.90 ms, o que está significativamente acima do threshold de 2000 ms.
+
+- **Estabilidade:** A ausência de falhas e verificações falhadas indica que o sistema é capaz de lidar com a carga estipulada no teste sem comprometer a funcionalidade.
+
 
 ---
 
