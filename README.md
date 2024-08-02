@@ -6,13 +6,12 @@
 
 ## Links para acessar diretamente o material do dia:
 
-- [Curso Udemy Performance Test - Primeiros passos com K6.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Dia01/TestesPerformance.md?ref_type=heads)
+- [Curso Udemy Performance Test - Primeiros passos com K6.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint6/Sprint06/CursoK6Udemy)
  
-- [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint5/Sprint05/Dia02/TestesPerformance2.md?ref_type=heads)
+- [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Planejamento.md)
   
-- [Matriz Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint5/Sprint05/Dia03?ref_type=heads)
+- [Matriz Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/MatrizRastreabilidadePerformance.md)
  
-- [Matriz Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint5/Sprint05/Dia03?ref_type=heads)
 
 ## Objetivos dos Testes
 
@@ -41,9 +40,8 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
 
 
 ## Resumo dos resultados
-  -  Os resultados indicam que a operação de cadastro e atualização de usuários são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
+  -  Os resultados indicam que a operação de cadastro e de busca todos são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
   - Foi constatado também que os valores de latência oscilam bastante.
-  - A taxa de throughput foi menor que a esperada no planejamento.
   - Foi constatado que no testes de pico de cadastro e leitura individuais a taxa de erro ficou muito alta.
   
 
@@ -80,7 +78,7 @@ Já para rodar os testes utiliza o seguite comando:
 - Material do curso da Udemy de "Curso Performance Test - Primeiros passos com o K6". 
 - Documentação do K6.
 - Videos do Daniel Jesus e o canal QAninja.
-- Chatgpt 4o para ajudar na organização do planejamento.
+- Chatgpt 4o para ajudar na organização do planejamento e códigos.
 
 <div align="center">
     <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDJlMnFtbnF0MWl0aDBxaHkxeTFva3YyOHdseXJhajdxb3B3eng1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6pPRBKAoRKJa/giphy.gif" width="500px" />
