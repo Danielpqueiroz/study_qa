@@ -361,3 +361,47 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
 
 ## Agradecimentos:
 - Enzo, Gabriel Just., Leticia, Ricardo, Jorge, Mathias.
+
+
+# Sprint 06
+
+
+## Links para acessar diretamente os materiais:
+
+
+- [Curso Udemy Performance Test - Primeiros passos com K6.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint6/Sprint06/CursoK6Udemy)
+ 
+- [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Planejamento.md)
+ 
+- [Matriz Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/MatrizRastreabilidadePerformance.md)
+
+
+- [Códigos dos Testes.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint6/Sprint06/scenarios?ref_type=heads)
+## Resumo dos resultados
+  -  Os resultados indicam que a operação de cadastro e de buscar todos são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
+  - Foi constatado também que os valores de latência oscilam bastante.
+  - Foi constatado que no testes de de fluxo a taxa de erro ficou muito alta.
+
+
+## Recursos Necessários
+  -  Recursos Humanos: Testador.
+  -  Equipamento: Computador.
+  -  Software: Jira, GitLab, NodeJs, VS Code, K6, chocolatey.
+  - Para instalar o chocolatey é necessario instalar via linha de comando em um terminal usando este comando:
+  ```` bash
+ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+  ````
+  - E posteriormente instalar o K6 tambem no terminal usando este comando
+  `````bash
+  choco install k6
+`````
+Para rodar a API ServeRest localmente foi utilizado o seguinte comando:
+`````bash
+  npx serverest@latest
+`````
+Já para rodar os testes utiliza o seguite comando:
+`````bash
+  k6 run nomeDaPasta.js
+`````
+## Agradecimentos:
+- Enzo, Leticia, Ricardo, Jorge, Mathias, Gabriel Just.
