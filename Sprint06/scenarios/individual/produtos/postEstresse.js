@@ -58,7 +58,7 @@ export function setup() {
     let res = http.post(`${BASE_URL}/usuarios`, payload, params);
     check(res, { 'user created successfully': (r) => r.status === 201 });
     
-
+    // Login
     if (res.status === 201) {
         let loginRes = http.post(`${BASE_URL}/login`, JSON.stringify({ email: email, password: 'teste' }), params);
         check(loginRes, { 'user logged in successfully': (r) => r.status === 200 });
@@ -112,7 +112,7 @@ export default function (data) {
 }
 
 export function teardown(data) {
-    // Deleção de produtos
+    // Delete de produtos
     const params = {
         headers: {'Content-Type': 'application/json',
                  'Authorization': `${data.userToken}`,},

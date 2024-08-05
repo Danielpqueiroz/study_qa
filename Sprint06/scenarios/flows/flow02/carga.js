@@ -100,11 +100,11 @@ export default function () {
 
     sleep(1);
 
-    // Deletar usuário criado
+    // Deletar usuário
     const userId = createUserRes.json()._id;
     let deleteUserRes = http.del(`${BASE_URL}/usuarios/${userId}`, null, {
         headers: {
-            'Authorization': `Bearer ${authToken}`,
+            'Authorization': `${authToken}`,
         },
     });
     check(deleteUserRes, { 'user deleted successfully': (r) => r.status === 200 });
