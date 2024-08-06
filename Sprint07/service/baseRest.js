@@ -24,8 +24,8 @@ export class BaseRest extends BaseService {
         return http.put(uri, JSON.stringify(body), options)
     }
 
-    del(endpoint, userId, headers = {}, params = {}) {
-        let uri = this.base_uri + endpoint + userId;
+    del(endpoint, headers = {}, params = {}) {
+        let uri = this.base_uri + endpoint ;
         let options = this.buildOptions(headers, params)
         return http.del(uri, options)
     }
