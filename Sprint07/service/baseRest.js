@@ -12,14 +12,14 @@ export class BaseRest extends BaseService {
         return http.post(uri, JSON.stringify(body), options)
     }
 
-    get(endpoint, userId = {} , headers = {}, params = {}) {
-        let uri = this.base_uri + endpoint + userId;
+    get(endpoint, headers = {}, params = {}) {
+        let uri = this.base_uri + endpoint;
         let options = this.buildOptions(headers, params)
         return http.get(uri, options)
     }
 
     put(endpoint, body, userId, headers = {}, params = {}) {
-        let uri = this.base_uri + endpoint + userId;
+        let uri = this.base_uri + endpoint;
         let options = this.buildOptions(headers, params)
         return http.put(uri, JSON.stringify(body), options)
     }

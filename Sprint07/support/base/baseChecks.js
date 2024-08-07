@@ -1,10 +1,13 @@
-import { check } from "k6";
+import { check, fail } from "k6";
 
 export class BaseChecks {
     checkStatusCode(response, expectedStatus = 200) {
-        check( response, {
+        if (
+        !check( response, {
             "status code check": (r) => r.status === expectedStatus, 
-        })
+        })){
+            fail (response.body)
+        }
     }
     
     checkResponseSize(response, maxSize) {
