@@ -11,6 +11,8 @@ export default () => {
     
     const updateRes = baseRest.get(ENDPOINTS.USER_ENDPOINT);
         baseChecks.checkStatusCode(updateRes, 200);
+        baseChecks.checkResponseSize(updateRes, 5000); 
+        baseChecks.checkResponseTime(updateRes, 2000);
 
         sleep(1);
 };

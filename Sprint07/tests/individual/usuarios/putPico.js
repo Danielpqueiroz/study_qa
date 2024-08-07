@@ -23,8 +23,10 @@ export default (data) => {
     data.createdUsers.forEach(user => {
         
         const updatePayload = fakerUserData();
-        const updateRes = baseRest.put(ENDPOINTS.USER_ENDPOINT + `/${user.id}`, updatePayload);
-        baseChecks.checkStatusCode(updateRes, 200);
+        const urlRes = baseRest.put(ENDPOINTS.USER_ENDPOINT + `/${user.id}`, updatePayload);
+        baseChecks.checkStatusCode(urlRes, 200);
+        baseChecks.checkResponseSize(urlRes, 5000); 
+        baseChecks.checkResponseTime(urlRes, 2000);
 
         sleep(1);
     });
