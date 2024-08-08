@@ -1,159 +1,60 @@
-import http from 'k6/http';
-import { check, sleep } from 'k6';
-import { Trend, Rate, Counter } from 'k6/metrics';
+import { sleep } from 'k6';
+import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData, fakerProductData } from '../../../support/base/baseTest.js';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
+const base_uri = testConfig.environment.hml.url;
+const baseRest = new BaseRest(base_uri);
+const baseChecks = new BaseChecks();
+
+export const options = testConfig.options.carga;
+
 export function handleSummary(data) {
-  return {
-      "summaryPut.html": htmlReport(data),
-  };
+    return {
+        "summaryPut.html": htmlReport(data),
+    };
 }
-
-
-// Métricas customizadas
-const updateProductTrend = new Trend('update_product_duration');
-const updateProductFailRate = new Rate('update_product_fail_rate');
-const updateProductSuccessRate = new Rate('update_product_success_rate');
-const updateProductReqs = new Counter('update_product_reqs');
-
-// Opções do teste
-export let options = {
-    Timeout: '600s',
-    stages: [
-        { duration: '5s', target: 40 }, 
-        { duration: '20s', target: 500 },
-        { duration: '5s', target: 40 },
-        
-      ],
-    thresholds: {
-        update_product_duration: ['p(95)<2000'], 
-        update_product_fail_rate: ['rate<0.05'],  
-        update_product_success_rate: ['rate>0.95'], 
-    },
-};
-
-
-const BASE_URL = 'http://localhost:3000';
-
-let userToken = '';
-
-let productIds = [];
 
 export function setup() {
-    // Criação de usuário 
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
 
-    const email = `admin_${Math.random().toString(36)}@qa.com.br`;
-    const payload = JSON.stringify({
-        nome: `Administrador`,
-        email: email,
-        password: 'teste',
-        administrador: 'true'
-    });
+    const payload = fakerUserData();
+    const res = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload);
+    baseChecks.checkStatusCode(res, 201);
+    const userId =  res.json()._id ;
+    console.log(res.json()._id)
+    
+    const urlRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, {email: payload.email, password: payload.password});
+    console.log(urlRes.body);
+    baseChecks.checkStatusCode(urlRes, 200);
+    const token = urlRes.json().authorization;
+    console.log(urlRes.json().authorization);
 
-    let res = http.post(`${BASE_URL}/usuarios`, payload, params);
-    check(res, { 'user created successfully': (r) => r.status === 201 });
+    const productPayload = fakerProductData();
+    const productRes = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, productPayload, { 'Authorization': `${token}` });
+    baseChecks.checkStatusCode(productRes, 201);
+    const productId = productRes.json()._id ;
     
 
-    if (res.status === 201) {
-        let loginRes = http.post(`${BASE_URL}/login`, JSON.stringify({ email: email, password: 'teste' }), params);
-        check(loginRes, { 'user logged in successfully': (r) => r.status === 200 });
-        
-
-        if (loginRes.status === 200) {
-            userToken = loginRes.json().authorization; 
-            console.log(`Usuário logado com token: ${userToken}`);
-
-            
-            for (let i = 0; i < 30; i++) {
-                const productName = `Produto_${Math.random().toString(36)}`;
-                const preco = Math.floor(Math.random() * 1000) + 1;
-                const payload = JSON.stringify({
-                    nome: productName,
-                    preco: preco,
-                    descricao: "Descrição do produto",
-                    quantidade: Math.floor(Math.random() * 1000)
-                });
-
-                let productRes = http.post(`${BASE_URL}/produtos`, payload, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `${userToken}`,
-                    },
-                });
-
-                check(productRes, { 'product created successfully': (r) => r.status === 201 });
-                
-
-                if (productRes.status === 201) {
-                    productIds.push(productRes.json()._id); 
-                    console.log(`Produto criado com ID: ${productRes.json()._id}`);
-                } else {
-                    console.error(`Erro na criação do produto: ${productRes.status} ${productRes.body}`);
-                }
-            }
-        } else {
-            console.error(`Erro no login do usuário: ${loginRes.status} ${loginRes.body}`);
-        }
-    } else {
-        console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
-    }
-    return { userToken, productIds }; 
+    return { userId, token, productId };
 }
 
-export default function (data) {
-    // Atualização de produtos
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${data.userToken}`,
-        },
-    };
+export default (data) => {
+    console.log(data.token)
+    const updatePayload = fakerProductData();
+    const urlRes = baseRest.put(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, updatePayload, { 'Authorization': `${data.token}` });
+    baseChecks.checkStatusCode(urlRes, 200);
+    baseChecks.checkResponseSize(urlRes, 5000); 
+    baseChecks.checkResponseTime(urlRes, 2000);
 
-    for (const productId of data.productIds) {
-        const updatedPayload = JSON.stringify({
-            nome: `Produto_Atualizado_${Math.random().toString(36)}`,
-            preco: Math.floor(Math.random() * 1000) + 1, 
-            descricao: "Descrição do produto atualizada",
-            quantidade: Math.floor(Math.random() * 1000) + 1 
-        });
-
-        let updateRes = http.put(`${BASE_URL}/produtos/${productId}`, updatedPayload, params);
-        updateProductTrend.add(updateRes.timings.duration);
-        updateProductReqs.add(1);
-        updateProductFailRate.add(updateRes.status !== 200);
-        updateProductSuccessRate.add(updateRes.status === 200);
-        check(updateRes, { 'product updated successfully': (r) => r.status === 200 });
-        
-
-        if (updateRes.status !== 200) {
-            console.error(`Erro na atualização do produto: ${updateRes.status} ${updateRes.body}`);
-        }
-    }
-
-    sleep(1); 
-}
+    sleep(1);
+    
+};
 
 export function teardown(data) {
-    // Deleção de produtos a
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${data.userToken}`,
-        },
-    };
-
-    for (const productId of data.productIds) {
-        let res = http.del(`${BASE_URL}/produtos/${productId}`, null, params);
-        check(res, { 'product deleted successfully': (r) => r.status === 200 });
-        
-
-        if (res.status !== 200) {
-            console.error(`Erro na deleção do produto: ${res.status} ${res.body}`);
-        }
-    }
+    const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, { 'Authorization': `${data.token}` });
+    baseChecks.checkStatusCode(urlRes, 200);
+    console.log(`Teardown deleting user with ID ${data.productId}`);
+    
+    const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
+    baseChecks.checkStatusCode(res, 200);
+    console.log(`Teardown deleting user with ID ${data.userId}`);
 }

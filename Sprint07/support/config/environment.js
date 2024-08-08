@@ -25,7 +25,7 @@ export const testConfig = {
                 http_req_failed: ['rate<0.01']
             },
             stages: [
-                {duration: '30s', target: 10},
+                {duration: '5s', target: 10},
                 {duration: '0s', target: 10},
             ]
         },

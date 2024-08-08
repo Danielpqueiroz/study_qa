@@ -5,5 +5,6 @@ export const fakerUserData = () => ({
   nome: faker.name.firstName() + ' ' + faker.name.lastName(), // Gera nome completo
   email: new Date().getTime() + faker.internet.email(),
   password: faker.internet.password(), // Gera senha aleatória
-  administrador: faker.random.boolean().toString(), // Gera booleano aleatório convertido para string
+  administrador: 'true',
+  //administrador: faker.random.boolean().toString(), // Gera booleano aleatório convertido para string
 });
