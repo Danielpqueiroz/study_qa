@@ -1,4 +1,5 @@
 import { sleep } from 'k6';
+import exec from 'k6/execution';
 import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData, fakerProductData } from '../../../support/base/baseTest.js';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
@@ -16,6 +17,8 @@ export function handleSummary(data) {
 
 export function setup() {
 
+    const createdProducts = [];
+
     const payload = fakerUserData();
     const res = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload);
     baseChecks.checkStatusCode(res, 201);
@@ -28,28 +31,28 @@ export function setup() {
     const token = urlRes.json().authorization;
     console.log(urlRes.json().authorization);
 
-    const createdProducts = [];
+    
     for (let i = 0; i < 50; i++) { 
         const payload = fakerProductData();
         console.log(payload)
         const res = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, payload, { 'Authorization': `${token}` });
         baseChecks.checkStatusCode(res, 201);
-        createdProducts.push({ id: res.json()._id });
+        createdProducts.push( res.json()._id );
     }
     return { createdProducts: createdProducts, token };
 }
 
 export default (data) => {
-    
-    data.createdProducts.forEach(product => {
-        
-        const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${product.id}`, { 'Authorization': `${data.token}` });
-        baseChecks.checkStatusCode(urlRes, 200);
-        baseChecks.checkResponseSize(urlRes, 5000); 
-        baseChecks.checkResponseTime(urlRes, 2000);
 
-        sleep(1);
-    });
+    let iteration = exec.scenario.iterationInTest;
+    
+    const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.createdProducts[iteration]}`, { 'Authorization': `${data.token}` });
+    baseChecks.checkStatusCode(urlRes, 200);
+    baseChecks.checkResponseSize(urlRes, 5000); 
+    baseChecks.checkResponseTime(urlRes, 2000);
+
+    sleep(1);
+    
 };
 
 

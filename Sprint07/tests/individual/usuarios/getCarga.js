@@ -14,6 +14,16 @@ export function handleSummary(data) {
     };
 }
 
+export function setup() {
+    const payload = fakerUserData();
+    const res = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload);
+    baseChecks.checkStatusCode(res, 201);
+    const userId =  res.json()._id ;
+    console.log(res.json()._id)
+
+    return { userId };
+}
+
 export default () => {
     
     const updateRes = baseRest.get(ENDPOINTS.USER_ENDPOINT);
@@ -24,4 +34,9 @@ export default () => {
         sleep(1);
 };
 
+export function teardown(data) {
 
+    const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
+    baseChecks.checkStatusCode(res, 200);
+    console.log(`Teardown deleting user with ID ${data.userId}`);
+}

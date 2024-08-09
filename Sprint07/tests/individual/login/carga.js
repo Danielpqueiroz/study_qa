@@ -1,19 +1,18 @@
 import {  sleep } from 'k6';
 import { SharedArray } from 'k6/data';
-import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData } from '../support/base/baseTest.js'
+import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData } from '../../../support/base/baseTest.js';
 
-
-export const options = testConfig.smokeThresholds;
+export const options = testConfig.options.carga;
 
 const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-const data = new SharedArray('some name', function () {
-    const jsonData = JSON.parse(open('../data/static/user.json'));
-    //console.log(jsonData.users)
-    return jsonData.users;
-});
+// const data = new SharedArray('some name', function () {
+//     const jsonData = JSON.parse(open('../data/static/user.json'));
+//     //console.log(jsonData.users)
+//     return jsonData.users;
+// });
 
 // const payload = {
 //     nome: 'Fulano da Silva',
@@ -35,14 +34,9 @@ export function setup() {
 
 
 export default (data) => {
-  // let userIndex = __ITER % data.length;
-  // let user = data[userIndex];
-  
  
-
-
   const urlRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, {email: data.user.email, password: data.user.password});
- console.log(urlRes.body);
+  //console.log(urlRes.body);
   baseChecks.checkStatusCode(urlRes, 200);
   baseChecks.checkResponseSize(urlRes, 5000); 
   baseChecks.checkResponseTime(urlRes, 2000);

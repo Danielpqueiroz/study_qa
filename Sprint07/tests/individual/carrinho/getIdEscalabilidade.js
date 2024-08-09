@@ -42,7 +42,7 @@ export function setup() {
 
 export default (data) => {
     
-    const urlRes = baseRest.get(ENDPOINTS.CARTS_ENDPOINT + `/${data.carrinhoId}`);
+    const urlRes = baseRest.get(ENDPOINTS.CARTS_ENDPOINT + `/${data.carrinhoId}`, { 'Authorization': `${data.token}` });
     baseChecks.checkStatusCode(urlRes, 200);
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
@@ -65,6 +65,4 @@ export function teardown(data) {
     baseChecks.checkStatusCode(res, 200);
     console.log(`Teardown deleting user with ID ${data.userId}`);
     
-    
-
 }

@@ -1,5 +1,5 @@
 import { sleep } from 'k6';
-import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData } from '../../../support/base/baseTest.js';
+import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData, fakerProductData } from '../../../support/base/baseTest.js';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 const base_uri = testConfig.environment.hml.url;
@@ -14,9 +14,32 @@ export function handleSummary(data) {
     };
 }
 
-export default () => {
+export function setup() {
     
-    const updateRes = baseRest.get(ENDPOINTS.PRODUCTS_ENDPOINT);
+    const payload = fakerUserData();
+    const res = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload);
+    baseChecks.checkStatusCode(res, 201);
+    const userId =  res.json()._id ;
+    console.log(res.json()._id)
+    
+    const urlRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, {email: payload.email, password: payload.password});
+    console.log(urlRes.body);
+    baseChecks.checkStatusCode(urlRes, 200);
+    const token = urlRes.json().authorization;
+    console.log(urlRes.json().authorization);
+
+    const productPayload = fakerProductData();
+    const productRes = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, productPayload, { 'Authorization': `${token}` });
+    baseChecks.checkStatusCode(productRes, 201);
+    const productId = productRes.json()._id ;
+    
+
+    return { userId, token, productId };
+}
+
+export default (data) => {
+    
+    const updateRes = baseRest.get(ENDPOINTS.PRODUCTS_ENDPOINT, { 'Authorization': `${data.token}` });
         baseChecks.checkStatusCode(updateRes, 200);
         baseChecks.checkResponseSize(updateRes, 5000); 
         baseChecks.checkResponseTime(updateRes, 2000);
@@ -24,4 +47,16 @@ export default () => {
         sleep(1);
 };
 
+export function teardown(data) {
+    
+    const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, { 'Authorization': `${data.token}` });
+    baseChecks.checkStatusCode(urlRes, 200);
+    console.log(`Teardown deleting user with ID ${data.productId}`);
+    
+    const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
+    baseChecks.checkStatusCode(res, 200);
+    console.log(`Teardown deleting user with ID ${data.userId}`);
+    
+    
 
+}

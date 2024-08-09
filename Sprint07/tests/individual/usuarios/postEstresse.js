@@ -33,7 +33,7 @@ export function teardown() {
     const users = getUsersRes.json().usuarios;
     users.forEach(user => {
         const userId = user._id;
-        const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + '/${userId}');
+        const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${userId}`);
         baseChecks.checkStatusCode(res, 200);
         
     });

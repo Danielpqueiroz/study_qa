@@ -1,4 +1,5 @@
 import { sleep } from 'k6';
+import exec from 'k6/execution';
 import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData, fakerProductData } from '../../../support/base/baseTest.js';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
@@ -15,41 +16,56 @@ export function handleSummary(data) {
 }
 
 export function setup() {
-
-    const payload = fakerUserData();
-    const res = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload);
-    baseChecks.checkStatusCode(res, 201);
-    const userId =  res.json()._id ;
-    console.log(res.json()._id)
+    let users = [];
+    let tokens = [];
     
-    const urlRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, {email: payload.email, password: payload.password});
-    console.log(urlRes.body);
-    baseChecks.checkStatusCode(urlRes, 200);
-    const token = urlRes.json().authorization;
-    console.log(urlRes.json().authorization);
+    for (let i = 0; i < 500; i++) {
+        const userPayload = fakerUserData();
+        const userRes = baseRest.post(ENDPOINTS.USER_ENDPOINT, userPayload);
+        baseChecks.checkStatusCode(userRes, 201);
+        users.push(userRes.json()._id);
+        //console.log(`User created with ID: ${users}`);
+        
+        const loginRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, { email: userPayload.email, password: userPayload.password });
+        baseChecks.checkStatusCode(loginRes, 200);
+        const token = loginRes.json().authorization;
+        
 
-    const createdProducts = [];
-    for (let i = 0; i < 50; i++) { 
-        const payload = fakerProductData();
-        console.log(payload)
-        const res = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, payload, { 'Authorization': `${token}` });
-        baseChecks.checkStatusCode(res, 201);
-        createdProducts.push({ id: res.json()._id });
+        tokens.push(loginRes.json().authorization);
     }
-    return { createdProducts: createdProducts, token };
+    
+    const productPayload = fakerProductData();
+    const productRes = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, productPayload, { 'Authorization': `${tokens[0]}` });
+    baseChecks.checkStatusCode(productRes, 201);
+    const productId = productRes.json()._id ;
+    
+
+    return { users, productId , tokens};
 }
 
 export default (data) => {
     
-    data.createdProducts.forEach(product => {
-        
-        const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${product.id}`, { 'Authorization': `${data.token}` });
-        baseChecks.checkStatusCode(urlRes, 200);
-        baseChecks.checkResponseSize(urlRes, 5000); 
-        baseChecks.checkResponseTime(urlRes, 2000);
+    let iteration = exec.scenario.iterationInTest;
+    
+    const res = baseRest.del(ENDPOINTS.CARTS_ENDPOINT + '/concluir-compra', { 'Authorization': `${data.tokens[iteration]}` });
+    baseChecks.checkStatusCode(res, 200);
+    baseChecks.checkResponseSize(res, 5000); 
+    baseChecks.checkResponseTime(res, 2000);
 
-        sleep(1);
-    });
+    sleep(1);
+    
 };
 
 
+export function teardown(data) {
+
+    const urlRes = baseRest.del(`${ENDPOINTS.PRODUCTS_ENDPOINT}/${data.productId}`, { 'Authorization': ` ${data.tokens[0]}` });
+    baseChecks.checkStatusCode(urlRes, 200);
+    //console.log(`Teardown deleting product with ID ${data.tokens[0]}`);
+    
+    for (let i = 0; i < data.users.length; i++)  {
+        const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.users[i]}`);
+        baseChecks.checkStatusCode(res, 200);
+        console.log(`Teardown deleting user with ID ${data.users[i]}`);
+    }
+}
