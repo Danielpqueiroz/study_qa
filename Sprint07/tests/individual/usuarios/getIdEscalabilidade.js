@@ -6,7 +6,7 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.carga;
+export const options = testConfig.options.escalabilidade;
 
 export function handleSummary(data) {
     return {
@@ -28,10 +28,11 @@ export default (data) => {
     
     const urlRes = baseRest.get(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
     baseChecks.checkStatusCode(urlRes, 200);
+    baseChecks.checkResponseNotEmpty(urlRes);
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
 
-    sleep(1);
+    
     
 };
 

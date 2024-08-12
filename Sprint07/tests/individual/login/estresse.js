@@ -1,124 +1,48 @@
-import http from 'k6/http';
-import { check, sleep } from 'k6';
-import { Trend, Rate, Counter } from 'k6/metrics';
+import {  sleep } from 'k6';
+import { SharedArray } from 'k6/data';
+import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData } from '../../../support/base/baseTest.js';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
+const base_uri = testConfig.environment.hml.url;
+const baseRest = new BaseRest(base_uri);
+const baseChecks = new BaseChecks();
+
+export const options = testConfig.options.carga;
+
 export function handleSummary(data) {
-  return {
-      "summaryEstresse.html": htmlReport(data),
-  };
+    return {
+        "summaryEstresse.html": htmlReport(data),
+    };
 }
-
-
-
-
-export const loginTrend = new Trend('login_duration');
-export const loginFailRate = new Rate('login_fail_rate');
-export const loginSuccessRate = new Rate('login_success_rate');
-export const loginReqs = new Counter('login_reqs');
-
-
-export let options = {
-    stages: [
-        { duration: '15s', target: 40 }, 
-        { duration: '3m', target: 400 },
-        { duration: '15s', target: 40 },
-      ],
-    thresholds: {
-        login_duration: ['p(95)<2000'], 
-        login_fail_rate: ['rate<0.05'], 
-        login_success_rate: ['rate>0.95'], 
-    },
-};
-
-
-const BASE_URL = 'http://localhost:3000';
 
 export function setup() {
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    const payload = fakerUserData();
 
-    let users = [];
-    for (let i = 0; i < 4000; i++) {
-        const email = `user_${Math.random().toString(36)}@qa.com.br`;
-        const payload = JSON.stringify({
-            nome: `User_${i}`,
-            email: email,
-            password: 'teste',
-            administrador: 'true'
-        });
-
-        let res = http.post(`${BASE_URL}/usuarios`, payload, params);
-        check(res, { 'user created successfully': (r) => r.status === 201 });
-        
-
-        if (res.status === 201) {
-            users.push({
-                id: res.json()._id,
-                email: email,
-                password: 'teste'
-            });
-            console.log(`Usuário criado com email: ${email}`);
-        } else {
-            console.error(`Erro na criação do usuário: ${res.status} ${res.body}`);
-        }
-    }
-    return { users };
-}
-
-
-export default function (data) {
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    data.users.forEach(user => {
-        const payload = JSON.stringify({
-            email: user.email,
-            password: user.password,
-        });
-
-        const res = http.post(`${BASE_URL}/login`, payload, params);
-        loginTrend.add(res.timings.duration);
-        loginReqs.add(1);
-        loginFailRate.add(res.status !== 200);
-        loginSuccessRate.add(res.status === 200);
-
-        check(res, {
-            'is status 200': (r) => r.status === 200,
-            'is token present': (r) => r.json('authorization') !== '',
-        });
-        loginTrend.add(res.timings.duration);
-
-        if (res.status !== 200) {
-            console.error(`Erro no login do usuário: ${res.status} ${res.body}`);
-        }
-    });
-
+    const res = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload)
     
-    sleep(1);
+    baseChecks.checkStatusCode(res, 201)
+
+    return { responseData : res.json(), user: payload }
 }
 
 
-export function teardown(data) {
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+export default (data) => {
+ 
+  const urlRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, {email: data.user.email, password: data.user.password});
+  //console.log(urlRes.body);
+  baseChecks.checkStatusCode(urlRes, 200);
+  baseChecks.checkResponseSize(urlRes, 5000); 
+  baseChecks.checkResponseTime(urlRes, 2000);
 
-    data.users.forEach(user => {
-        let res = http.del(`${BASE_URL}/usuarios/${user.id}`, null, params);
-        check(res, { 'user deleted successfully': (r) => r.status === 200 });
-        
+  sleep(1);
+  
+};
 
-        if (res.status !== 200) {
-            console.error(`Erro na deleção do usuário: ${res.status} ${res.body}`);
-        }
-    });
+export function teardown(responseData) {
+    const userId = responseData.responseData._id
+    const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + '/${userId}')
+
+    baseChecks.checkStatusCode(res, 200)
+    
+    console.log( 'Teardown deleatndo o usuário com ID ${userId}')
 }

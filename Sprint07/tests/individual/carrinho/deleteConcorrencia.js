@@ -11,7 +11,7 @@ export const options = testConfig.options.carga;
 
 export function handleSummary(data) {
     return {
-        "summaryDel.html": htmlReport(data),
+        "summaryDelConclui.html": htmlReport(data),
     };
 }
 
@@ -49,6 +49,7 @@ export default (data) => {
     
     const res = baseRest.del(ENDPOINTS.CARTS_ENDPOINT + '/concluir-compra', { 'Authorization': `${data.tokens[iteration]}` });
     baseChecks.checkStatusCode(res, 200);
+    baseChecks.checkResponseNotEmpty(res);
     baseChecks.checkResponseSize(res, 5000); 
     baseChecks.checkResponseTime(res, 2000);
 

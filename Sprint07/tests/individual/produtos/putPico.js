@@ -42,6 +42,7 @@ export default (data) => {
     const updatePayload = fakerProductData();
     const urlRes = baseRest.put(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, updatePayload, { 'Authorization': `${data.token}` });
     baseChecks.checkStatusCode(urlRes, 200);
+    baseChecks.checkResponseNotEmpty(urlRes);
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
 

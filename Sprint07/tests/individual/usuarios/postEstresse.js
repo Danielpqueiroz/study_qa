@@ -6,7 +6,7 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.carga;
+export const options = testConfig.options.estresse;
 
 export function handleSummary(data) {
     return {
@@ -20,10 +20,11 @@ export default function (data) {
 
     const urlRes = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload);
     baseChecks.checkStatusCode(urlRes, 201);
+    baseChecks.checkResponseNotEmpty(urlRes);
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
     
-    sleep(1);
+    //sleep(1);
 }
 
 export function teardown() {

@@ -41,6 +41,7 @@ export default (data) => {
     
     const updateRes = baseRest.get(ENDPOINTS.PRODUCTS_ENDPOINT, { 'Authorization': `${data.token}` });
         baseChecks.checkStatusCode(updateRes, 200);
+        baseChecks.checkResponseNotEmpty(updateRes);
         baseChecks.checkResponseSize(updateRes, 5000); 
         baseChecks.checkResponseTime(updateRes, 2000);
 

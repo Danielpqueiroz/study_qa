@@ -48,6 +48,7 @@ export default (data) => {
     
     const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.createdProducts[iteration]}`, { 'Authorization': `${data.token}` });
     baseChecks.checkStatusCode(urlRes, 200);
+    baseChecks.checkResponseNotEmpty(urlRes);
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
 

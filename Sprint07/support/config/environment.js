@@ -9,35 +9,33 @@ export const testConfig = {
         }
     },
     options: {
-        smokeThresholds: {
-            executor: 'constant-vus',
-            vus: 20,
-            duration: '1m',
-            thresholds: {
-                http_req_duration: ['p(95)<2000'],
-                http_req_failed: ['rate<0.01']
-            }
-        },
-
+        
         carga: {
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
-                http_req_failed: ['rate<0.01']
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
+                
             },
             stages: [
-                {duration: '5s', target: 10},
-                {duration: '0s', target: 10},
+                {duration: '1m', target: 150},
+                {duration: '2m', target: 280},
+                {duration: '1m', target: 0},
+                
             ]
         },
 
         concorrencia: {
+            setupTimeout: '600s',
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
-                http_req_failed: ['rate<0.01']
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
             },
             stages: [
-                {duration: '30s', target: 10},
-                {duration: '30s', target: 10},
+                {duration: '1m', target: 150},
+                {duration: '2m', target: 270},
+                {duration: '1m', target: 0},
             ]
         },
 
@@ -45,11 +43,13 @@ export const testConfig = {
             vus: 20,
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
-                http_req_failed: ['rate<0.01']
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
             },
             stages: [
-                {duration: '30s', target: 10},
-                {duration: '30s', target: 10},
+                {duration: '1m', target: 250},
+                {duration: '2m', target: 300},
+                {duration: '1m', target: 0},
             ]
         },
 
@@ -57,11 +57,13 @@ export const testConfig = {
             vus: 20,
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
-                http_req_failed: ['rate<0.01']
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
             },
             stages: [
-                {duration: '30s', target: 10},
-                {duration: '30s', target: 10},
+                {duration: '1m', target: 250},
+                {duration: '2m', target: 300},
+                {duration: '1m', target: 0},
             ]
         },
 
@@ -69,11 +71,13 @@ export const testConfig = {
             vus: 20,
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
-                http_req_failed: ['rate<0.01']
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
             },
             stages: [
-                {duration: '30s', target: 10},
-                {duration: '30s', target: 10},
+                {duration: '15s', target: 500},
+                {duration: '15s', target: 0},
+                
             ]
         },
 
@@ -81,11 +85,13 @@ export const testConfig = {
             vus: 20,
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
-                http_req_failed: ['rate<0.01']
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
             },
             stages: [
-                {duration: '30s', target: 10},
-                {duration: '30s', target: 10},
+                {duration: '2m', target: 200},
+                {duration: '8m', target: 250},
+                {duration: '30s', target: 0},
             ]
         },
 

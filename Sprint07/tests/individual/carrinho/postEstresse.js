@@ -49,6 +49,7 @@ export default function (data) {
 
     const urlRes = baseRest.post(ENDPOINTS.CARTS_ENDPOINT, {produtos: [ {idProduto: data.productId, quantidade: Math.floor(Math.random() * 10) + 1}  ]},  { 'Authorization': data.tokens[iteration] });
     baseChecks.checkStatusCode(urlRes, 201);
+    baseChecks.checkResponseNotEmpty(urlRes);
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
     console.log(urlRes.json());

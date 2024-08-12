@@ -1,26 +1,19 @@
 import {  sleep } from 'k6';
 import { SharedArray } from 'k6/data';
 import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData } from '../../../support/base/baseTest.js';
-
-export const options = testConfig.options.carga;
+import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-// const data = new SharedArray('some name', function () {
-//     const jsonData = JSON.parse(open('../data/static/user.json'));
-//     //console.log(jsonData.users)
-//     return jsonData.users;
-// });
+export const options = testConfig.options.carga;
 
-// const payload = {
-//     nome: 'Fulano da Silva',
-//     email: 'fulano1222332443@qa.com',
-//     password: 'teste',
-//     administrador: 'true'
-// }
-
+export function handleSummary(data) {
+  return {
+      "summaryCarga.html": htmlReport(data),
+  };
+}
 
 export function setup() {
     const payload = fakerUserData();
