@@ -7,7 +7,7 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.carga;
+export const options = testConfig.options.concorrencia;
 
 export function handleSummary(data) {
     return {
@@ -32,7 +32,7 @@ export function setup() {
     console.log(urlRes.json().authorization);
 
     
-    for (let i = 0; i < 50; i++) { 
+    for (let i = 0; i < 60000; i++) { 
         const payload = fakerProductData();
         console.log(payload)
         const res = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, payload, { 'Authorization': `${token}` });
@@ -52,7 +52,7 @@ export default (data) => {
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
 
-    sleep(1);
+    //sleep(1);
     
 };
 

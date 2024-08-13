@@ -17,7 +17,7 @@ export function handleSummary(data) {
 
 export function setup() {
     const users = [];
-    for (let i = 0; i < 28000; i++) { // Criar 10 usuários
+    for (let i = 0; i < 60000; i++) { // Criar 10 usuários
         const payload = fakerUserData();
         console.log(payload)
         const res = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload);
@@ -37,7 +37,7 @@ export default (data) => {
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
 
-    sleep(1);
+    //sleep(1);
     
 };
 

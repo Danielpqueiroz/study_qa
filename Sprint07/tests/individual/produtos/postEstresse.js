@@ -6,7 +6,7 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.carga;
+export const options = testConfig.options.estresse;
 
 export function handleSummary(data) {
     return {
@@ -41,6 +41,7 @@ export default function (data) {
     baseChecks.checkResponseTime(urlRes, 2000);
     
     sleep(1);
+    
 }
 
 export function teardown(data) {

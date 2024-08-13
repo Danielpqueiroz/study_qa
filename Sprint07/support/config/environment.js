@@ -26,14 +26,14 @@ export const testConfig = {
         },
 
         concorrencia: {
-            setupTimeout: '600s',
+            setupTimeout: '3000s',
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
                 http_req_failed: ['rate<0.01'],
                 checks: ['rate>0.95']
             },
             stages: [
-                {duration: '1m', target: 150},
+                {duration: '30s', target: 150},
                 {duration: '2m', target: 270},
                 {duration: '1m', target: 0},
             ]
@@ -61,8 +61,8 @@ export const testConfig = {
                 checks: ['rate>0.95']
             },
             stages: [
-                {duration: '1m', target: 250},
-                {duration: '2m', target: 300},
+                {duration: '1m', target: 150},
+                {duration: '2m', target: 250},
                 {duration: '1m', target: 0},
             ]
         },

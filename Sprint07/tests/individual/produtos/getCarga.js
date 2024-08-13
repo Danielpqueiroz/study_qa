@@ -45,7 +45,7 @@ export default (data) => {
         baseChecks.checkResponseSize(updateRes, 5000); 
         baseChecks.checkResponseTime(updateRes, 2000);
 
-        sleep(1);
+        //sleep(1);
 };
 
 export function teardown(data) {
