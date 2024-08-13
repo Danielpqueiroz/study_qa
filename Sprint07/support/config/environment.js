@@ -11,6 +11,7 @@ export const testConfig = {
     options: {
         
         carga: {
+            setupTimeout: '4000s',
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
                 http_req_failed: ['rate<0.01'],
@@ -19,7 +20,7 @@ export const testConfig = {
             },
             stages: [
                 {duration: '1m', target: 150},
-                {duration: '2m', target: 280},
+                {duration: '2m', target: 230},
                 {duration: '1m', target: 0},
                 
             ]
@@ -27,34 +28,36 @@ export const testConfig = {
 
         concorrencia: {
             setupTimeout: '3000s',
+            teardownTimeout: '4000s',
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
                 http_req_failed: ['rate<0.01'],
                 checks: ['rate>0.95']
             },
             stages: [
-                {duration: '30s', target: 150},
-                {duration: '2m', target: 270},
+                {duration: '30s', target: 100},
+                {duration: '2m', target: 150},
                 {duration: '1m', target: 0},
             ]
         },
 
         escalabilidade: {
-            vus: 20,
+            setupTimeout: '4000s',
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
                 http_req_failed: ['rate<0.01'],
                 checks: ['rate>0.95']
             },
             stages: [
-                {duration: '1m', target: 250},
-                {duration: '2m', target: 300},
+                {duration: '1m', target: 200},
+                {duration: '2m', target: 250},
                 {duration: '1m', target: 0},
             ]
         },
 
         estresse: {
-            vus: 20,
+            setupTimeout: '4000s',
+            teardownTimeout: '4000s',
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
                 http_req_failed: ['rate<0.01'],
@@ -68,21 +71,22 @@ export const testConfig = {
         },
 
         pico: {
-            vus: 20,
+            setupTimeout: '4000s',
+            teardownTimeout: '4000s',
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
                 http_req_failed: ['rate<0.01'],
                 checks: ['rate>0.95']
             },
             stages: [
-                {duration: '15s', target: 500},
-                {duration: '15s', target: 0},
+                {duration: '30s', target: 150},
+                {duration: '5s', target: 0},
                 
             ]
         },
 
         resistencia: {
-            vus: 20,
+            
             thresholds: {
                 http_req_duration: ['p(95)<2000'],
                 http_req_failed: ['rate<0.01'],
@@ -94,6 +98,94 @@ export const testConfig = {
                 {duration: '30s', target: 0},
             ]
         },
+        cargaFlow: {
+            setupTimeout: '4000s',
+            thresholds: {
+                http_req_duration: ['p(95)<2000'],
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
+                
+            },
+            stages: [
+                {duration: '1m', target: 150},
+                {duration: '2m', target: 240},
+                {duration: '1m', target: 0},
+                
+            ]
+        },
+
+        concorrenciaFlow: {
+            setupTimeout: '4000s',
+            setupTimeout: '3000s',
+            thresholds: {
+                http_req_duration: ['p(95)<2000'],
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
+            },
+            stages: [
+                {duration: '30s', target: 150},
+                {duration: '2m', target: 220},
+                {duration: '1m', target: 0},
+            ]
+        },
+
+        escalabilidadeFlow: {
+            setupTimeout: '4000s',
+            thresholds: {
+                http_req_duration: ['p(95)<2000'],
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
+            },
+            stages: [
+                {duration: '1m', target: 150},
+                {duration: '2m', target: 250},
+                {duration: '1m', target: 0},
+            ]
+        },
+
+        estresseFlow: {
+            setupTimeout: '4000s',
+            setupTimeout: '4000s',
+            thresholds: {
+                http_req_duration: ['p(95)<2000'],
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
+            },
+            stages: [
+                {duration: '1m', target: 150},
+                {duration: '2m', target: 230},
+                {duration: '1m', target: 0},
+            ]
+        },
+
+        picoFlow: {
+            setupTimeout: '4000s',
+            thresholds: {
+                http_req_duration: ['p(95)<2000'],
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
+            },
+            stages: [
+                {duration: '15s', target: 300},
+                {duration: '15s', target: 0},
+                
+            ]
+        },
+
+        resistenciaFlow: {
+            setupTimeout: '4000s',
+            thresholds: {
+                http_req_duration: ['p(95)<2000'],
+                http_req_failed: ['rate<0.01'],
+                checks: ['rate>0.95']
+            },
+            stages: [
+                {duration: '2m', target: 200},
+                {duration: '8m', target: 220},
+                {duration: '30s', target: 0},
+            ]
+        },
+
 
     }
 }

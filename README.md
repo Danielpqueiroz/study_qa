@@ -1,10 +1,10 @@
-# Sprint 06
+# Sprint 07
 
 
 ## Sobre o Repositório
 
 
- Documentação e resultados dos testes de performance para a API ServeRest. O foco está em validar a estabilidade, performance e capacidade da API sob várias condições de carga.
+ Esta branch contem a documentação e resultados dos testes de performance para a API ServeRest utilizando o K6. O foco está em validar a estabilidade, performance e capacidade da API sob várias condições de carga.
 
 
 ## Links para acessar diretamente os materiais:
@@ -96,12 +96,11 @@ Já para rodar os testes utiliza o seguite comando:
 
 
 ## Referências
-- Material do curso da Udemy de "Curso Performance Test - Primeiros passos com o K6".
+- Material do sharepoint de K6 Avançado".
 - Documentação do K6.
-- Videos do Daniel Jesus e o canal QAninja.
 - Chatgpt 4o para ajudar na organização do planejamento e códigos.
 
-
+# LET'S GO!!!!
 <div align="center">
     <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDJlMnFtbnF0MWl0aDBxaHkxeTFva3YyOHdseXJhajdxb3B3eng1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6pPRBKAoRKJa/giphy.gif" width="500px" />
 </div>

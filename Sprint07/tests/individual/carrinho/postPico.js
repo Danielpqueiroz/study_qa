@@ -7,11 +7,11 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.carga;
+export const options = testConfig.options.pico;
 
 export function handleSummary(data) {
     return {
-        "summaryDelCancela.html": htmlReport(data),
+        "summaryPostPico.html": htmlReport(data),
     };
 }
 
@@ -19,7 +19,7 @@ export function setup() {
     let users = [];
     let tokens = [];
     
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 1000; i++) {
         const userPayload = fakerUserData();
         const userRes = baseRest.post(ENDPOINTS.USER_ENDPOINT, userPayload);
         baseChecks.checkStatusCode(userRes, 201);
@@ -29,7 +29,7 @@ export function setup() {
         const loginRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, { email: userPayload.email, password: userPayload.password });
         baseChecks.checkStatusCode(loginRes, 200);
         const token = loginRes.json().authorization;
-        
+        //console.log({ "authorization": loginRes.json().authorization});
 
         tokens.push(loginRes.json().authorization);
     }
@@ -38,32 +38,41 @@ export function setup() {
     const productRes = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, productPayload, { 'Authorization': `${tokens[0]}` });
     baseChecks.checkStatusCode(productRes, 201);
     const productId = productRes.json()._id ;
-    
+    //console.log(tokens);
 
     return { users, productId , tokens};
 }
 
-export default (data) => {
-    
+export default function (data) {
+
     let iteration = exec.scenario.iterationInTest;
-    
-    const res = baseRest.del(ENDPOINTS.CARTS_ENDPOINT + '/cancelar-compra', { 'Authorization': `${data.tokens[iteration]}` });
-    baseChecks.checkStatusCode(res, 200);
-    baseChecks.checkResponseNotEmpty(res);
-    baseChecks.checkResponseSize(res, 5000); 
-    baseChecks.checkResponseTime(res, 2000);
 
+    const urlRes = baseRest.post(ENDPOINTS.CARTS_ENDPOINT, {produtos: [ {idProduto: data.productId, quantidade: Math.floor(Math.random() * 10) + 1}  ]},  { 'Authorization': data.tokens[iteration] });
+    baseChecks.checkStatusCode(urlRes, 201);
+    baseChecks.checkResponseNotEmpty(urlRes);
+    baseChecks.checkResponseSize(urlRes, 5000); 
+    baseChecks.checkResponseTime(urlRes, 2000);
+    console.log(urlRes.json());
     sleep(1);
-    
-};
-
+}
 
 export function teardown(data) {
+    
+    for (let i = 0; i < data.tokens.length; i++)  {
+        const res = baseRest.del(ENDPOINTS.CARTS_ENDPOINT + '/concluir-compra', { 'Authorization': `${data.tokens[i]}` });
+        baseChecks.checkStatusCode(res, 200);
+        
+        console.log(res.json());
+    };
 
     const urlRes = baseRest.del(`${ENDPOINTS.PRODUCTS_ENDPOINT}/${data.productId}`, { 'Authorization': ` ${data.tokens[0]}` });
     baseChecks.checkStatusCode(urlRes, 200);
-    //console.log(`Teardown deleting product with ID ${data.tokens[0]}`);
-    
+    console.log(`Teardown deleting product with ID ${data.productId}`);
+
+    // const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
+    // baseChecks.checkStatusCode(res, 200);
+    // console.log(`Teardown deleting user with ID ${data.userId}`);
+
     for (let i = 0; i < data.users.length; i++)  {
         const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.users[i]}`);
         baseChecks.checkStatusCode(res, 200);

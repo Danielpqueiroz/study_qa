@@ -7,7 +7,7 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.carga;
+export const options = testConfig.options.concorrencia;
 
 export function handleSummary(data) {
     return {
@@ -19,7 +19,7 @@ export function setup() {
     let users = [];
     let tokens = [];
     
-    for (let i = 0; i < 500; i++) {
+    for (let i = 0; i < 1000; i++) {
         const userPayload = fakerUserData();
         const userRes = baseRest.post(ENDPOINTS.USER_ENDPOINT, userPayload);
         baseChecks.checkStatusCode(userRes, 201);
@@ -53,7 +53,7 @@ export default (data) => {
     baseChecks.checkResponseSize(res, 5000); 
     baseChecks.checkResponseTime(res, 2000);
 
-    sleep(1);
+    //sleep(1);
     
 };
 
