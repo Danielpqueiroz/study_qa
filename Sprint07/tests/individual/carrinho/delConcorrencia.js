@@ -19,7 +19,7 @@ export function setup() {
     let users = [];
     let tokens = [];
     
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 15000; i++) {
         const userPayload = fakerUserData();
         const userRes = baseRest.post(ENDPOINTS.USER_ENDPOINT, userPayload);
         baseChecks.checkStatusCode(userRes, 201);

@@ -36,7 +36,7 @@ export const testConfig = {
             },
             stages: [
                 {duration: '30s', target: 100},
-                {duration: '2m', target: 150},
+                {duration: '2m', target: 230},
                 {duration: '1m', target: 0},
             ]
         },
@@ -138,7 +138,7 @@ export const testConfig = {
             },
             stages: [
                 {duration: '1m', target: 150},
-                {duration: '2m', target: 250},
+                {duration: '2m', target: 300},
                 {duration: '1m', target: 0},
             ]
         },
@@ -153,7 +153,7 @@ export const testConfig = {
             },
             stages: [
                 {duration: '1m', target: 150},
-                {duration: '2m', target: 230},
+                {duration: '2m', target: 330},
                 {duration: '1m', target: 0},
             ]
         },
@@ -166,7 +166,7 @@ export const testConfig = {
                 checks: ['rate>0.95']
             },
             stages: [
-                {duration: '15s', target: 300},
+                {duration: '15s', target: 400},
                 {duration: '15s', target: 0},
                 
             ]

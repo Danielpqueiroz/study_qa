@@ -59,6 +59,7 @@ Os testes de performance têm como objetivo principal garantir que a API ServeRe
   -  Os resultados indicam que a operação de cadastro e de buscar todos são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
   - Foi constatado também que os valores de latência oscilam bastante.
   - Foi constatado que no testes de de fluxo a taxa de erro ficou muito alta.
+  - Foi constatado que outros processos e a temperatura mais elevadas afetam nos resultatdos dos testes. Pois foram feitos testes após uma serie de testes, e posteriormente foram refeitos após o harware frio e deram resultados bem diferentes.
  
 
 

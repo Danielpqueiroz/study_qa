@@ -1,114 +1,98 @@
-import http from 'k6/http';
-import { check, sleep } from 'k6';
-import { Trend } from 'k6/metrics';
+import { sleep } from 'k6';
+import exec from 'k6/execution';
+import { BaseChecks, BaseRest, ENDPOINTS, testConfig, fakerUserData, fakerProductData } from '../../../support/base/baseTest.js';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
+const base_uri = testConfig.environment.hml.url;
+const baseRest = new BaseRest(base_uri);
+const baseChecks = new BaseChecks();
+
+export const options = testConfig.options.concorrenciaFlow;
+
 export function handleSummary(data) {
-  return {
-      "summaryConcorrencia.html": htmlReport(data),
-  };
+    return {
+        "summaryConcorrencia.html": htmlReport(data),
+    };
+}
+
+export function setup() {
+
+    const payload = fakerUserData();
+    const res = baseRest.post(ENDPOINTS.USER_ENDPOINT, payload);
+    baseChecks.checkStatusCode(res, 201);
+    const userId =  res.json()._id ;
+    console.log(res.json()._id)
+    
+    const urlRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, {email: payload.email, password: payload.password});
+    console.log(urlRes.body);
+    baseChecks.checkStatusCode(urlRes, 200);
+    const tokenSetup = urlRes.json().authorization;
+    console.log(urlRes.json().authorization);
+
+    const productPayload = fakerProductData();
+    const productRes = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, productPayload, { 'Authorization': `${tokenSetup}` });
+    baseChecks.checkStatusCode(productRes, 201);
+    const productId = productRes.json()._id ;
+    
+    return { userId, tokenSetup, productId };
 }
 
 
+export default function (data) {
 
-const createUserTrend = new Trend('create_user_duration');
-const loginTrend = new Trend('login_duration');
-const getProductTrend = new Trend('get_product_duration');
-const createProductTrend = new Trend('create_product_duration');
+    const userPayload = fakerUserData();
+    const userRes = baseRest.post(ENDPOINTS.USER_ENDPOINT, userPayload);
+    baseChecks.checkStatusCode(userRes, 201);
+    baseChecks.checkResponseNotEmpty(userRes);
+    baseChecks.checkResponseSize(userRes, 5000); 
+    baseChecks.checkResponseTime(userRes, 2000);
+    const user = userRes.json()._id;
+    console.log('Usuário Criado: ' + userRes.json().message)
 
+    const loginRes = baseRest.post(ENDPOINTS.LOGIN_ENDPOINT, { email: userPayload.email, password: userPayload.password });
+    baseChecks.checkStatusCode(loginRes, 200);
+    baseChecks.checkResponseNotEmpty(loginRes);
+    baseChecks.checkResponseSize(loginRes, 5000); 
+    baseChecks.checkResponseTime(loginRes, 2000);
+    const token = loginRes.json().authorization;
+    console.log('Usuário Logado: ' + loginRes.json().message)
 
-export let options = {
-    Timeout: '600s',
-    stages: [
-        { duration: '15s', target: 0 }, 
-        { duration: '2m', target: 240 },
-        
-      ],
-    thresholds: {
-        create_user_duration: ['p(95)<2000'], 
-        login_duration: ['p(95)<2000'], 
-        get_product_duration: ['p(95)<2000'], 
-        create_product_duration: ['p(95)<2000'], 
-    },
-};
+    const productRes = baseRest.get(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, { 'Authorization': token });
+    baseChecks.checkStatusCode(productRes, 200);
+    baseChecks.checkResponseNotEmpty(productRes);
+    baseChecks.checkResponseSize(productRes, 5000); 
+    baseChecks.checkResponseTime(productRes, 2000);
+    const productId = productRes.json()._id ;
+    console.log('Produto Criado: ' + productRes.json().message)
 
+    const cartRes = baseRest.post(ENDPOINTS.CARTS_ENDPOINT, {produtos: [ {idProduto: productId, quantidade: Math.floor(Math.random() * 10) + 1}  ]},  { 'Authorization': token });
+    baseChecks.checkStatusCode(cartRes, 201);
+    baseChecks.checkResponseNotEmpty(cartRes);
+    baseChecks.checkResponseSize(cartRes, 5000); 
+    baseChecks.checkResponseTime(cartRes, 2000);
+    console.log('Carrinho Criado: ' + cartRes.json())
 
-const BASE_URL = 'http://localhost:3000';
+    console.log(token)
 
+    const cartDelRes = baseRest.del(ENDPOINTS.CARTS_ENDPOINT + '/concluir-compra', { 'Authorization':  token });
+    baseChecks.checkStatusCode(cartDelRes, 200);
+    baseChecks.checkResponseNotEmpty(cartDelRes);
+    baseChecks.checkResponseSize(cartDelRes, 5000); 
+    baseChecks.checkResponseTime(cartDelRes, 2000);
+    console.log('Carrinho apagado' + cartDelRes.json())
 
-export default function () {
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    // Criação de usuário
-    const email = `user_${Math.random().toString(36)}@qa.com.br`;
-    const userPayload = JSON.stringify({
-        nome: 'Test User',
-        email: email,
-        password: 'teste',
-        administrador: 'true'
-    });
-
-    let createUserRes = http.post(`${BASE_URL}/usuarios`, userPayload, params);
-    check(createUserRes, { 'user created successfully': (r) => r.status === 201 });
-    createUserTrend.add(createUserRes.timings.duration);
-
-    // Login
-    const loginPayload = JSON.stringify({
-        email: email,
-        password: 'teste',
-    });
-
-    let loginRes = http.post(`${BASE_URL}/login`, loginPayload, params);
-    check(loginRes, {
-        'is status 200': (r) => r.status === 200,
-        'is token present': (r) => r.json('authorization') !== '',
-    });
-    loginTrend.add(loginRes.timings.duration);
-
-    const authToken = loginRes.json('authorization');
-
-    // Buscar produtos
-    let productRes = http.get(`${BASE_URL}/produtos`, {
-        headers: {
-            'Authorization': `${authToken}`,
-        },
-    });
-    check(productRes, { 'is status 200': (r) => r.status === 200 });
-    getProductTrend.add(productRes.timings.duration);
-    
-    // Criar produto
-    const parametro = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${authToken}`,
-        },
-    };
-    const productPayload = JSON.stringify({
-        nome: `Produto_${Math.random().toString(36)}`,
-        preco: Math.floor(Math.random() * 1000) + 1, // Gera números entre 1 e 1000
-        descricao: 'Descrição do produto',
-        quantidade: Math.floor(Math.random() * 1000)
-    });
-
-    let createProductRes = http.post(`${BASE_URL}/produtos`, productPayload, parametro);
-    check(createProductRes, { 'is status 201': (r) => r.status === 201 });
-    createProductTrend.add(createProductRes.timings.duration);
-
-    
-    sleep(1);
-
-    // Deletar usuário criado
-    const userId = createUserRes.json()._id;
-    let deleteUserRes = http.del(`${BASE_URL}/usuarios/${userId}`, null, {
-        headers: {
-            'Authorization': `Bearer ${authToken}`,
-        },
-    });
-    check(deleteUserRes, { 'user deleted successfully': (r) => r.status === 200 });
 }
 
+export function teardown(data) {
 
+    const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, { 'Authorization': `${data.tokenSetup}` });
+    baseChecks.checkStatusCode(urlRes, 200);
+    console.log(`Teardown deleting user with ID ${data.productId}`);
+    
+    const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
+    baseChecks.checkStatusCode(res, 200);
+    console.log(`Teardown deleting user with ID ${data.userId}`);
+    
+    
+
+}
