@@ -53,7 +53,7 @@ export default function (data) {
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
     console.log(urlRes.json());
-    sleep(1);
+    
 }
 
 export function teardown(data) {

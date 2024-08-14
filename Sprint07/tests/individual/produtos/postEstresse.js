@@ -10,7 +10,7 @@ export const options = testConfig.options.estresse;
 
 export function handleSummary(data) {
     return {
-        "summaryPost.html": htmlReport(data),
+        "summaryPostEstresse.html": htmlReport(data),
     };
 }
 
@@ -39,8 +39,6 @@ export default function (data) {
     baseChecks.checkResponseNotEmpty(urlRes);
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
-    
-    sleep(1);
     
 }
 

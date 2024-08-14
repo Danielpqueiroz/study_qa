@@ -52,8 +52,6 @@ export default (data) => {
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
 
-    //sleep(1);
-    
 };
 
 

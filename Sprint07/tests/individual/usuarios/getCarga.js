@@ -32,7 +32,6 @@ export default () => {
         baseChecks.checkResponseSize(updateRes, 5000); 
         baseChecks.checkResponseTime(updateRes, 2000);
 
-        
 };
 
 export function teardown(data) {

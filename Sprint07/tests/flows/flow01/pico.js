@@ -7,7 +7,7 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.picoFlow;
+export const options = testConfig.options.pico;
 
 export function handleSummary(data) {
     return {
@@ -74,7 +74,7 @@ export default function () {
     baseChecks.checkResponseTime(userDelRes, 2000);
     console.log('Usuário apagado: ' + userDelRes.json().message)
 
-    
+    sleep(1);
 }
 
 

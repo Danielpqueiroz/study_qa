@@ -19,7 +19,7 @@ export function setup() {
     let users = [];
     let tokens = [];
     
-    for (let i = 0; i < 5000; i++) {
+    for (let i = 0; i < 15000; i++) {
         const userPayload = fakerUserData();
         const userRes = baseRest.post(ENDPOINTS.USER_ENDPOINT, userPayload);
         baseChecks.checkStatusCode(userRes, 201);
@@ -53,7 +53,7 @@ export default function (data) {
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
     console.log(urlRes.json());
-    sleep(1);
+    
 }
 
 export function teardown(data) {

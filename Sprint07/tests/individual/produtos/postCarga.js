@@ -6,11 +6,11 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.escalabilidade;
+export const options = testConfig.options.carga;
 
 export function handleSummary(data) {
     return {
-        "summaryGetId.html": htmlReport(data),
+        "summaryPostCarga.html": htmlReport(data),
     };
 }
 
@@ -28,35 +28,35 @@ export function setup() {
     const token = urlRes.json().authorization;
     console.log(urlRes.json().authorization);
 
-    const productPayload = fakerProductData();
-    const productRes = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, productPayload, { 'Authorization': `${token}` });
-    baseChecks.checkStatusCode(productRes, 201);
-    const productId = productRes.json()._id ;
-    
-
-    return { userId, token, productId };
+    return { userId, token };
 }
 
-export default (data) => {
+export default function (data) {
+    const payload = fakerProductData();
     
-    const urlRes = baseRest.get(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, { 'Authorization': `${data.token}` });
-    baseChecks.checkStatusCode(urlRes, 200);
+    const urlRes = baseRest.post(ENDPOINTS.PRODUCTS_ENDPOINT, payload,  { 'Authorization': `${data.token}` });
+    baseChecks.checkStatusCode(urlRes, 201);
     baseChecks.checkResponseNotEmpty(urlRes);
     baseChecks.checkResponseSize(urlRes, 5000); 
     baseChecks.checkResponseTime(urlRes, 2000);
-
-};
+    
+}
 
 export function teardown(data) {
-    
-    const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, { 'Authorization': `${data.token}` });
-    baseChecks.checkStatusCode(urlRes, 200);
-    console.log(`Teardown deleting user with ID ${data.productId}`);
-    
+    const getProductRes = baseRest.get(ENDPOINTS.PRODUCTS_ENDPOINT);
+    baseChecks.checkStatusCode(getProductRes, 200);
+
+    const products = getProductRes.json().produtos;
+    products.forEach(product => {
+        const productId = product._id;
+        const res = baseRest.del(`${ENDPOINTS.PRODUCTS_ENDPOINT}/${productId}`, { 'Authorization': ` ${data.token}` });
+        baseChecks.checkStatusCode(res, 200);
+        console.log(`Teardown deleting product with ID ${productId}`);
+    });
+
     const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
     baseChecks.checkStatusCode(res, 200);
     console.log(`Teardown deleting user with ID ${data.userId}`);
-    
-    
 
+    
 }

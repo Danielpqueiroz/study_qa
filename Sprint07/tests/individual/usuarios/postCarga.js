@@ -6,11 +6,11 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.estresse;
+export const options = testConfig.options.carga;
 
 export function handleSummary(data) {
     return {
-        "summaryPostEstresse.html": htmlReport(data),
+        "summaryPostCarga.html": htmlReport(data),
     };
 }
 
