@@ -67,6 +67,10 @@ Já para rodar os testes utiliza o seguite comando:
   k6 run nomeDaPasta.js
 `````
 
+### **Cobertura Atingida (%)** = (Número de Cenários Bem-sucedidos / Número Total de Cenários Propostos) × 100
+
+- **Cobertura Atingida (%)** = (19/32) x 100 = 59,375%
+
 ## Pessoas Envolvidas
   -  Quem são os testadores?
       -  Daniel .
