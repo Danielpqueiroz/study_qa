@@ -10,14 +10,14 @@
 ## Links para acessar diretamente os materiais:
 
 
-- [Curso Udemy Performance Test - Primeiros passos com K6.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint6/Sprint06/CursoK6Udemy)
+- [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint7/Sprint07/planTest/Planejamento.md?ref_type=heads)
  
-- [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/Planejamento.md)
- 
-- [Matriz Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint6/Sprint06/Challenger/MatrizRastreabilidadePerformance.md)
+- [Matriz Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint7/Sprint07/planTest/MatrizRastreabilidadePerformance.md?ref_type=heads)
 
 
-- [Códigos dos Testes.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint6/Sprint06/scenarios?ref_type=heads)
+- [Códigos dos Testes.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint7/Sprint07/tests?ref_type=heads)
+
+- [Report dos Testes.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint7/Sprint07/report?ref_type=heads)
  
 
 
