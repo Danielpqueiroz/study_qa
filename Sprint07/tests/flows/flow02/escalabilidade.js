@@ -7,7 +7,7 @@ const base_uri = testConfig.environment.hml.url;
 const baseRest = new BaseRest(base_uri);
 const baseChecks = new BaseChecks();
 
-export const options = testConfig.options.escalabilidadeFlow;
+export const options = testConfig.options.escalabilidade;
 
 export function handleSummary(data) {
     return {
@@ -85,14 +85,26 @@ export default function (data) {
 
 export function teardown(data) {
 
-    const urlRes = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${data.productId}`, { 'Authorization': `${data.tokenSetup}` });
-    baseChecks.checkStatusCode(urlRes, 200);
-    console.log(`Teardown deleting user with ID ${data.productId}`);
-    
-    const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
-    baseChecks.checkStatusCode(res, 200);
-    console.log(`Teardown deleting user with ID ${data.userId}`);
-    
-    
+    const getProductRes = baseRest.get(ENDPOINTS.PRODUCTS_ENDPOINT);
+    baseChecks.checkStatusCode(getProductRes, 200);
 
+    const products = getProductRes.json().produtos;
+    products.forEach(product => {
+        const productId = product._id;
+        const res = baseRest.del(ENDPOINTS.PRODUCTS_ENDPOINT + `/${productId}`, { 'Authorization': ` ${data.tokenSetup}` });
+        baseChecks.checkStatusCode(res, 200);
+        console.log(`Teardown deleting product with ID ${productId}`);
+    });
+    
+    const getUsersRes = baseRest.get(ENDPOINTS.USER_ENDPOINT,);
+    baseChecks.checkStatusCode(getUsersRes, 200);
+
+    const users = getUsersRes.json().usuarios;
+    users.forEach(user => {
+        const userId = user._id;
+        const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${userId}`);
+        baseChecks.checkStatusCode(res, 200);
+        
+    });
+    
 }

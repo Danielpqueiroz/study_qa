@@ -69,9 +69,6 @@ export function teardown(data) {
     baseChecks.checkStatusCode(urlRes, 200);
     console.log(`Teardown deleting product with ID ${data.productId}`);
 
-    // const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.userId}`);
-    // baseChecks.checkStatusCode(res, 200);
-    // console.log(`Teardown deleting user with ID ${data.userId}`);
 
     for (let i = 0; i < data.users.length; i++)  {
         const res = baseRest.del(ENDPOINTS.USER_ENDPOINT + `/${data.users[i]}`);
