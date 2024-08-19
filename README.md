@@ -110,25 +110,7 @@ fixação dos conhecimentos adquiridos durante a sprints.
 - Gabriel just, Enzo, Leticia, Ricardo
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Sprint 03
-
-
-
-
 
 
 ## Links para acessar diretamente o material do dia:
@@ -403,5 +385,40 @@ Já para rodar os testes utiliza o seguite comando:
 `````bash
   k6 run nomeDaPasta.js
 `````
+## Agradecimentos:
+- Enzo, Leticia, Ricardo, Jorge, Mathias, Gabriel Just.
+
+
+# Sprint 07
+
+
+## Links para acessar diretamente os materiais:
+
+
+- [Planejamento.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint7/Sprint07/planTest/Planejamento.md?ref_type=heads)
+ 
+- [Matriz Rastreabilidade.](https://gitlab.com/compass8112219/Sprints/-/blob/pb_sprint7/Sprint07/planTest/MatrizRastreabilidadePerformance.md?ref_type=heads)
+
+
+
+
+- [Códigos dos Testes.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint7/Sprint07/tests?ref_type=heads)
+
+
+- [Report dos Testes.](https://gitlab.com/compass8112219/Sprints/-/tree/pb_sprint7/Sprint07/report?ref_type=heads)
+
+
+## Resumo dos resultados
+  -  Os resultados indicam que a operação de cadastro e de buscar todos são as mais custosas em termos de tempo, enquanto listar e deletar usuários são mais rápidas.
+  - Foi constatado também que os valores de latência oscilam bastante.
+  - Foi constatado que outros processos e a temperatura mais elevadas no hardware afetam nos resultatdos dos testes. Pois foram feitos testes após uma serie de testes, e posteriormente foram refeitos após o harware frio e deram resultados bem diferentes.
+
+
+### **Cobertura Atingida (%)** = (Número de Cenários Bem-sucedidos / Número Total de Cenários Propostos) × 100
+
+
+- **Cobertura Atingida (%)** = (19/32) x 100 = 59,375%
+
+
 ## Agradecimentos:
 - Enzo, Leticia, Ricardo, Jorge, Mathias, Gabriel Just.
