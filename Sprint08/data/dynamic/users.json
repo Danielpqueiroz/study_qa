@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "nome": "Caua56",
+      "email": "Gubio_Costa77@exemplo.qa.com.br",
+      "password": "js5ecxOMDLpdwbB",
+      "administrador": "true"
+    },
+    {
+      "nome": "Victor.Braga96",
+      "email": "Marli.Costa40@exemplo.qa.com.br",
+      "password": "x52I3RMNwrpI5n6",
+      "administrador": "true"
+    },
+    {
+      "nome": "Beatriz.Xavier87",
+      "email": "Miguel_Moraes@exemplo.qa.com.br",
+      "password": "sLxQ1HdlABrkfZn",
+      "administrador": "true"
+    },
+    {
+      "nome": "Isabelly.Macedo65",
+      "email": "Victor53@exemplo.qa.com.br",
+      "password": "9q2NknJcKJEj6IJ",
+      "administrador": "true"
+    },
+    {
+      "nome": "Helio85",
+      "email": "Elisio12@exemplo.qa.com.br",
+      "password": "o76RxxvTYQaGelW",
+      "administrador": "true"
+    },
+    {
+      "nome": "Aline67",
+      "email": "Isabela15@exemplo.qa.com.br",
+      "password": "BGfgH2flBiRQIS1",
+      "administrador": "true"
+    },
+    {
+      "nome": "Calebe19",
+      "email": "Eloa39@exemplo.qa.com.br",
+      "password": "5CkKBTSDQCy1f51",
+      "administrador": "true"
+    },
+    {
+      "nome": "Natalia.Macedo",
+      "email": "Breno5@exemplo.qa.com.br",
+      "password": "n0YU11vUVALcuwC",
+      "administrador": "true"
+    },
+    {
+      "nome": "Marcela0",
+      "email": "Ricardo_Santos71@exemplo.qa.com.br",
+      "password": "cJemBO948KDBx8K",
+      "administrador": "true"
+    },
+    {
+      "nome": "Antonio_Batista25",
+      "email": "Guilherme.Franco@exemplo.qa.com.br",
+      "password": "xzw3cPl1tsdtL91",
+      "administrador": "true"
+    }
+  ]
+}
