@@ -1,4 +1,11 @@
-# Sprint 07
+# Sprint 08
+<div align="center">
+    <img src="https://s3.sa-east-1.amazonaws.com/remotar-assets-prod/company-profile-covers/cl7god9gt00lx04wg4p2a93zt.jpg
+    " width="500px" />
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg_bYvvXNpcfN5I71aaQ4kpNFYBksZhMuREA&s
+    " width="118px" />
+</div>
+
 
 ## Sobre o Repositório
 
@@ -67,6 +74,43 @@ Já para rodar os testes utiliza o seguite comando:
   k6 run nomeDaPasta.js
 `````
 
+`````bash
+sudo yum update -y
+
+sudo yum install gcc-c++ make -y
+
+//checar se curl está instalado
+curl --version
+
+​​​​​​​// caso curl não esteja instalado execute comando abaixo
+​​​​​​​​​​​​​sudo yum install curl 
+
+mkdir serverestApi
+
+cd serverestApi
+
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && sudo yum install -y nodejs
+
+// caso de algum erro de apt-get execute apenas o comando abaixo!
+sudo yum install -y nodejs
+
+npx serverest@latest
+````
+
+`````bash
+sudo yum install git -y  # Para Amazon Linux/CentOS
+
+git clone https://github.com/juniorschmitz/nestjs-cinema.git
+
+cd nestjs-cinema
+
+npm install
+
+npm run start
+`````
+
+34.227.111.1:3000/movies
+
 ### **Cobertura Atingida (%)** = (Número de Cenários Bem-sucedidos / Número Total de Cenários Propostos) × 100
 
 - **Cobertura Atingida (%)** = (19/32) x 100 = 59,375%
@@ -87,3 +131,7 @@ Já para rodar os testes utiliza o seguite comando:
 <div align="center">
     <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDJlMnFtbnF0MWl0aDBxaHkxeTFva3YyOHdseXJhajdxb3B3eng1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6pPRBKAoRKJa/giphy.gif" width="500px" />
 </div>
+
+
+
+
