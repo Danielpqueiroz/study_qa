@@ -9,7 +9,7 @@
 
 - Aprender sobre o negócio. 
 
-- Vivenciar o uso real do software por melo menos um dia. 
+- Vivenciar o uso real do software por pelo menos um dia. 
 
 - Aprendizado contínuo. 
 
